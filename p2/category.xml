@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/nl.esciencecenter.e3dchem.knime.ws.feature-0.0.24.jar" id="nl.esciencecenter.e3dchem.knime.ws.feature" version="0.0.24">
+      <category name="nl.esciencecenter.e3dchem.knime.ws"/>
+   </feature>
+   <category-def name="nl.esciencecenter.e3dchem.knime.ws" label="[Enter Category Label here.]">
+      <description>
+         [Enter Category Description here.]
+      </description>
+   </category-def>
+</site>
