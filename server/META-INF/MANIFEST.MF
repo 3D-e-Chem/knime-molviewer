@@ -61,4 +61,5 @@ Bundle-ClassPath: .,
  libs/swagger-jersey2-jaxrs-1.5.9.jar,
  libs/swagger-models-1.5.9.jar,
  libs/validation-api-1.1.0.Final.jar
-Export-Package: nl.esciencecenter.e3dchem.knime.ws.server
+Export-Package: nl.esciencecenter.e3dchem.knime.ws.server,
+ nl.esciencecenter.e3dchem.knime.ws.server.api

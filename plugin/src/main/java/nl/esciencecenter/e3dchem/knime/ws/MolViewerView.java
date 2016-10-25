@@ -19,6 +19,7 @@ import org.knime.core.node.property.hilite.HiLiteHandler;
 import org.knime.core.node.property.hilite.HiLiteListener;
 
 import nl.esciencecenter.e3dchem.knime.ws.server.HelloServer;
+import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
 
 /**
  * <code>NodeView</code> for the "MolViewer" Node.
@@ -90,7 +91,7 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
         // update the view.
         // be aware of a possibly not executed nodeModel! The data you retrieve
         // from your nodemodel could be null, emtpy, or invalid in any kind.
-        List<String> ligands = getNodeModel().getLigands();
+        List<Molecule> ligands = getNodeModel().getLigands();
         server.updateLigands(ligands);
         server.sendMessage("modelChanged");
     }

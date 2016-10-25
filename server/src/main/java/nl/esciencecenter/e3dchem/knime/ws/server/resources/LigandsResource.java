@@ -9,28 +9,29 @@ import javax.ws.rs.Produces;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
 
 @Path("/ligands")
 @Api(value="ligands")
 @Produces("application/json")
 public class LigandsResource {
-	private List<String> ligands;
+	private List<Molecule> ligands;
 
 	public LigandsResource() {
-		this.ligands = new ArrayList<String>();
+		this.ligands = new ArrayList<Molecule>();
 	}
 	
-	public LigandsResource(List<String> ligands) {
+	public LigandsResource(List<Molecule> ligands) {
 		this.ligands = ligands;
 	}
 	
 	@GET
 	@ApiOperation(value = "List of ligands")
-	public List<String> getLigands() {
+	public List<Molecule> getLigands() {
 		return ligands;
 	}
 
-	public void setLigands(List<String> ligands) {
+	public void setLigands(List<Molecule> ligands) {
 		this.ligands = ligands;
 	}
 }

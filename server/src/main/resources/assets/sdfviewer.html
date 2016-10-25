@@ -23,7 +23,7 @@
             return response.json()
         }).then(function(data) {
             ligands = data.map(function(d) {
-                return glviewer.addModel(d, 'sdf');
+                return glviewer.addModel(d.data, d.type);
             });
             glviewer.setStyle({model: ligands}, {stick: {}});
             glviewer.zoomTo();

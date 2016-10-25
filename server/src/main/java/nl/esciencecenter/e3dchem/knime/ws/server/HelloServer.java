@@ -18,6 +18,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 
+import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.HelloBroadcasterResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.HiLiteResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsResource;
@@ -109,7 +110,7 @@ public class HelloServer {
 		sse_res.broadcastMessage(message);
 	}
 
-	public void updateLigands(List<String> ligands) {
+	public void updateLigands(List<Molecule> ligands) {
 		ligands_res.setLigands(ligands);
 	}
 
