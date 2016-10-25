@@ -4,6 +4,7 @@ import org.knime.chem.types.SdfValue;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 /**
@@ -31,7 +32,7 @@ public class MolViewerDialog extends DefaultNodeSettingsPane {
 						"Column with SDF formatted molecules", MolViewerModel.LIGAND_PORT, SdfValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				new SettingsModelString(MolViewerModel.CFGKEY_LIGAND_LABEL, null), "Column with labels",
+				new SettingsModelColumnName(MolViewerModel.CFGKEY_LIGAND_LABEL, null), "Column with labels",
 				MolViewerModel.LIGAND_PORT, StringValue.class));
 
 		createNewGroup("Proteins");
@@ -41,7 +42,7 @@ public class MolViewerDialog extends DefaultNodeSettingsPane {
 						"Column with PDB formatted molecules", MolViewerModel.PROTEIN_PORT, StringValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN_LABEL, null), "Column with labels",
+				new SettingsModelColumnName(MolViewerModel.CFGKEY_PROTEIN_LABEL, null), "Column with labels",
 				MolViewerModel.PROTEIN_PORT, StringValue.class));
 
 		closeCurrentGroup();

@@ -28,6 +28,7 @@ import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
+import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
@@ -47,7 +48,7 @@ public class MolViewerModel extends NodeModel {
 	private static final String LIGANDS_FILE_NAME = "molViewerInternals.ligands.ser.gz";
 
 	private final SettingsModelString m_ligand_column = new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, "");
-	private final SettingsModelString m_ligand_label_column = new SettingsModelString(
+	private final SettingsModelColumnName m_ligand_label_column = new SettingsModelColumnName(
 			MolViewerModel.CFGKEY_LIGAND_LABEL, "");
 
 	private List<Molecule> ligands;
@@ -58,7 +59,7 @@ public class MolViewerModel extends NodeModel {
 	private static final String PROTEINS_FILE_NAME = "molViewerInternals.proteins.ser.gz";
 
 	private final SettingsModelString m_protein_column = new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN, "");
-	private final SettingsModelString m_protein_label_column = new SettingsModelString(
+	private final SettingsModelColumnName m_protein_label_column = new SettingsModelColumnName(
 			MolViewerModel.CFGKEY_PROTEIN_LABEL, "");
 
 	private List<Molecule> proteins;
@@ -88,26 +89,26 @@ public class MolViewerModel extends NodeModel {
 	private void setLigands(final BufferedDataTable[] inData) {
 		int molPort = LIGAND_PORT;
 		String molColumnName = m_ligand_column.getStringValue();
-		String molLabelColumnName = m_ligand_label_column.getStringValue();
+		SettingsModelColumnName molLabelColumn = m_ligand_label_column;
 		String format = "sdf";
-		ligands = getMolecules(inData, molPort, molColumnName, molLabelColumnName, format);
+		ligands = getMolecules(inData, molPort, molColumnName, molLabelColumn, format);
 	}
 
 	private void setProteins(BufferedDataTable[] inData) {
 		int molPort = PROTEIN_PORT;
 		String molColumnName = m_protein_column.getStringValue();
-		String molLabelColumnName = m_protein_label_column.getStringValue();
+		SettingsModelColumnName molLabelColumn = m_protein_label_column;
 		String format = "pdb";
-		proteins = getMolecules(inData, molPort, molColumnName, molLabelColumnName, format);
+		proteins = getMolecules(inData, molPort, molColumnName, molLabelColumn, format);
 	}
 
 	private List<Molecule> getMolecules(BufferedDataTable[] datatables, int port, String molColumnName,
-			String labelColumnName, String format) {
+			SettingsModelColumnName molLabelColumn, String format) {
 		BufferedDataTable molDataTable = datatables[port];
 		DataTableSpec molSpec = molDataTable.getDataTableSpec();
 		int molColIndex = molSpec.findColumnIndex(molColumnName);
-		boolean useRowKeyAsLabel = labelColumnName.isEmpty();
-		int labelColIndex = molSpec.findColumnIndex(labelColumnName);
+		boolean useRowKeyAsLabel = molLabelColumn.useRowID();
+		int labelColIndex = molSpec.findColumnIndex(molLabelColumn.getStringValue());
 
 		ArrayList<Molecule> molecules = new ArrayList<Molecule>();
 		for (DataRow currRow : molDataTable) {
