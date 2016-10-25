@@ -34,6 +34,8 @@ public class MolViewerServer {
 	private HiLiteResource ligand_hilite_res;
 	private ProteinsResource proteins_res;
 
+	static public final String apiBasePath = "/api";
+
 	public MolViewerServer(String page) {
 		// use random port, can be retrieved after start
 		this(page, 0);
@@ -66,7 +68,7 @@ public class MolViewerServer {
         ServletContainer sc = new ServletContainer(rc);
         ServletHolder holder = new ServletHolder(sc);
         ServletContextHandler rest_handler = new ServletContextHandler();
-        rest_handler.setContextPath("/api");
+        rest_handler.setContextPath(apiBasePath);
         rest_handler.addServlet(holder, "/*");
                
         ContextHandlerCollection contexts = new ContextHandlerCollection();

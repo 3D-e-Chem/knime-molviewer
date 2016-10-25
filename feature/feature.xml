@@ -3,7 +3,7 @@
       id="nl.esciencecenter.e3dchem.knime.ws.feature"
       label="nl.esciencecenter.e3dchem.knime.ws Feature"
       version="0.0.25"
-      provider-name="[Enter provider name here.]">
+      provider-name="Netherlands eScience Center">
 
    <description url="https://github.com/3D-e-Chem/knime-ws">
       Homepage at https://github.com/3D-e-Chem/knime-ws
@@ -221,7 +221,7 @@ http://www.apache.org/licenses/
    </license>
 
    <url>
-      <update label="Update site" url="https://www.example.com/updates"/>
+      <update label="Update site" url="https://3d-e-chem.github.io/updates"/>
       <discovery label="Discovery site" url="https://github.com/3D-e-Chem/knime-ws"/>
    </url>
 

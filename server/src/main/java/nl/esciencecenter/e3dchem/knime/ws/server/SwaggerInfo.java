@@ -17,7 +17,8 @@ import io.swagger.annotations.SwaggerDefinition;
         ),
         consumes = {"application/json"},
         produces = {"application/json", "text/event-stream"},
-        schemes = {SwaggerDefinition.Scheme.HTTP}
+        schemes = {SwaggerDefinition.Scheme.HTTP},
+        basePath = MolViewerServer.apiBasePath
 )
 public interface SwaggerInfo {
 

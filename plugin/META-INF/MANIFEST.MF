@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Plugin
+Bundle-Name: Molviewer Nodes
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.ws.plugin;singleton:=true
 Bundle-Version: 0.0.25
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
