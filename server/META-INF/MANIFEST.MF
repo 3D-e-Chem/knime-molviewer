@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Server
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.ws.server;singleton:=true
-Bundle-Version: 0.0.24
+Bundle-Version: 0.0.25
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: [Enter Your Company here.]
 Bundle-ActivationPolicy: lazy

@@ -2,7 +2,7 @@
 <feature
       id="nl.esciencecenter.e3dchem.knime.ws.feature"
       label="nl.esciencecenter.e3dchem.knime.ws Feature"
-      version="0.0.24"
+      version="0.0.25"
       provider-name="[Enter provider name here.]">
 
    <description url="https://github.com/3D-e-Chem/knime-ws">
