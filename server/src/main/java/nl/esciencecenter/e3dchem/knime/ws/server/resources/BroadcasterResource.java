@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @Path("/broadcast")
 @Api(value="broadcast")
-public class HelloBroadcasterResource {
+public class BroadcasterResource {
 	private SseBroadcaster broadcaster = new SseBroadcaster();
 	
 	public void broadcastMessage(String message) {

@@ -19,7 +19,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 
 import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
-import nl.esciencecenter.e3dchem.knime.ws.server.resources.HelloBroadcasterResource;
+import nl.esciencecenter.e3dchem.knime.ws.server.resources.BroadcasterResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.HiLiteResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsHiLiteResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsResource;
@@ -28,7 +28,7 @@ import nl.esciencecenter.e3dchem.knime.ws.server.resources.ProteinsResource;
 public class HelloServer {
     private Server server;
 	private URI current_uri;
-	private HelloBroadcasterResource sse_res;
+	private BroadcasterResource sse_res;
 	private LigandsResource ligands_res;
 	private String page = "";
 	private HiLiteResource ligand_hilite_res;
@@ -55,7 +55,7 @@ public class HelloServer {
         rc.register(io.swagger.jaxrs.listing.ApiListingResource.class);
         rc.register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
         rc.register(SwaggerInfo.class);
-        sse_res = new HelloBroadcasterResource();
+        sse_res = new BroadcasterResource();
         rc.register(sse_res);
         ligands_res = new LigandsResource();
         rc.register(ligands_res);
