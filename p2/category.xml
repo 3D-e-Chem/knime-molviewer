@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/nl.esciencecenter.e3dchem.knime.ws.feature-0.0.25.jar" id="nl.esciencecenter.e3dchem.knime.ws.feature" version="0.0.25">
-      <<category name="nl.esciencecenter.3D-e-Chem"/>
+   <feature url="features/nl.esciencecenter.e3dchem.knime.ws.feature-0.0.26.jar" id="nl.esciencecenter.e3dchem.knime.ws.feature" version="0.0.26">
+      <category name="nl.esciencecenter.3D-e-Chem"/>
    </feature>
     <category-def name="nl.esciencecenter.3D-e-Chem" label="KNIME 3D-e-Chem Contributions">
       <description>
