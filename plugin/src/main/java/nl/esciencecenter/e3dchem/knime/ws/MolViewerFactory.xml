@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<knimeNode icon="./default.png" type="Visualizer" xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
-    <name>SDFWebViewer</name>
-    
-    <shortDescription>
-        Node to view SDF molecules in web browser
-    </shortDescription>
-    
-    <fullDescription>
-        <intro>Node to view SDF molecules in web browser
-        
-        <pre>KNIME Node which on open it's view starts a web service and opens a web browser with a url to that webservice.
+<knimeNode icon="./default.png" type="Visualizer"
+	xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+	<name>SDF PDB Viewer</name>
 
-* Each node has own html page
-* Webservice should
+	<shortDescription>
+		Node to view SDF and PDB molecules in web browser
+	</shortDescription>
 
-    * Each instance of view should have own webservice on own port
-    * host static html page and js/css etc.
-    * REST interface to fill page with items from the node's input via node's model.
-    * Websocket for signalling to web browser when
-	
-	* view closed
-	* input changed
-	* hilite events
+	<fullDescription>
+		<intro>
+			<p>Node to view SDF and PDB molecules in web browser</p>
 
-    * have a swagger document (nice to have)
-    </pre>
-        </intro>
-        <option name="Counter">Dummy, counter</option>
-        <option name="Column with SDF molecules">Column with SDF molecules in port 0.</option>
-    </fullDescription>
-    
-    <ports>
-        <inPort index="0" name="In-Port name">Table containing SDF molecules</inPort>
-    </ports>    
-    <views>
-        <view index="0" name="Web browser launcher">Display web browser launcher</view>
-    </views>
+			<p>KNIME Node which on opening it's view starts a web service and
+				opens a web browser with a url to that webservice.</p>
+
+			<p>
+				Source code available at
+				<a href="https://github.com/3D-e-Chem/knime-ws">Github</a>
+				.
+			</p>
+		</intro>
+
+		<option name="Ligands: Column with SDF molecules">Column with SDF molecules in port 0.</option>
+		<option name="Ligands: Column with labels" optional="true">Column with
+			labels in port 0, if no column is selected uses Row ID.</option>
+		<option name="Proteins: Column with PDB molecules">Column with DPB molecules in port 1.</option>
+		<option name="Proteins: Column with labels" optional="true">Column
+			with labels in port 1, if no column is selected uses Row ID.</option>
+	</fullDescription>
+
+	<ports>
+		<inPort index="0" name="Ligands">Table containing SDF molecules</inPort>
+		<inPort index="1" name="Proteins">Table containing PDB molecules</inPort>
+	</ports>
+	<views>
+		<view index="0" name="Web browser launcher">Display web browser launcher</view>
+	</views>
 </knimeNode>

@@ -2,6 +2,7 @@ package nl.esciencecenter.e3dchem.knime.ws;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,6 +18,7 @@ import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.StringValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
@@ -26,7 +28,6 @@ import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
-import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
@@ -40,42 +41,35 @@ public class MolViewerModel extends NodeModel {
 	// the logger instance
 	private static final NodeLogger logger = NodeLogger.getLogger(MolViewerModel.class);
 
-	/**
-	 * the settings key which is used to retrieve and store the settings (from
-	 * the dialog or from a settings file) (package visibility to be usable from
-	 * the dialog).
-	 */
-	static final String CFGKEY_COUNT = "Count";
-
-	/** initial default count value. */
-	static final int DEFAULT_COUNT = 100;
-
-	public static final String CFGKEY_LIGAND = "ligandColumn";
-
 	public static final int LIGAND_PORT = 0;
-
-	// example value: the models count variable filled from the dialog
-	// and used in the models execution method. The default components of the
-	// dialog work with "SettingsModels".
-	private final SettingsModelIntegerBounded m_count = new SettingsModelIntegerBounded(MolViewerModel.CFGKEY_COUNT,
-			MolViewerModel.DEFAULT_COUNT, Integer.MIN_VALUE, Integer.MAX_VALUE);
+	public static final String CFGKEY_LIGAND = "ligandColumn";
+	public static final String CFGKEY_LIGAND_LABEL = "ligandLabelColumn";
+	private static final String LIGANDS_FILE_NAME = "molViewerInternals.ligands.ser.gz";
 
 	private final SettingsModelString m_ligand_column = new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, "");
+	private final SettingsModelString m_ligand_label_column = new SettingsModelString(
+			MolViewerModel.CFGKEY_LIGAND_LABEL, "");
 
 	private List<Molecule> ligands;
 
-	private static final String LIGANDS_FILE_NAME = "molViewerInternals.ligands.ser.gz";
+	public static final int PROTEIN_PORT = 1;
+	public static final String CFGKEY_PROTEIN = "proteinColumn";
+	public static final String CFGKEY_PROTEIN_LABEL = "proteinLabelColumn";
+	private static final String PROTEINS_FILE_NAME = "molViewerInternals.proteins.ser.gz";
+
+	private final SettingsModelString m_protein_column = new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN, "");
+	private final SettingsModelString m_protein_label_column = new SettingsModelString(
+			MolViewerModel.CFGKEY_PROTEIN_LABEL, "");
+
+	private List<Molecule> proteins;
 
 	// TODO add pharmacophores column on ligand and/or protein port
-
-	// TODO add proteins column on protein port
 
 	/**
 	 * Constructor for the node model.
 	 */
 	public MolViewerModel() {
-		// one incoming port and zero outgoing port is assumed
-		super(1, 0);
+		super(2, 0);
 	}
 
 	/**
@@ -85,26 +79,60 @@ public class MolViewerModel extends NodeModel {
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
 
-		BufferedDataTable ligandDataTable = inData[LIGAND_PORT];
-		int ligandColIndex = ligandDataTable.getDataTableSpec().findColumnIndex(m_ligand_column.getStringValue());
-
-		ligands = new ArrayList<Molecule>();
-		for (DataRow currRow : ligandDataTable) {
-			DataCell currCell = currRow.getCell(ligandColIndex);
-			Molecule mol = new Molecule();
-			mol.format = "sdf";
-			mol.id = currRow.getKey().getString();
-			// TODO add label column to dialog
-			mol.label = currRow.getKey().getString();
-			mol.data = ((SdfValue) currCell).getSdfValue();
-			ligands.add(mol);
-		}
+		setLigands(inData);
+		setProteins(inData);
 
 		return new BufferedDataTable[] {};
 	}
 
+	private void setLigands(final BufferedDataTable[] inData) {
+		int molPort = LIGAND_PORT;
+		String molColumnName = m_ligand_column.getStringValue();
+		String molLabelColumnName = m_ligand_label_column.getStringValue();
+		String format = "sdf";
+		ligands = getMolecules(inData, molPort, molColumnName, molLabelColumnName, format);
+	}
+
+	private void setProteins(BufferedDataTable[] inData) {
+		int molPort = PROTEIN_PORT;
+		String molColumnName = m_protein_column.getStringValue();
+		String molLabelColumnName = m_protein_label_column.getStringValue();
+		String format = "pdb";
+		proteins = getMolecules(inData, molPort, molColumnName, molLabelColumnName, format);
+	}
+
+	private List<Molecule> getMolecules(BufferedDataTable[] datatables, int port, String molColumnName,
+			String labelColumnName, String format) {
+		BufferedDataTable molDataTable = datatables[port];
+		DataTableSpec molSpec = molDataTable.getDataTableSpec();
+		int molColIndex = molSpec.findColumnIndex(molColumnName);
+		boolean useRowKeyAsLabel = labelColumnName.isEmpty();
+		int labelColIndex = molSpec.findColumnIndex(labelColumnName);
+
+		ArrayList<Molecule> molecules = new ArrayList<Molecule>();
+		for (DataRow currRow : molDataTable) {
+			Molecule mol = new Molecule();
+			mol.format = format;
+			DataCell currCell = currRow.getCell(molColIndex);
+			mol.data = ((StringValue) currCell).getStringValue();
+			mol.id = currRow.getKey().getString();
+			if (useRowKeyAsLabel) {
+				mol.label = currRow.getKey().getString();
+			} else {
+				currCell = currRow.getCell(labelColIndex);
+				mol.label = ((StringValue) currCell).getStringValue();
+			}
+			molecules.add(mol);
+		}
+		return molecules;
+	}
+
 	public List<Molecule> getLigands() {
 		return ligands;
+	}
+
+	public List<Molecule> getProteins() {
+		return proteins;
 	}
 
 	/**
@@ -116,6 +144,7 @@ public class MolViewerModel extends NodeModel {
 		// Models build during execute are cleared here.
 		// Also data handled in load/saveInternals will be erased here.
 		ligands = null;
+		proteins = null;
 	}
 
 	/**
@@ -141,7 +170,7 @@ public class MolViewerModel extends NodeModel {
 			}
 		}
 		if (!hasSdfColumn) {
-			throw new InvalidSettingsException("Input table must contain at " + "least one SDF column");
+			throw new InvalidSettingsException("Input table on input port 0 must contain at least one SDF column");
 		}
 
 		return new DataTableSpec[] {};
@@ -152,11 +181,10 @@ public class MolViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
-
-		// save user settings to the config object.
-
-		m_count.saveSettingsTo(settings);
 		m_ligand_column.saveSettingsTo(settings);
+		m_ligand_label_column.saveSettingsTo(settings);
+		m_protein_column.saveSettingsTo(settings);
+		m_protein_label_column.saveSettingsTo(settings);
 	}
 
 	/**
@@ -164,13 +192,10 @@ public class MolViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings) throws InvalidSettingsException {
-
-		// load (valid) settings from the config object.
-		// It can be safely assumed that the settings are valided by the
-		// method below.
-
-		m_count.loadSettingsFrom(settings);
 		m_ligand_column.loadSettingsFrom(settings);
+		m_ligand_label_column.loadSettingsFrom(settings);
+		m_protein_column.loadSettingsFrom(settings);
+		m_protein_label_column.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -178,14 +203,10 @@ public class MolViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void validateSettings(final NodeSettingsRO settings) throws InvalidSettingsException {
-
-		// check if the settings could be applied to our model
-		// e.g. if the count is in a certain range (which is ensured by the
-		// SettingsModel).
-		// Do not actually set any values of any member variables.
-
-		m_count.validateSettings(settings);
 		m_ligand_column.validateSettings(settings);
+		m_ligand_label_column.validateSettings(settings);
+		m_protein_column.validateSettings(settings);
+		m_protein_label_column.validateSettings(settings);
 	}
 
 	/**
@@ -203,18 +224,24 @@ public class MolViewerModel extends NodeModel {
 		// (e.g. data used by the views).
 		logger.warn("loadInternals");
 
-		File file = new File(internDir, LIGANDS_FILE_NAME);
+		ligands = loadInternalsMolecules(new File(internDir, LIGANDS_FILE_NAME));
+		proteins = loadInternalsMolecules(new File(internDir, PROTEINS_FILE_NAME));
+	}
+
+	private List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
 		if (!file.canRead()) {
-			return;
+			return new ArrayList<Molecule>();
 		}
 		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
 		try {
 			Molecule[] array = (Molecule[]) in.readObject();
-			ligands = Arrays.asList(array);
+			return Arrays.asList(array);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
+		} finally {
+			in.close();
 		}
-		in.close();
+		return new ArrayList<Molecule>();
 	}
 
 	/**
@@ -232,9 +259,14 @@ public class MolViewerModel extends NodeModel {
 		// (e.g. data used by the views).
 		logger.warn("saveInternals");
 
-		File file = new File(internDir, LIGANDS_FILE_NAME);
+		saveInternalsMolecules(new File(internDir, LIGANDS_FILE_NAME), ligands);
+		saveInternalsMolecules(new File(internDir, PROTEINS_FILE_NAME), proteins);
+	}
+
+	private void saveInternalsMolecules(final File file, List<Molecule> molecules)
+			throws FileNotFoundException, IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-		out.writeObject(ligands.toArray());
+		out.writeObject(molecules.toArray());
 		out.flush();
 		out.close();
 	}

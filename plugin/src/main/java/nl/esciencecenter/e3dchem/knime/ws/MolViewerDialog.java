@@ -1,10 +1,9 @@
 package nl.esciencecenter.e3dchem.knime.ws;
 
 import org.knime.chem.types.SdfValue;
+import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
-import org.knime.core.node.defaultnodesettings.DialogComponentNumber;
-import org.knime.core.node.defaultnodesettings.SettingsModelIntegerBounded;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 /**
@@ -25,14 +24,26 @@ public class MolViewerDialog extends DefaultNodeSettingsPane {
 	protected MolViewerDialog() {
 		super();
 
+		createNewGroup("Ligands");
+
 		addDialogComponent(
-				new DialogComponentNumber(
-						new SettingsModelIntegerBounded(MolViewerModel.CFGKEY_COUNT, MolViewerModel.DEFAULT_COUNT,
-								Integer.MIN_VALUE, Integer.MAX_VALUE),
-						"Counter:", /* step */ 1, /* componentwidth */ 5));
+				new DialogComponentColumnNameSelection(new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, null),
+						"Column with SDF formatted molecules", MolViewerModel.LIGAND_PORT, SdfValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, null),
-				"Column with SDF molecules", MolViewerModel.LIGAND_PORT, SdfValue.class));
+				new SettingsModelString(MolViewerModel.CFGKEY_LIGAND_LABEL, null), "Column with labels",
+				MolViewerModel.LIGAND_PORT, StringValue.class));
+
+		createNewGroup("Proteins");
+
+		addDialogComponent(
+				new DialogComponentColumnNameSelection(new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN, null),
+						"Column with PDB formatted molecules", MolViewerModel.PROTEIN_PORT, StringValue.class));
+
+		addDialogComponent(new DialogComponentColumnNameSelection(
+				new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN_LABEL, null), "Column with labels",
+				MolViewerModel.PROTEIN_PORT, StringValue.class));
+
+		closeCurrentGroup();
 	}
 }

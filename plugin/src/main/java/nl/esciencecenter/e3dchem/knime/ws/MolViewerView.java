@@ -91,8 +91,8 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
         // update the view.
         // be aware of a possibly not executed nodeModel! The data you retrieve
         // from your nodemodel could be null, emtpy, or invalid in any kind.
-        List<Molecule> ligands = getNodeModel().getLigands();
-        server.updateLigands(ligands);
+        server.updateLigands(getNodeModel().getLigands());
+        server.updateProteins(getNodeModel().getProteins());
         server.sendMessage("modelChanged");
     }
 
