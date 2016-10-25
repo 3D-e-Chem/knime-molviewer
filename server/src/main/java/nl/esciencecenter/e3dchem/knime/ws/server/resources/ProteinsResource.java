@@ -8,12 +8,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
 
-@Path("/ligands")
-@Api(value="Ligands")
-public class LigandsResource extends MoleculeResource {
-
+@Path("/proteins")
+@Api(value="Proteins")
+public class ProteinsResource extends MoleculeResource {
 	@Override
-	@ApiOperation(value = "List of ligands", nickname="getLigands", notes="Ligands from the ligand input port of the KNIME node")
+	@ApiOperation(value = "List of proteins", nickname="getProteins", notes="Proteins from the protein input port of the KNIME node")
 	public List<Molecule> getMolecules() {
 		return super.getMolecules();
 	}
