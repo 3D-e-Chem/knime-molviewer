@@ -41,13 +41,6 @@ public class HelloServerTest {
 		assertEquals("/assets/mynode.html", uri.getPath());
 	}
 	
-//	@Test
-//	public void testHandler() throws ClientProtocolException, IOException {
-//		String uri = viewer.getCurrent_uri().toString() + "hello";
-//		String response = Request.Get(uri).execute().returnContent().asString();
-//		assertEquals("<h1>Hello World</h1>", response);
-//	}
-//	
 	@Test
 	public void testStatic() throws ClientProtocolException, IOException, URISyntaxException {
 		URI uri = server.getBaseUri().resolve("/assets/index.html");
@@ -63,11 +56,6 @@ public class HelloServerTest {
 		assertEquals("[]", content);
 	}
 
-//	@Test
-//	public void testWebSocket() {
-//		fail("Todo");
-//	}
-	
 	@Test
 	public void testSwaggerYaml() throws URISyntaxException, ClientProtocolException, IOException {
 		URI uri = server.getBaseUri().resolve("/api/swagger.yaml");
