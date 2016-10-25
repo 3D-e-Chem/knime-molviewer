@@ -21,6 +21,7 @@ import org.knime.core.node.property.hilite.HiLiteHandler;
 import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.HelloBroadcasterResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.HiLiteResource;
+import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsHiLiteResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsResource;
 
 public class HelloServer {
@@ -29,7 +30,7 @@ public class HelloServer {
 	private HelloBroadcasterResource sse_res;
 	private LigandsResource ligands_res;
 	private String page = "";
-	private HiLiteResource hilite_res;
+	private HiLiteResource ligand_hilite_res;
 
 	public HelloServer(String page) {
 		// use random port, can be retrieved after start
@@ -56,8 +57,8 @@ public class HelloServer {
         rc.register(sse_res);
         ligands_res = new LigandsResource();
         rc.register(ligands_res);
-        hilite_res = new HiLiteResource();
-        rc.register(hilite_res);
+        ligand_hilite_res = new LigandsHiLiteResource();
+        rc.register(ligand_hilite_res);
         ServletContainer sc = new ServletContainer(rc);
         ServletHolder holder = new ServletHolder(sc);
         ServletContextHandler rest_handler = new ServletContextHandler();
@@ -114,7 +115,7 @@ public class HelloServer {
 		ligands_res.setLigands(ligands);
 	}
 
-	public void setHiLiteHandler(HiLiteHandler hiliteHandler) {
-		hilite_res.setHiLiteHandler(hiliteHandler);
+	public void setLigandsHiLiteHandler(HiLiteHandler hiliteHandler) {
+		ligand_hilite_res.setHiLiteHandler(hiliteHandler);
 	}
 }

@@ -30,7 +30,7 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
             .getLogger(MolViewerView.class);
 	private JTextField current_uri_field;
 	private HelloServer server;
-	private HiLiteHandler m_hiliteHandler = null;
+	private HiLiteHandler ligandsHiLiteHandler = null;
 	
 	/**
      * Creates a new view.
@@ -74,16 +74,16 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 
     	// update internal hilite handler
         HiLiteHandler hiliteHandler = getNodeModel().getInHiLiteHandler(MolViewerModel.LIGAND_PORT);
-        if (m_hiliteHandler == null) {
-            m_hiliteHandler = hiliteHandler;
-            m_hiliteHandler.addHiLiteListener(this);
-            server.setHiLiteHandler(hiliteHandler);
+        if (ligandsHiLiteHandler == null) {
+            ligandsHiLiteHandler = hiliteHandler;
+            ligandsHiLiteHandler.addHiLiteListener(this);
+            server.setLigandsHiLiteHandler(hiliteHandler);
         } else {
-            if (hiliteHandler != m_hiliteHandler) {
-                m_hiliteHandler.removeHiLiteListener(this);
-                m_hiliteHandler = hiliteHandler;
-                m_hiliteHandler.addHiLiteListener(this);
-                server.setHiLiteHandler(hiliteHandler);
+            if (hiliteHandler != ligandsHiLiteHandler) {
+                ligandsHiLiteHandler.removeHiLiteListener(this);
+                ligandsHiLiteHandler = hiliteHandler;
+                ligandsHiLiteHandler.addHiLiteListener(this);
+                server.setLigandsHiLiteHandler(hiliteHandler);
             }
         }
     	
@@ -110,9 +110,9 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 			e.printStackTrace();
 		}
     	
-    	if (m_hiliteHandler != null) {
-            m_hiliteHandler.removeHiLiteListener(this);
-            m_hiliteHandler = null;
+    	if (ligandsHiLiteHandler != null) {
+            ligandsHiLiteHandler.removeHiLiteListener(this);
+            ligandsHiLiteHandler = null;
         }
     }
 

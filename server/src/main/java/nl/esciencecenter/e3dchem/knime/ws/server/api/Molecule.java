@@ -1,21 +1,19 @@
 package nl.esciencecenter.e3dchem.knime.ws.server.api;
 
+import io.swagger.annotations.ApiModelProperty;
+
+
 public class Molecule {
+	@ApiModelProperty(required=true, value="Identifier")
 	public String id;
+	@ApiModelProperty(required=true, value="Label")
 	public String label;
-	public String data;
+	@ApiModelProperty(required=true, value="Data format", allowableValues="sdf, pdb")
 	public String format;
+	@ApiModelProperty(required=true, value="Data of molecule aka atoms/bonds in specified format")
+	public String data;
 	
 	public Molecule() {
 		
 	}
-	
-	public Molecule(String id, String label, String data, String format) {
-		super();
-		this.id = id;
-		this.label = label;
-		this.data = data;
-		this.format = format;
-	}
-	
 }

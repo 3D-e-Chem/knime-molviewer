@@ -92,11 +92,11 @@ public class MolViewerModel extends NodeModel {
 		for (DataRow currRow : ligandDataTable) {
 			DataCell currCell = currRow.getCell(ligandColIndex);
 			Molecule mol = new Molecule();
+			mol.format = "sdf";
 			mol.id = currRow.getKey().getString();
 			// TODO add label column to dialog
 			mol.label = currRow.getKey().getString();
 			mol.data = ((SdfValue) currCell).getSdfValue();
-			mol.format = "sdf";
 			ligands.add(mol);
 		}
 

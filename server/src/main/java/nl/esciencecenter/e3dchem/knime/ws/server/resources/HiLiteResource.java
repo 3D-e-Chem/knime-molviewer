@@ -15,7 +15,7 @@ import org.knime.core.node.property.hilite.HiLiteHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Path("/hilite")
+
 @Api(value="hilite")
 @Produces("application/json")
 public class HiLiteResource {
