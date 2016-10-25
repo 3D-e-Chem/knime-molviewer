@@ -42,7 +42,7 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
         logger.warn("mol view: construct");
 
         setupPanel();
-        server = new MolViewerServer("sdfviewer.html");
+        server = new MolViewerServer("index.html");
     }
 
 	private void setupPanel() {
