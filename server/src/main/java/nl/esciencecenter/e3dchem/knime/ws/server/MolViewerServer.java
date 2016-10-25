@@ -25,7 +25,7 @@ import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsHiLiteResource
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.ProteinsResource;
 
-public class HelloServer {
+public class MolViewerServer {
     private Server server;
 	private URI current_uri;
 	private BroadcasterResource sse_res;
@@ -34,12 +34,12 @@ public class HelloServer {
 	private HiLiteResource ligand_hilite_res;
 	private ProteinsResource proteins_res;
 
-	public HelloServer(String page) {
+	public MolViewerServer(String page) {
 		// use random port, can be retrieved after start
 		this(page, 0);
 	}
 			
-	public HelloServer(String page, int port) {
+	public MolViewerServer(String page, int port) {
 		this.page = page;
 		server = new Server(port);
 		

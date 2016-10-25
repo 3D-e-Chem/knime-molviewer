@@ -2,7 +2,6 @@ package nl.esciencecenter.e3dchem.knime.ws;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,19 +10,18 @@ import java.net.URISyntaxException;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
-import org.apache.http.client.fluent.Response;
 import org.apache.http.util.EntityUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.HelloServer;
+import nl.esciencecenter.e3dchem.knime.ws.server.MolViewerServer;
 
-public class HelloServerTest {
-	private HelloServer server;
+public class MolViewerServerTest {
+	private MolViewerServer server;
 
 	@Before
 	public void setUp() throws Exception {
-		server = new HelloServer("mynode.html");
+		server = new MolViewerServer("mynode.html");
 		server.start();
 		// wait for server to spin up
 //		Thread.sleep(500);

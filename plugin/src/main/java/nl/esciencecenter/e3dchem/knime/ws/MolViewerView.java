@@ -18,7 +18,7 @@ import org.knime.core.node.NodeView;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 import org.knime.core.node.property.hilite.HiLiteListener;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.HelloServer;
+import nl.esciencecenter.e3dchem.knime.ws.server.MolViewerServer;
 import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
 
 /**
@@ -29,7 +29,7 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	private static final NodeLogger logger = NodeLogger
             .getLogger(MolViewerView.class);
 	private JTextField current_uri_field;
-	private HelloServer server;
+	private MolViewerServer server;
 	private HiLiteHandler ligandsHiLiteHandler = null;
 	
 	/**
@@ -42,7 +42,7 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
         logger.warn("mol view: construct");
 
         setupPanel();
-        server = new HelloServer("sdfviewer.html");
+        server = new MolViewerServer("sdfviewer.html");
     }
 
 	private void setupPanel() {
