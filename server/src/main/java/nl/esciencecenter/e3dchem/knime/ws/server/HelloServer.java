@@ -16,7 +16,6 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
-import org.knime.core.node.NodeLogger;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.HelloBroadcasterResource;
@@ -24,8 +23,6 @@ import nl.esciencecenter.e3dchem.knime.ws.server.resources.HiLiteResource;
 import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsResource;
 
 public class HelloServer {
-	private static final NodeLogger logger = NodeLogger
-            .getLogger(HelloServer.class);
     private Server server;
 	private URI current_uri;
 	private HelloBroadcasterResource sse_res;
@@ -72,7 +69,7 @@ public class HelloServer {
 //		logger.warn(Resource.newClassPathResource("/assets", true, true));
 		
         // handle static files
-		logger.warn("setupServer: assets");
+//		logger.warn("setupServer: assets");
 		String welcome_file = "index.html";
 		String class_path ="/assets/";
 		String web_path = "/assets";
@@ -92,7 +89,7 @@ public class HelloServer {
 //        cxf_servlet_handler.addServletWithMapping(cxf_holder, "/cxf-api/*");
 //        
 
-        logger.warn("setupServer: Jersey");
+//        logger.warn("setupServer: Jersey");
         ResourceConfig rc = new ResourceConfig();
         rc.register(io.swagger.jaxrs.listing.ApiListingResource.class);
         rc.register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
@@ -120,7 +117,7 @@ public class HelloServer {
 //        hellows_servlet_handler.setContextPath("/websocket");
         
        
-        logger.warn("setupServer: ContextHandlerCollection");
+//        logger.warn("setupServer: ContextHandlerCollection");
         ContextHandlerCollection contexts = new ContextHandlerCollection();
         contexts.setHandlers(new Handler[] { 
 //        		hello_handler, 
@@ -152,15 +149,15 @@ public class HelloServer {
 	public void stop() throws Exception {
 		sendMessage("stop");
 		server.stop();
-    	logger.warn("Service stopped");
+//    	logger.warn("Service stopped");
 	}
 
 	public void start() throws Exception {
 		server.start();
     	int port  = ((NetworkConnector) server.getConnectors()[0]).getLocalPort();
         current_uri = new URI("http://localhost:" + port + "/assets/" + page);
-    	logger.warn("Service started on " + current_uri.toString());
-    	logger.warn(server.getState());
+//    	logger.warn("Service started on " + current_uri.toString());
+//    	logger.warn(server.getState());
 	}
 
 	public URI getCurrentUri() {

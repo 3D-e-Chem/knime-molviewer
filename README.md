@@ -2,13 +2,13 @@ KNIME node which launches a web browser with SDF mol viewer powered by 3Dmol.js.
 
 # This is a technical Prototype, not ready for production usage.
 
-In the background a web server is started 
+In the background a web server is started
 The webserver has
 * a rest interface, /api
 
   * to retrieve data from KNIME node input ports, /api/ligands
   * to propogate selections in web page to KNIME node using the hilite mechanism of KNIME, /api/hilite
-  * server sent events, /api/broadcast 
+  * server sent events, /api/broadcast
 
 * hosts static assets, /assets
 * a swagger endpoints, /swagger.json and /swagger.yaml
@@ -78,14 +78,14 @@ During import the Tycho Eclipse providers must be installed.
 
 ## Update plugin libs directory
 
-The `plugin/libs/` directory are filled with dependencies specified in the `plugin/pom.libs.xml` file. 
+The `server/libs/` directory are filled with dependencies specified in the `server/pom.libs.xml` file.
 Update libs directory with
 ```
-mvn -f plugin/pom.libs.xml dependency:copy-dependencies -DoutputDirectory=libs
+mvn -f server/pom.libs.xml dependency:copy-dependencies -DoutputDirectory=libs
 ```
-The jars in the libs directory should be listed in the Bundle-ClassPath property of the `plugin/META-INF/MANIFEST.MF` file. 
+The jars in the libs directory should be listed in the Bundle-ClassPath property of the `server/META-INF/MANIFEST.MF` file.
 
-TODO incorperate fill libs/ command in mvn package 
+TODO incorperate fill libs/ command in mvn package
 
 ## Tests
 
@@ -111,4 +111,3 @@ See https://github.com/3D-e-Chem/knime-testflow#3-add-test-workflow
   1. Make clone of an update site repo
   2. Append release to the update site with `mvn install -Dtarget.update.site=<path to update site>`
 5. Commit and push changes in this repo and update site repo.
-

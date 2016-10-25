@@ -44,7 +44,7 @@
             <id>3d-e-chem</id>
             <layout>p2</layout>
             <url>https://3d-e-chem.github.io/updates</url>
-        </repository><!-- 
+        </repository><!--
         <repository>
             <id>mars</id>
             <layout>p2</layout>
@@ -194,6 +194,7 @@
         </profile>
     </profiles>
   <modules>
+    <module>server</module>
     <module>plugin</module>
     <module>feature</module>
     <module>p2</module>
