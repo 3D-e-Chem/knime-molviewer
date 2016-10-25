@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
       id="nl.esciencecenter.e3dchem.knime.ws.feature"
-      label="nl.esciencecenter.e3dchem.knime.ws Feature"
+      label="MolViewer nodes for KNIME"
       version="0.0.26"
       provider-name="Netherlands eScience Center">
 
    <description url="https://github.com/3D-e-Chem/knime-ws">
+      KNIME nodes to visualize molecules in web browser.
+
       Homepage at https://github.com/3D-e-Chem/knime-ws
    </description>
 
