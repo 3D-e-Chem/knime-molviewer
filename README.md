@@ -109,10 +109,9 @@ See https://github.com/3D-e-Chem/knime-testflow#3-add-test-workflow
 # New release
 
 1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>` command.
-2. Manually update version of "source" feature in `p2/category.xml` file.
-3. Commit and push changes
+2. Commit and push changes
 3. Create package with `mvn package`, will create update site in `p2/target/repository`
 4. Append new release to an update site
   1. Make clone of an update site repo
   2. Append release to the update site with `mvn install -Dtarget.update.site=<path to update site>`
-5. Commit and push changes in this repo and update site repo.
+5. Add files, commit and push changes of update site repo.
