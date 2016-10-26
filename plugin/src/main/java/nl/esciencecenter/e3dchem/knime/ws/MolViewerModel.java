@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -79,10 +78,8 @@ public class MolViewerModel extends NodeModel {
 	@Override
 	protected BufferedDataTable[] execute(final BufferedDataTable[] inData, final ExecutionContext exec)
 			throws Exception {
-
 		setLigands(inData);
 		setProteins(inData);
-
 		return new BufferedDataTable[] {};
 	}
 
@@ -216,27 +213,19 @@ public class MolViewerModel extends NodeModel {
 	@Override
 	protected void loadInternals(final File internDir, final ExecutionMonitor exec)
 			throws IOException, CanceledExecutionException {
-
-		// load internal data.
-		// Everything handed to output ports is loaded automatically (data
-		// returned by the execute method, models loaded in loadModelContent,
-		// and user settings set through loadSettingsFrom - is all taken care
-		// of). Load here only the other internals that need to be restored
-		// (e.g. data used by the views).
-		logger.warn("loadInternals");
-
 		ligands = loadInternalsMolecules(new File(internDir, LIGANDS_FILE_NAME));
 		proteins = loadInternalsMolecules(new File(internDir, PROTEINS_FILE_NAME));
 	}
 
-	private List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
+	public List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
 		if (!file.canRead()) {
 			return new ArrayList<Molecule>();
 		}
 		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
 		try {
-			Molecule[] array = (Molecule[]) in.readObject();
-			return Arrays.asList(array);
+			@SuppressWarnings("unchecked")
+			List<Molecule> ino = (List<Molecule>) in.readObject();
+			return ino;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		} finally {
@@ -251,23 +240,14 @@ public class MolViewerModel extends NodeModel {
 	@Override
 	protected void saveInternals(final File internDir, final ExecutionMonitor exec)
 			throws IOException, CanceledExecutionException {
-
-		// save internal models.
-		// Everything written to output ports is saved automatically (data
-		// returned by the execute method, models saved in the saveModelContent,
-		// and user settings saved through saveSettingsTo - is all taken care
-		// of). Save here only the other internals that need to be preserved
-		// (e.g. data used by the views).
-		logger.warn("saveInternals");
-
 		saveInternalsMolecules(new File(internDir, LIGANDS_FILE_NAME), ligands);
 		saveInternalsMolecules(new File(internDir, PROTEINS_FILE_NAME), proteins);
 	}
 
-	private void saveInternalsMolecules(final File file, List<Molecule> molecules)
+	public void saveInternalsMolecules(final File file, List<Molecule> molecules)
 			throws FileNotFoundException, IOException {
 		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-		out.writeObject(molecules.toArray());
+		out.writeObject(molecules);
 		out.flush();
 		out.close();
 	}
