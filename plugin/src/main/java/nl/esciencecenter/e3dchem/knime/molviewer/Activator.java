@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
@@ -13,7 +13,7 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends Plugin {
     // The plug-in ID
-    public static final String PLUGIN_ID = "nl.esciencecenter.e3dchem.knime.ws.plugin";
+    public static final String PLUGIN_ID = "nl.esciencecenter.e3dchem.knime.molviewer.plugin";
     // The shared instance.
     private static Activator plugin;
 

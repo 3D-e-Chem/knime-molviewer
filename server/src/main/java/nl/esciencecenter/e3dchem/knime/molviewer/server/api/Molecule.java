@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws.server.api;
+package nl.esciencecenter.e3dchem.knime.molviewer.server.api;
 
 import java.io.Serializable;
 import java.util.Objects;

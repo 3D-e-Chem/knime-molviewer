@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws.server.resources;
+package nl.esciencecenter.e3dchem.knime.molviewer.server.resources;
 
 import javax.ws.rs.Path;
 

@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -12,7 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 
 

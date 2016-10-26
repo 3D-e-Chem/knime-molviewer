@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -17,7 +17,7 @@ import org.knime.core.node.NodeView;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 import org.knime.core.node.property.hilite.HiLiteListener;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.MolViewerServer;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
 /**
  * <code>NodeView</code> for the "MolViewer" Node.

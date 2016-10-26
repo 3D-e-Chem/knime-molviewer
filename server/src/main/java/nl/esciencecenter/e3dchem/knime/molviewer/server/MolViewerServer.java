@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws.server;
+package nl.esciencecenter.e3dchem.knime.molviewer.server;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -18,12 +18,12 @@ import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
-import nl.esciencecenter.e3dchem.knime.ws.server.resources.BroadcasterResource;
-import nl.esciencecenter.e3dchem.knime.ws.server.resources.HiLiteResource;
-import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsHiLiteResource;
-import nl.esciencecenter.e3dchem.knime.ws.server.resources.LigandsResource;
-import nl.esciencecenter.e3dchem.knime.ws.server.resources.ProteinsResource;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.BroadcasterResource;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.HiLiteResource;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.LigandsHiLiteResource;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.LigandsResource;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.ProteinsResource;
 
 public class MolViewerServer {
     private Server server;

@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import java.io.File;
 import java.io.IOException;

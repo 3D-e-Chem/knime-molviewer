@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>nl.esciencecenter.e3dchem.knime.ws</groupId>
-		<artifactId>nl.esciencecenter.e3dchem.knime.ws</artifactId>
+		<groupId>nl.esciencecenter.e3dchem.knime.molviewer</groupId>
+		<artifactId>nl.esciencecenter.e3dchem.knime.molviewer</artifactId>
 		<version>0.0.28</version>
 	</parent>
 
-	<artifactId>nl.esciencecenter.e3dchem.knime.ws.tests</artifactId>
+	<artifactId>nl.esciencecenter.e3dchem.knime.molviewer.tests</artifactId>
 	<packaging>eclipse-test-plugin</packaging>
 
 	<build>

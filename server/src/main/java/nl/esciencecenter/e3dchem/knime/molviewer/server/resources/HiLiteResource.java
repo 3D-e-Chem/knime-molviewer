@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws.server.resources;
+package nl.esciencecenter.e3dchem.knime.molviewer.server.resources;
 
 import java.util.Set;
 import java.util.stream.Collectors;

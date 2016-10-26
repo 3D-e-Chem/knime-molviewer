@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws.server.resources;
+package nl.esciencecenter.e3dchem.knime.molviewer.server.resources;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.ws.rs.Path;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 @Path("/ligands")
 @Api(value="Ligands")

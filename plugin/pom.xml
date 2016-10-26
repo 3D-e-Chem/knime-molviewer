@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>nl.esciencecenter.e3dchem.knime.ws</groupId>
-		<artifactId>nl.esciencecenter.e3dchem.knime.ws</artifactId>
+		<groupId>nl.esciencecenter.e3dchem.knime.molviewer</groupId>
+		<artifactId>nl.esciencecenter.e3dchem.knime.molviewer</artifactId>
 		<version>0.0.28</version>
 	</parent>
-	<artifactId>nl.esciencecenter.e3dchem.knime.ws.plugin</artifactId>
+	<artifactId>nl.esciencecenter.e3dchem.knime.molviewer.plugin</artifactId>
 	<packaging>eclipse-plugin</packaging>
 </project>

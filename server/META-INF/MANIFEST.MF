@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MolViewer Server
-Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.ws.server;singleton:=true
+Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.molviewer.server;singleton:=true
 Bundle-Version: 0.0.28
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Vendor: Netherlands eScience Center
@@ -61,5 +61,5 @@ Bundle-ClassPath: .,
  libs/swagger-jersey2-jaxrs-1.5.9.jar,
  libs/swagger-models-1.5.9.jar,
  libs/validation-api-1.1.0.Final.jar
-Export-Package: nl.esciencecenter.e3dchem.knime.ws.server,
- nl.esciencecenter.e3dchem.knime.ws.server.api
+Export-Package: nl.esciencecenter.e3dchem.knime.molviewer.server,
+ nl.esciencecenter.e3dchem.knime.molviewer.server.api

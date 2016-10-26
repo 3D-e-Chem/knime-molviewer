@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws.server;
+package nl.esciencecenter.e3dchem.knime.molviewer.server;
 
 import io.swagger.annotations.Info;
 import io.swagger.annotations.License;

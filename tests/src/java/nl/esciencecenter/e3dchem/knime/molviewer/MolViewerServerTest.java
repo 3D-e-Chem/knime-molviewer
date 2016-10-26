@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,7 +14,7 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.MolViewerServer;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
 
 public class MolViewerServerTest {

@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import org.knime.chem.types.SdfValue;
 import org.knime.core.data.StringValue;

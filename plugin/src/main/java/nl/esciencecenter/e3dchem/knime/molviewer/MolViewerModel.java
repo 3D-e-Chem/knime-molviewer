@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.ws;
+package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,7 +30,7 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
-import nl.esciencecenter.e3dchem.knime.ws.server.api.Molecule;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 /**
  * This is the model implementation of MolViewer.

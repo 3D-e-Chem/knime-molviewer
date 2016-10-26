@@ -13,7 +13,7 @@
   </extension>
 
     <extension point="org.knime.workbench.repository.nodes">
-        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.ws.MolViewerFactory"/>
+        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.MolViewerFactory"/>
     </extension>
 
 </plugin>

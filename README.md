@@ -20,7 +20,7 @@ Server sent events are used form to inform the web page that:
 * input changed
 * hilite changed
 
-[![Build Status](https://travis-ci.org/3D-e-Chem/knime-ws.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-ws)
+[![Build Status](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 
 This project uses [Eclipse Tycho](https://www.eclipse.org/tycho/) to perform build steps.
 
@@ -65,11 +65,18 @@ Steps to get development environment setup:
 4. Install m2e (Maven integration for Eclipse) + KNIME Testing framework
 
     1. Goto Help > Install new software ...
-    2. Make sure Update site is http://update.knime.org/analytics-platform/3.1 is in the pull down list otherwise add it
+    2. Make sure the following Update sites are in the pull down list otherwise add them
+
+        * http://download.eclipse.org/releases/mars
+        * http://download.eclipse.org/eclipse/updates/4.5
+        * http://update.knime.org/analytics-platform/3.1
+        * https://3d-e-chem.github.io/updates
+
     3. Select --all sites-- in work with pulldown
     4. Select m2e (Maven integration for Eclipse)
     5. Select `KNIME Testing framework`
-    6. Install software & restart
+    6. Select `Splash & node category for 3D-e-Chem KNIME nodes`
+    7. Install software & restart
 
 5. Import this repo as an Existing Maven project
 

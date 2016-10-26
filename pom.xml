@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>nl.esciencecenter.e3dchem.knime.ws</groupId>
-    <artifactId>nl.esciencecenter.e3dchem.knime.ws</artifactId>
+    <groupId>nl.esciencecenter.e3dchem.knime.molviewer</groupId>
+    <artifactId>nl.esciencecenter.e3dchem.knime.molviewer</artifactId>
     <version>0.0.28</version>
     <packaging>pom</packaging>
 
     <scm>
-        <url>https://github.com/3D-e-Chem/knime-ws/</url>
-        <connection>scm:git:https://github.com/3D-e-Chem/knime-ws.git</connection>
-        <developerConnection>scm:git:git@github.com:3D-e-Chem/knime-ws.git</developerConnection>
+        <url>https://github.com/3D-e-Chem/knime-molviewer/</url>
+        <connection>scm:git:https://github.com/3D-e-Chem/knime-molviewer.git</connection>
+        <developerConnection>scm:git:git@github.com:3D-e-Chem/knime-molviewer.git</developerConnection>
         <tag>HEAD</tag>
     </scm>
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/3D-e-Chem/knime-ws/issues</url>
+        <url>https://github.com/3D-e-Chem/knime-molviewer/issues</url>
     </issueManagement>
     <ciManagement>
         <system>Travis CI</system>
-        <url>http://travis-ci.org/3D-e-Chem/knime-ws</url>
+        <url>http://travis-ci.org/3D-e-Chem/knime-molviewer</url>
     </ciManagement>
 
     <prerequisites>
