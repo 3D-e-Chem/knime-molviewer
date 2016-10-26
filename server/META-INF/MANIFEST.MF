@@ -4,7 +4,7 @@ Bundle-Name: MolViewer Server
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.ws.server;singleton:=true
 Bundle-Version: 0.0.27
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Bundle-Vendor: [Netherlands eScience Center
+Bundle-Vendor: Netherlands eScience Center
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.knime.base
 Bundle-ClassPath: .,

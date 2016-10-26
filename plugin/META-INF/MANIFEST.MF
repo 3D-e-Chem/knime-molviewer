@@ -5,12 +5,13 @@ Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.ws.plugin;singleton:=true
 Bundle-Version: 0.0.27
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: nl.esciencecenter.e3dchem.knime.ws.Activator
-Bundle-Vendor: [Netherlands eScience Center
+Bundle-Vendor: Netherlands eScience Center
 Require-Bundle: org.eclipse.core.runtime,
- org.knime.workbench.core,
- org.knime.workbench.repository,
- org.knime.base,
- org.knime.chem.types,
+ org.knime.workbench.core;bundle-version="[3.1.0,4.0.0)",
+ org.knime.workbench.repository;bundle-version="[3.1.0,4.0.0)",
+ org.knime.base;bundle-version="[3.1.0,4.0.0)",
+ org.knime.chem.types;bundle-version="[3.1.0,4.0.0)",
+ nl.esciencecenter.e3dchem.plugin;bundle-version="[1.0.0,2.0.0)",
  nl.esciencecenter.e3dchem.knime.ws.server
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

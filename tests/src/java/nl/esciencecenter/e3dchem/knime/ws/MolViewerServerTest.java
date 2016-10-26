@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import nl.esciencecenter.e3dchem.knime.ws.server.MolViewerServer;
 
+
 public class MolViewerServerTest {
 	private MolViewerServer server;
 
@@ -43,7 +44,7 @@ public class MolViewerServerTest {
 	public void testStatic() throws ClientProtocolException, IOException, URISyntaxException {
 		URI uri = server.getBaseUri().resolve("/assets/index.html");
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("KNIME WebGL demo"));
+		assertTrue(response.contains("molviewer"));
 	}
 
 	@Test
