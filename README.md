@@ -1,25 +1,5 @@
 KNIME node which launches a web browser with SDF mol viewer powered by 3Dmol.js.
 
-# This is a technical Prototype, not ready for production usage.
-
-In the background a web server is started
-The webserver has
-* a rest interface, /api
-
-  * to retrieve data from KNIME node input ports, /api/ligands
-  * to propogate selections in web page to KNIME node using the hilite mechanism of KNIME, /api/hilite
-  * server sent events, /api/broadcast
-
-* hosts static assets, /assets
-* a swagger endpoints, /swagger.json and /swagger.yaml
-* swagger ui, /swagger-ui
-
-Server sent events are used form to inform the web page that:
-
-* view closed
-* input changed
-* hilite changed
-
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 
 This project uses [Eclipse Tycho](https://www.eclipse.org/tycho/) to perform build steps.
@@ -34,9 +14,9 @@ Steps to get the MolViewer KNIME node inside KNIME:
 
 1. Goto Help > Install new software ... menu
 2. Press add button
-3. Fill text fields with url of update site which contains this node.
+3. Fill text fields with `https://3d-e-chem.github.io/updates`
 4. Select --all sites-- in `work with` pulldown
-5. Select the node
+5. Select the node called `MolViewer nodes for KNIME`
 6. Install software
 7. Restart Knime
 
@@ -45,6 +25,8 @@ Steps to get the MolViewer KNIME node inside KNIME:
 1. Create a new Knime workflow.
 2. Find node in Node navigator panel.
 3. Drag node to workflow canvas.
+
+See example workflow in `examples` directory.
 
 # Build
 
@@ -122,3 +104,23 @@ See https://github.com/3D-e-Chem/knime-testflow#3-add-test-workflow
   1. Make clone of an update site repo
   2. Append release to the update site with `mvn install -Dtarget.update.site=<path to update site>`
 5. Add files, commit and push changes of update site repo.
+
+# Technical architecture
+
+In the background a web server is started when the view of the node is opened.
+The webserver has
+* on /api, a rest interface
+
+  * to retrieve data from KNIME node input ports, /api/ligands
+  * to propogate selections in web page to KNIME node using the hilite mechanism of KNIME, /api/hilite
+  * server sent events, /api/broadcast
+
+* on /, ui based on https://github.com/3D-e-Chem/molviewer-tsx
+* on /swagger.json and /swagger.yaml, [swagger](http://swagger.io/) endpoints
+* on /swagger-ui, swagger ui
+
+Server sent events are used to inform the web page that:
+
+* view closed
+* input changed
+* hilite changed
