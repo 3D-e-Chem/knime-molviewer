@@ -5,7 +5,7 @@
       version="0.0.28"
       provider-name="Netherlands eScience Center">
 
-   <description url="https://github.com/3D-e-Chem/knime-ws">
+   <description url="https://github.com/3D-e-Chem/knime-molviewer">
       KNIME nodes to visualize molecules in web browser.
 
       Homepage at https://github.com/3D-e-Chem/knime-ws
@@ -224,7 +224,7 @@ http://www.apache.org/licenses/
 
    <url>
       <update label="Update site" url="https://3d-e-chem.github.io/updates"/>
-      <discovery label="Discovery site" url="https://github.com/3D-e-Chem/knime-ws"/>
+      <discovery label="Discovery site" url="https://github.com/3D-e-Chem/knime-molviewer"/>
    </url>
 
    <plugin
