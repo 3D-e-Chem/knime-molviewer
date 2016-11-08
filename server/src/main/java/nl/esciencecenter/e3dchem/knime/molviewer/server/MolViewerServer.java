@@ -47,8 +47,8 @@ public class MolViewerServer {
 		
         // handle static files
 		String welcome_file = "index.html";
-		String class_path ="/assets/";
-		String web_path = "/assets";
+		String class_path ="/";
+		String web_path = "/";
         ContextHandler resource_context = staticDirHandler(welcome_file, class_path, web_path);
         ContextHandler swagger_ui_static = staticDirHandler("index.html", "/swagger-ui/", "/swagger-ui");
         
@@ -102,7 +102,7 @@ public class MolViewerServer {
 	public void start() throws Exception {
 		server.start();
     	int port  = ((NetworkConnector) server.getConnectors()[0]).getLocalPort();
-        current_uri = new URI("http://localhost:" + port + "/assets/" + page);
+        current_uri = new URI("http://localhost:" + port + "/" + page);
 	}
 
 	public URI getCurrentUri() {

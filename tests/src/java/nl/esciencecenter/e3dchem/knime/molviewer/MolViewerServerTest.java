@@ -37,14 +37,14 @@ public class MolViewerServerTest {
 	public void testCurrentUri() {
 		URI uri = server.getCurrentUri();
 		assertEquals("localhost", uri.getHost());
-		assertEquals("/assets/mynode.html", uri.getPath());
+		assertEquals("/mynode.html", uri.getPath());
 	}
 	
 	@Test
 	public void testStatic() throws ClientProtocolException, IOException, URISyntaxException {
-		URI uri = server.getBaseUri().resolve("/assets/index.html");
+		URI uri = server.getBaseUri().resolve("/index.html");
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("molviewer"));
+		assertTrue(response.contains("Molviewer"));
 	}
 
 	@Test
