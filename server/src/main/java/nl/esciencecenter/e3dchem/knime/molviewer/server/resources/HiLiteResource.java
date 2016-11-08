@@ -3,10 +3,8 @@ package nl.esciencecenter.e3dchem.knime.molviewer.server.resources;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 import org.knime.core.data.RowKey;
@@ -27,24 +25,29 @@ public class HiLiteResource {
 	}
 
 	@POST
-	@ApiOperation(value = "Select list of highlighted row keys")
+	@ApiOperation(value = "Select list of highlighted row keys, others are unselected")
 	public void setHighlightedKeys(Set<String> highlightedKeys) {
 		Set<RowKey> ids = highlightedKeys.stream().map(d -> new RowKey(d)).collect(Collectors.toSet());
+		if (ids.isEmpty()) {
+			if (m_hiliteHandler.getHiLitKeys().isEmpty()) {
+				// want to unhilite all, but nothing is hilited so done
+				return;
+			} else {
+				m_hiliteHandler.fireClearHiLiteEvent();
+			}
+		}
+		Set<RowKey> all_ids = m_hiliteHandler.getHiLitKeys();
+		if (all_ids.containsAll(ids)) {
+			// ids are already selected
+			return;
+		}
+		Set<RowKey> ids2unhilite = m_hiliteHandler.getHiLitKeys();
+		// remove all ids which must be hilited, what remains are ids that must
+		// be unhilited
+		ids2unhilite.removeAll(ids);
+
 		m_hiliteHandler.fireHiLiteEvent(ids);
-	}
-
-	@POST
-	@Path("/undo")
-	@ApiOperation(value = "Unselect list of highlighted row keys")
-	public void unsetHighlightedKeys(Set<String> unhighlightedKeys) {
-		Set<RowKey> ids = unhighlightedKeys.stream().map(d -> new RowKey(d)).collect(Collectors.toSet());
-		m_hiliteHandler.fireUnHiLiteEvent(ids);
-	}
-
-	@DELETE
-	@ApiOperation(value = "Deselect all highlighted row keys")
-	public void unHiLiteAll() {
-		m_hiliteHandler.fireClearHiLiteEvent();
+		m_hiliteHandler.fireUnHiLiteEvent(ids2unhilite);
 	}
 
 	public void setHiLiteHandler(HiLiteHandler hiliteHandler) {

@@ -62,4 +62,5 @@ Bundle-ClassPath: .,
  libs/swagger-models-1.5.9.jar,
  libs/validation-api-1.1.0.Final.jar
 Export-Package: nl.esciencecenter.e3dchem.knime.molviewer.server,
- nl.esciencecenter.e3dchem.knime.molviewer.server.api
+ nl.esciencecenter.e3dchem.knime.molviewer.server.api,
+ nl.esciencecenter.e3dchem.knime.molviewer.server.resources
