@@ -6,9 +6,9 @@ import org.junit.Test;
 
 public class ActivatorTest {
 
-    @Test
-    public void veryStupidTest() {
-        assertEquals(1, 1);
-    }
+	@Test
+	public void veryStupidTest() {
+		assertEquals(1, 1);
+	}
 
 }

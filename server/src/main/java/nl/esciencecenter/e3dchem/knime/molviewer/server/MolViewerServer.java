@@ -26,7 +26,7 @@ import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.LigandsResourc
 import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.ProteinsResource;
 
 public class MolViewerServer {
-    private Server server;
+	private Server server;
 	private URI current_uri;
 	private BroadcasterResource sse_res;
 	private LigandsResource ligands_res;
@@ -40,57 +40,52 @@ public class MolViewerServer {
 		// use random port, can be retrieved after start
 		this(page, 0);
 	}
-			
+
 	public MolViewerServer(String page, int port) {
 		this.page = page;
 		server = new Server(port);
-		
-        // handle static files
+
+		// handle static files
 		String welcome_file = "index.html";
-		String class_path ="/";
+		String class_path = "/";
 		String web_path = "/";
-        ContextHandler resource_context = staticDirHandler(welcome_file, class_path, web_path);
-        ContextHandler swagger_ui_static = staticDirHandler("index.html", "/swagger-ui/", "/swagger-ui");
-        
-        // setup Jersey
-        ResourceConfig rc = new ResourceConfig();
-        rc.register(io.swagger.jaxrs.listing.ApiListingResource.class);
-        rc.register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
-        rc.register(SwaggerInfo.class);
-        sse_res = new BroadcasterResource();
-        rc.register(sse_res);
-        ligands_res = new LigandsResource();
-        rc.register(ligands_res);
-        ligand_hilite_res = new LigandsHiLiteResource();
-        rc.register(ligand_hilite_res);
-        proteins_res = new ProteinsResource();
-        rc.register(proteins_res);
-        ServletContainer sc = new ServletContainer(rc);
-        ServletHolder holder = new ServletHolder(sc);
-        ServletContextHandler rest_handler = new ServletContextHandler();
-        rest_handler.setContextPath(apiBasePath);
-        rest_handler.addServlet(holder, "/*");
-               
-        ContextHandlerCollection contexts = new ContextHandlerCollection();
-        contexts.setHandlers(new Handler[] { 
-        		resource_context, 
-        		rest_handler,
-        		swagger_ui_static,
-        		new DefaultHandler() 
-        		});
-        
-        server.setHandler(contexts);
+		ContextHandler resource_context = staticDirHandler(welcome_file, class_path, web_path);
+		ContextHandler swagger_ui_static = staticDirHandler("index.html", "/swagger-ui/", "/swagger-ui");
+
+		// setup Jersey
+		ResourceConfig rc = new ResourceConfig();
+		rc.register(io.swagger.jaxrs.listing.ApiListingResource.class);
+		rc.register(io.swagger.jaxrs.listing.SwaggerSerializers.class);
+		rc.register(SwaggerInfo.class);
+		sse_res = new BroadcasterResource();
+		rc.register(sse_res);
+		ligands_res = new LigandsResource();
+		rc.register(ligands_res);
+		ligand_hilite_res = new LigandsHiLiteResource();
+		rc.register(ligand_hilite_res);
+		proteins_res = new ProteinsResource();
+		rc.register(proteins_res);
+		ServletContainer sc = new ServletContainer(rc);
+		ServletHolder holder = new ServletHolder(sc);
+		ServletContextHandler rest_handler = new ServletContextHandler();
+		rest_handler.setContextPath(apiBasePath);
+		rest_handler.addServlet(holder, "/*");
+
+		ContextHandlerCollection contexts = new ContextHandlerCollection();
+		contexts.setHandlers(new Handler[] { resource_context, rest_handler, swagger_ui_static, new DefaultHandler() });
+
+		server.setHandler(contexts);
 	}
 
 	private ContextHandler staticDirHandler(String welcome_file, String class_path, String web_path) {
 		ResourceHandler resource_handler = new ResourceHandler();
-        resource_handler.setDirectoriesListed(true);
-        resource_handler.setWelcomeFiles(new String[] {welcome_file} );
-        Resource base = Resource.newClassPathResource(class_path);
-        resource_handler.setBaseResource(base);
-        ContextHandler resource_context = new ContextHandler();
-        resource_context.setHandler(resource_handler);
-        resource_context.setContextPath(web_path);
+		resource_handler.setDirectoriesListed(true);
+		resource_handler.setWelcomeFiles(new String[] { welcome_file });
+		Resource base = Resource.newClassPathResource(class_path);
+		resource_handler.setBaseResource(base);
+		ContextHandler resource_context = new ContextHandler();
+		resource_context.setHandler(resource_handler);
+		resource_context.setContextPath(web_path);
 		return resource_context;
 	}
 
@@ -101,14 +96,14 @@ public class MolViewerServer {
 
 	public void start() throws Exception {
 		server.start();
-    	int port  = ((NetworkConnector) server.getConnectors()[0]).getLocalPort();
-        current_uri = new URI("http://localhost:" + port + "/" + page);
+		int port = ((NetworkConnector) server.getConnectors()[0]).getLocalPort();
+		current_uri = new URI("http://localhost:" + port + "/" + page);
 	}
 
 	public URI getCurrentUri() {
 		return current_uri;
 	}
-	
+
 	public URI getBaseUri() throws URISyntaxException {
 		return new URI("http://localhost:" + current_uri.getPort());
 	}

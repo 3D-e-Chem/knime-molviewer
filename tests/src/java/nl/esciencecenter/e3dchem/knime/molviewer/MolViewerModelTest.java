@@ -14,8 +14,6 @@ import org.junit.rules.TemporaryFolder;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
-
-
 public class MolViewerModelTest {
 
 	@Rule

@@ -14,32 +14,31 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * Test with js 
- * https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events
+ * Test with js
+ * https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/
+ * Using_server-sent_events
  *
  * Docs see https://jersey.java.net/documentation/latest/sse.html
  */
 @Path("/broadcast")
-@Api(value="broadcast")
+@Api(value = "broadcast")
 public class BroadcasterResource {
 	private SseBroadcaster broadcaster = new SseBroadcaster();
-	
+
 	public void broadcastMessage(String message) {
-        OutboundEvent.Builder eventBuilder = new OutboundEvent.Builder();
-        OutboundEvent event = eventBuilder.name("message")
-            .mediaType(MediaType.TEXT_PLAIN_TYPE)
-            .data(String.class, message)
-            .build();
- 
-        broadcaster.broadcast(event);
-    }
-	
+		OutboundEvent.Builder eventBuilder = new OutboundEvent.Builder();
+		OutboundEvent event = eventBuilder.name("message").mediaType(MediaType.TEXT_PLAIN_TYPE)
+				.data(String.class, message).build();
+
+		broadcaster.broadcast(event);
+	}
+
 	@GET
-	@ApiOperation(value="Server sent events endpoint", response=String.class)
-    @Produces(SseFeature.SERVER_SENT_EVENTS)
-    public EventOutput listenToBroadcast() {
-        final EventOutput eventOutput = new EventOutput();
-        this.broadcaster.add(eventOutput);
-        return eventOutput;
-    }
+	@ApiOperation(value = "Server sent events endpoint", response = String.class)
+	@Produces(SseFeature.SERVER_SENT_EVENTS)
+	public EventOutput listenToBroadcast() {
+		final EventOutput eventOutput = new EventOutput();
+		this.broadcaster.add(eventOutput);
+		return eventOutput;
+	}
 }

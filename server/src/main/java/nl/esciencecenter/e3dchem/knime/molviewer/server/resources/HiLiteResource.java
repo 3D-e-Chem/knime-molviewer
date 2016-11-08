@@ -15,18 +15,17 @@ import org.knime.core.node.property.hilite.HiLiteHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-
-@Api(value="hilite")
+@Api(value = "hilite")
 @Produces("application/json")
 public class HiLiteResource {
 	private HiLiteHandler m_hiliteHandler;
-	
+
 	@GET
 	@ApiOperation(value = "List of highlighted row keys")
 	public Set<String> getHighlightedKeys() {
 		return m_hiliteHandler.getHiLitKeys().stream().map(d -> d.getString()).collect(Collectors.toSet());
 	}
-	
+
 	@POST
 	@ApiOperation(value = "Select list of highlighted row keys")
 	public void setHighlightedKeys(Set<String> highlightedKeys) {
@@ -41,7 +40,7 @@ public class HiLiteResource {
 		Set<RowKey> ids = unhighlightedKeys.stream().map(d -> new RowKey(d)).collect(Collectors.toSet());
 		m_hiliteHandler.fireUnHiLiteEvent(ids);
 	}
-	
+
 	@DELETE
 	@ApiOperation(value = "Deselect all highlighted row keys")
 	public void unHiLiteAll() {

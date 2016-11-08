@@ -3,6 +3,6 @@ package nl.esciencecenter.e3dchem.knime.molviewer.server.resources;
 import javax.ws.rs.Path;
 
 @Path("/ligands/hilite")
-public class LigandsHiLiteResource extends HiLiteResource{
+public class LigandsHiLiteResource extends HiLiteResource {
 
 }

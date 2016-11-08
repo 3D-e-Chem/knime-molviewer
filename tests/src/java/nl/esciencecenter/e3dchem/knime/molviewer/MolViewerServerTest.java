@@ -16,7 +16,6 @@ import org.junit.Test;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
-
 public class MolViewerServerTest {
 	private MolViewerServer server;
 
@@ -25,21 +24,21 @@ public class MolViewerServerTest {
 		server = new MolViewerServer("mynode.html");
 		server.start();
 		// wait for server to spin up
-//		Thread.sleep(500);
+		// Thread.sleep(500);
 	}
-	
+
 	@Test
 	public void cleanUp() throws Exception {
 		server.stop();
 	}
-	
+
 	@Test
 	public void testCurrentUri() {
 		URI uri = server.getCurrentUri();
 		assertEquals("localhost", uri.getHost());
 		assertEquals("/mynode.html", uri.getPath());
 	}
-	
+
 	@Test
 	public void testStatic() throws ClientProtocolException, IOException, URISyntaxException {
 		URI uri = server.getBaseUri().resolve("/index.html");
@@ -74,5 +73,5 @@ public class MolViewerServerTest {
 		assertTrue(response.contains("hilite"));
 		assertTrue(response.contains("event-stream"));
 	}
-	
+
 }
