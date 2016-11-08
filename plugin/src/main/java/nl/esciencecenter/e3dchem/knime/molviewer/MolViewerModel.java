@@ -27,6 +27,7 @@ import org.knime.core.node.NodeLogger;
 import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
+import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
@@ -62,6 +63,9 @@ public class MolViewerModel extends NodeModel {
 			MolViewerModel.CFGKEY_PROTEIN_LABEL, "");
 
 	private List<Molecule> proteins;
+
+	public static final String CFG_BROWSERAUTOOPEN = "browserAutoOpen";
+	private final SettingsModelBoolean m_browserAutoOpen = new SettingsModelBoolean(CFG_BROWSERAUTOOPEN, true);
 
 	// TODO add pharmacophores column on ligand and/or protein port
 
@@ -183,6 +187,7 @@ public class MolViewerModel extends NodeModel {
 		m_ligand_label_column.saveSettingsTo(settings);
 		m_protein_column.saveSettingsTo(settings);
 		m_protein_label_column.saveSettingsTo(settings);
+		m_browserAutoOpen.saveSettingsTo(settings);
 	}
 
 	/**
@@ -194,6 +199,7 @@ public class MolViewerModel extends NodeModel {
 		m_ligand_label_column.loadSettingsFrom(settings);
 		m_protein_column.loadSettingsFrom(settings);
 		m_protein_label_column.loadSettingsFrom(settings);
+		m_browserAutoOpen.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -205,6 +211,7 @@ public class MolViewerModel extends NodeModel {
 		m_ligand_label_column.validateSettings(settings);
 		m_protein_column.validateSettings(settings);
 		m_protein_label_column.validateSettings(settings);
+		m_browserAutoOpen.validateSettings(settings);
 	}
 
 	/**
@@ -250,6 +257,13 @@ public class MolViewerModel extends NodeModel {
 		out.writeObject(molecules);
 		out.flush();
 		out.close();
+	}
+
+	/**
+	 * @return If browser should be automatically opened
+	 */
+	public boolean isBrowserAutoOpen() {
+		return m_browserAutoOpen.getBooleanValue();
 	}
 
 }

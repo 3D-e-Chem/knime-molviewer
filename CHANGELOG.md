@@ -8,6 +8,8 @@ The file is formatted as described on http://keepachangelog.com/.
 ### Added
 
 * Example workflow (#2)
+* Test workflow (#4)
+* Auto open web browser checkbox (#5)
 
 ### Changed
 

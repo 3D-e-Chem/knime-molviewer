@@ -16,25 +16,22 @@ import org.knime.testing.core.TestrunConfiguration;
 import nl.esciencecenter.e3dchem.knime.testing.TestFlowRunner;
 
 public class MolViewerWorkflowTest {
-	// @Rule
-	// public ErrorCollector collector = new ErrorCollector();
-	// private TestFlowRunner runner;
-	//
-	// @Before
-	// public void setUp() {
-	// TestrunConfiguration runConfiguration = new TestrunConfiguration();
-	// runConfiguration.setTestDialogs(true);
-	// runConfiguration.setReportDeprecatedNodes(true);
-	// runConfiguration.setCheckMemoryLeaks(true);
-	// runner = new TestFlowRunner(collector, runConfiguration);
-	// }
-	//
-	// @Test
-	// public void test_simple() throws IOException, InvalidSettingsException,
-	// CanceledExecutionException,
-	// UnsupportedWorkflowVersionException, LockFailedException,
-	// InterruptedException {
-	// File workflowDir = new File("src/knime/simple-test");
-	// runner.runTestWorkflow(workflowDir);
-	// }
+	@Rule
+	public ErrorCollector collector = new ErrorCollector();
+	private TestFlowRunner runner;
+
+	@Before
+	public void setUp() {
+		TestrunConfiguration runConfiguration = new TestrunConfiguration();
+		runConfiguration.setTestDialogs(true);
+		runConfiguration.setTestViews(true);
+		runner = new TestFlowRunner(collector, runConfiguration);
+	}
+
+	@Test
+	public void test_simple() throws IOException, InvalidSettingsException, CanceledExecutionException,
+			UnsupportedWorkflowVersionException, LockFailedException, InterruptedException {
+		File workflowDir = new File("src/knime/molviewer-test");
+		runner.runTestWorkflow(workflowDir);
+	}
 }

@@ -124,8 +124,9 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 		try {
 			server.start();
 			current_uri_field.setText(server.getCurrentUri().toString());
-			// TODO add checkbox to dialog to auto open browser
-			openBrowser();
+			if (this.getNodeModel().isBrowserAutoOpen()) {
+				openBrowser();
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			logger.warn(e);

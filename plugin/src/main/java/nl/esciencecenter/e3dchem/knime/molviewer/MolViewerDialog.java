@@ -3,7 +3,9 @@ package nl.esciencecenter.e3dchem.knime.molviewer;
 import org.knime.chem.types.SdfValue;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
+import org.knime.core.node.defaultnodesettings.DialogComponentBoolean;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
+import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
@@ -46,5 +48,11 @@ public class MolViewerDialog extends DefaultNodeSettingsPane {
 				MolViewerModel.PROTEIN_PORT, StringValue.class));
 
 		closeCurrentGroup();
+
+		createNewTab("Advanced");
+
+		addDialogComponent(
+				new DialogComponentBoolean(new SettingsModelBoolean(MolViewerModel.CFG_BROWSERAUTOOPEN, true),
+						"Automatically open web browser when view is opened"));
 	}
 }
