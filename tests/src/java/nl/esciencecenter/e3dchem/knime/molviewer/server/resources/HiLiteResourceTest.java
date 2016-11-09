@@ -84,4 +84,19 @@ public class HiLiteResourceTest {
 		Set<RowKey> expected = Stream.of("Row0", "Row1").map(d -> new RowKey(d)).collect(Collectors.toSet());
 		assertEquals(expected, result);
 	}
+	
+	@Test 
+	public void testSetHighlightedKeys_nooverlap_singlerowhilited() {
+		resource = new HiLiteResource();
+		hiliteHandler = new HiLiteHandler();
+		hiliteHandler.fireHiLiteEvent(new RowKey("Row0"));
+		resource.setHiLiteHandler(hiliteHandler);
+		Set<String> query = Stream.of("Row1").collect(Collectors.toSet());
+		
+		resource.setHighlightedKeys(query);
+		
+		Set<RowKey> result = hiliteHandler.getHiLitKeys();
+		Set<RowKey> expected = Stream.of("Row1").map(d -> new RowKey(d)).collect(Collectors.toSet());
+		assertEquals(expected, result);
+	}
 }
