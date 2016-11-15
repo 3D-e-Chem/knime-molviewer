@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import org.knime.bio.types.PdbValue;
+import org.knime.chem.types.Mol2Value;
 import org.knime.chem.types.SdfValue;
 import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
@@ -91,20 +93,18 @@ public class MolViewerModel extends NodeModel {
 		int molPort = LIGAND_PORT;
 		String molColumnName = m_ligand_column.getStringValue();
 		SettingsModelColumnName molLabelColumn = m_ligand_label_column;
-		String format = "sdf";
-		ligands = getMolecules(inData, molPort, molColumnName, molLabelColumn, format);
+		ligands = getMolecules(inData, molPort, molColumnName, molLabelColumn);
 	}
 
 	private void setProteins(BufferedDataTable[] inData) {
 		int molPort = PROTEIN_PORT;
 		String molColumnName = m_protein_column.getStringValue();
 		SettingsModelColumnName molLabelColumn = m_protein_label_column;
-		String format = "pdb";
-		proteins = getMolecules(inData, molPort, molColumnName, molLabelColumn, format);
+		proteins = getMolecules(inData, molPort, molColumnName, molLabelColumn);
 	}
 
 	private List<Molecule> getMolecules(BufferedDataTable[] datatables, int port, String molColumnName,
-			SettingsModelColumnName molLabelColumn, String format) {
+			SettingsModelColumnName molLabelColumn) {
 		BufferedDataTable molDataTable = datatables[port];
 		DataTableSpec molSpec = molDataTable.getDataTableSpec();
 		int molColIndex = molSpec.findColumnIndex(molColumnName);
@@ -114,10 +114,19 @@ public class MolViewerModel extends NodeModel {
 		ArrayList<Molecule> molecules = new ArrayList<Molecule>();
 		for (DataRow currRow : molDataTable) {
 			Molecule mol = new Molecule();
-			mol.format = format;
 			DataCell currCell = currRow.getCell(molColIndex);
-			mol.data = ((StringValue) currCell).getStringValue();
 			mol.id = currRow.getKey().getString();
+			if (currCell.getType().isCompatible(Mol2Value.class)) {
+				mol.format = "mol2";
+			} else if (currCell.getType().isCompatible(SdfValue.class)) {
+				mol.format = "sdf";
+			} else if (currCell.getType().isCompatible(PdbValue.class)) {
+				mol.format = "pdb";
+			} else {
+				logger.warn("Row " + mol.id  + " is has invalid format, skipping");
+				continue;
+			}
+			mol.data = ((StringValue) currCell).getStringValue();
 			if (useRowKeyAsLabel) {
 				mol.label = currRow.getKey().getString();
 			} else {
@@ -142,7 +151,6 @@ public class MolViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void reset() {
-		logger.warn("Reset node");
 		// Models build during execute are cleared here.
 		// Also data handled in load/saveInternals will be erased here.
 		ligands = null;
@@ -154,27 +162,26 @@ public class MolViewerModel extends NodeModel {
 	 */
 	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs) throws InvalidSettingsException {
-
-		// check if user settings are available, fit to the incoming
-		// table structure, and the incoming types are feasible for the node
-		// to execute. If the node can execute in its current state return
-		// the spec of its output data table(s) (if you can, otherwise an array
-		// with null elements), or throw an exception with a useful user message
-
-		logger.warn("configure");
-
-		boolean hasSdfColumn = false;
+		boolean hasLigandColumn = false;
+		boolean hasProteinColumn = false;
 		for (int i = 0; i < inSpecs[LIGAND_PORT].getNumColumns(); i++) {
 			DataColumnSpec columnSpec = inSpecs[LIGAND_PORT].getColumnSpec(i);
-			if (columnSpec.getType().isCompatible(SdfValue.class)) {
-				// found one numeric column
-				hasSdfColumn = true;
+			if (columnSpec.getType().isCompatible(SdfValue.class) || columnSpec.getType().isCompatible(Mol2Value.class)) {
+				hasLigandColumn = true;
 			}
 		}
-		if (!hasSdfColumn) {
-			throw new InvalidSettingsException("Input table on input port 0 must contain at least one SDF column");
+		for (int i = 0; i < inSpecs[PROTEIN_PORT].getNumColumns(); i++) {
+			DataColumnSpec columnSpec = inSpecs[PROTEIN_PORT].getColumnSpec(i);
+			if (columnSpec.getType().isCompatible(PdbValue.class)) {
+				hasProteinColumn = true;
+			}
 		}
-
+		if (!hasLigandColumn) {
+			throw new InvalidSettingsException("Input table on input port 0 must contain at least one SDF or Mol2 column");
+		}
+		if (!hasProteinColumn) {
+			throw new InvalidSettingsException("Input table on input port 1 must contain at least one PDB column");
+		}
 		return new DataTableSpec[] {};
 	}
 

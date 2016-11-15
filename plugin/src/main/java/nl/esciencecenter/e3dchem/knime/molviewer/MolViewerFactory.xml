@@ -20,7 +20,7 @@
 			</p>
 		</intro>
 
-		<option name="Ligands: Column with SDF molecules">Column with SDF molecules in port 0.</option>
+		<option name="Ligands: Column with SDF molecules">Column with SDF or Mol2 molecules in port 0.</option>
 		<option name="Ligands: Column with labels" optional="true">Column with
 			labels in port 0, if no column is selected uses Row ID.</option>
 		<option name="Proteins: Column with PDB molecules">Column with DPB molecules in port 1.</option>

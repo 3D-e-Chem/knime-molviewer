@@ -1,5 +1,7 @@
 package nl.esciencecenter.e3dchem.knime.molviewer;
 
+import org.knime.bio.types.PdbValue;
+import org.knime.chem.types.Mol2Value;
 import org.knime.chem.types.SdfValue;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.defaultnodesettings.DefaultNodeSettingsPane;
@@ -31,7 +33,7 @@ public class MolViewerDialog extends DefaultNodeSettingsPane {
 
 		addDialogComponent(
 				new DialogComponentColumnNameSelection(new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, null),
-						"Column with SDF formatted molecules", MolViewerModel.LIGAND_PORT, SdfValue.class));
+						"Column with SDF formatted molecules", MolViewerModel.LIGAND_PORT, SdfValue.class, Mol2Value.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelColumnName(MolViewerModel.CFGKEY_LIGAND_LABEL, null), "Column with labels",
@@ -41,7 +43,7 @@ public class MolViewerDialog extends DefaultNodeSettingsPane {
 
 		addDialogComponent(
 				new DialogComponentColumnNameSelection(new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN, null),
-						"Column with PDB formatted molecules", MolViewerModel.PROTEIN_PORT, StringValue.class));
+						"Column with PDB formatted molecules", MolViewerModel.PROTEIN_PORT, PdbValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelColumnName(MolViewerModel.CFGKEY_PROTEIN_LABEL, null), "Column with labels",
