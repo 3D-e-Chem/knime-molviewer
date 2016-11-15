@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -39,19 +39,19 @@ import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
  * This is the model implementation of MolViewer.
  *
  */
-public class MolViewerModel extends NodeModel {
+public class LigandsAndProteinsViewerModel extends NodeModel {
 
 	// the logger instance
-	private static final NodeLogger logger = NodeLogger.getLogger(MolViewerModel.class);
+	private static final NodeLogger logger = NodeLogger.getLogger(LigandsAndProteinsViewerModel.class);
 
 	public static final int LIGAND_PORT = 0;
 	public static final String CFGKEY_LIGAND = "ligandColumn";
 	public static final String CFGKEY_LIGAND_LABEL = "ligandLabelColumn";
 	private static final String LIGANDS_FILE_NAME = "molViewerInternals.ligands.ser.gz";
 
-	private final SettingsModelString m_ligand_column = new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, "");
+	private final SettingsModelString m_ligand_column = new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_LIGAND, "");
 	private final SettingsModelColumnName m_ligand_label_column = new SettingsModelColumnName(
-			MolViewerModel.CFGKEY_LIGAND_LABEL, "");
+			LigandsAndProteinsViewerModel.CFGKEY_LIGAND_LABEL, "");
 
 	private List<Molecule> ligands;
 
@@ -60,9 +60,9 @@ public class MolViewerModel extends NodeModel {
 	public static final String CFGKEY_PROTEIN_LABEL = "proteinLabelColumn";
 	private static final String PROTEINS_FILE_NAME = "molViewerInternals.proteins.ser.gz";
 
-	private final SettingsModelString m_protein_column = new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN, "");
+	private final SettingsModelString m_protein_column = new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_PROTEIN, "");
 	private final SettingsModelColumnName m_protein_label_column = new SettingsModelColumnName(
-			MolViewerModel.CFGKEY_PROTEIN_LABEL, "");
+			LigandsAndProteinsViewerModel.CFGKEY_PROTEIN_LABEL, "");
 
 	private List<Molecule> proteins;
 
@@ -74,7 +74,7 @@ public class MolViewerModel extends NodeModel {
 	/**
 	 * Constructor for the node model.
 	 */
-	public MolViewerModel() {
+	public LigandsAndProteinsViewerModel() {
 		super(2, 0);
 	}
 

@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import org.knime.bio.types.PdbValue;
 import org.knime.chem.types.Mol2Value;
@@ -19,42 +19,42 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
  * complex dialog please derive directly from
  * {@link org.knime.core.node.NodeDialogPane}.
  */
-public class MolViewerDialog extends DefaultNodeSettingsPane {
+public class LigandsAndProteinsViewerDialog extends DefaultNodeSettingsPane {
 
 	/**
 	 * New pane for configuring MolViewer node dialog. This is just a suggestion
 	 * to demonstrate possible default dialog components.
 	 */
 	@SuppressWarnings("unchecked")
-	protected MolViewerDialog() {
+	protected LigandsAndProteinsViewerDialog() {
 		super();
 
 		createNewGroup("Ligands");
 
 		addDialogComponent(
-				new DialogComponentColumnNameSelection(new SettingsModelString(MolViewerModel.CFGKEY_LIGAND, null),
-						"Column with SDF formatted molecules", MolViewerModel.LIGAND_PORT, SdfValue.class, Mol2Value.class));
+				new DialogComponentColumnNameSelection(new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_LIGAND, null),
+						"Column with SDF formatted molecules", LigandsAndProteinsViewerModel.LIGAND_PORT, SdfValue.class, Mol2Value.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				new SettingsModelColumnName(MolViewerModel.CFGKEY_LIGAND_LABEL, null), "Column with labels",
-				MolViewerModel.LIGAND_PORT, StringValue.class));
+				new SettingsModelColumnName(LigandsAndProteinsViewerModel.CFGKEY_LIGAND_LABEL, null), "Column with labels",
+				LigandsAndProteinsViewerModel.LIGAND_PORT, StringValue.class));
 
 		createNewGroup("Proteins");
 
 		addDialogComponent(
-				new DialogComponentColumnNameSelection(new SettingsModelString(MolViewerModel.CFGKEY_PROTEIN, null),
-						"Column with PDB formatted molecules", MolViewerModel.PROTEIN_PORT, PdbValue.class));
+				new DialogComponentColumnNameSelection(new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_PROTEIN, null),
+						"Column with PDB formatted molecules", LigandsAndProteinsViewerModel.PROTEIN_PORT, PdbValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
-				new SettingsModelColumnName(MolViewerModel.CFGKEY_PROTEIN_LABEL, null), "Column with labels",
-				MolViewerModel.PROTEIN_PORT, StringValue.class));
+				new SettingsModelColumnName(LigandsAndProteinsViewerModel.CFGKEY_PROTEIN_LABEL, null), "Column with labels",
+				LigandsAndProteinsViewerModel.PROTEIN_PORT, StringValue.class));
 
 		closeCurrentGroup();
 
 		createNewTab("Advanced");
 
 		addDialogComponent(
-				new DialogComponentBoolean(new SettingsModelBoolean(MolViewerModel.CFG_BROWSERAUTOOPEN, true),
+				new DialogComponentBoolean(new SettingsModelBoolean(LigandsAndProteinsViewerModel.CFG_BROWSERAUTOOPEN, true),
 						"Automatically open web browser when view is opened"));
 	}
 }

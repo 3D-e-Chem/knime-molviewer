@@ -31,7 +31,7 @@
 </config>
 <config key="node_4">
 <entry key="id" type="xint" value="4"/>
-<entry key="node_settings_file" type="xstring" value="SDF PDB Viewer (#4)/settings.xml"/>
+<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#4)/settings.xml"/>
 <entry key="node_is_meta" type="xboolean" value="false"/>
 <entry key="node_type" type="xstring" value="NativeNode"/>
 <entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>

@@ -12,6 +12,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerModel;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 public class MolViewerModelTest {
@@ -29,7 +30,7 @@ public class MolViewerModelTest {
 		mol.format = "sdf";
 		molecules.add(mol);
 
-		MolViewerModel node = new MolViewerModel();
+		LigandsAndProteinsViewerModel node = new LigandsAndProteinsViewerModel();
 		File file = folder.newFile();
 		node.saveInternalsMolecules(file, molecules);
 		List<Molecule> result = node.loadInternalsMolecules(file);

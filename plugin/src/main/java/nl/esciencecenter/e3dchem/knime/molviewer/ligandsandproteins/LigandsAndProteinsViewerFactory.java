@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
@@ -8,14 +8,14 @@ import org.knime.core.node.NodeView;
  * <code>NodeFactory</code> for the "MolViewer" Node.
  *
  */
-public class MolViewerFactory extends NodeFactory<MolViewerModel> {
+public class LigandsAndProteinsViewerFactory extends NodeFactory<LigandsAndProteinsViewerModel> {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public MolViewerModel createNodeModel() {
-		return new MolViewerModel();
+	public LigandsAndProteinsViewerModel createNodeModel() {
+		return new LigandsAndProteinsViewerModel();
 	}
 
 	/**
@@ -30,8 +30,8 @@ public class MolViewerFactory extends NodeFactory<MolViewerModel> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public NodeView<MolViewerModel> createNodeView(final int viewIndex, final MolViewerModel nodeModel) {
-		return new MolViewerView(nodeModel);
+	public NodeView<LigandsAndProteinsViewerModel> createNodeView(final int viewIndex, final LigandsAndProteinsViewerModel nodeModel) {
+		return new LigandsAndProteinsViewerView(nodeModel);
 	}
 
 	/**
@@ -47,7 +47,7 @@ public class MolViewerFactory extends NodeFactory<MolViewerModel> {
 	 */
 	@Override
 	public NodeDialogPane createNodeDialogPane() {
-		return new MolViewerDialog();
+		return new LigandsAndProteinsViewerDialog();
 	}
 
 }

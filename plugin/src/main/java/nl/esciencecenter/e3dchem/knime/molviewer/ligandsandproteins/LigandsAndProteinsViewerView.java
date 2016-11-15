@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -23,8 +23,8 @@ import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
  * <code>NodeView</code> for the "MolViewer" Node.
  *
  */
-public class MolViewerView extends NodeView<MolViewerModel> implements ActionListener, HiLiteListener {
-	private static final NodeLogger logger = NodeLogger.getLogger(MolViewerView.class);
+public class LigandsAndProteinsViewerView extends NodeView<LigandsAndProteinsViewerModel> implements ActionListener, HiLiteListener {
+	private static final NodeLogger logger = NodeLogger.getLogger(LigandsAndProteinsViewerView.class);
 	private JTextField current_uri_field;
 	private MolViewerServer server;
 	private HiLiteHandler ligandsHiLiteHandler = null;
@@ -33,9 +33,9 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	 * Creates a new view.
 	 *
 	 * @param nodeModel
-	 *            The model (class: {@link MolViewerModel})
+	 *            The model (class: {@link LigandsAndProteinsViewerModel})
 	 */
-	public MolViewerView(final MolViewerModel nodeModel) {
+	public LigandsAndProteinsViewerView(final LigandsAndProteinsViewerModel nodeModel) {
 		super(nodeModel);
 		setupPanel();
 		server = new MolViewerServer("index.html");
@@ -67,7 +67,7 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	@Override
 	protected void modelChanged() {
 		// update internal hilite handler
-		HiLiteHandler hiliteHandler = getNodeModel().getInHiLiteHandler(MolViewerModel.LIGAND_PORT);
+		HiLiteHandler hiliteHandler = getNodeModel().getInHiLiteHandler(LigandsAndProteinsViewerModel.LIGAND_PORT);
 		if (ligandsHiLiteHandler == null) {
 			ligandsHiLiteHandler = hiliteHandler;
 			ligandsHiLiteHandler.addHiLiteListener(this);
