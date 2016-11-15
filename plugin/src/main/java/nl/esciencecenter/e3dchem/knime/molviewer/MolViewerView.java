@@ -37,8 +37,6 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	 */
 	public MolViewerView(final MolViewerModel nodeModel) {
 		super(nodeModel);
-		logger.warn("mol view: construct");
-
 		setupPanel();
 		server = new MolViewerServer("index.html");
 	}
@@ -68,8 +66,6 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	 */
 	@Override
 	protected void modelChanged() {
-		logger.warn("mol view: modelChanged");
-
 		// update internal hilite handler
 		HiLiteHandler hiliteHandler = getNodeModel().getInHiLiteHandler(MolViewerModel.LIGAND_PORT);
 		if (ligandsHiLiteHandler == null) {
@@ -99,8 +95,6 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	 */
 	@Override
 	public void onClose() {
-		logger.warn("mol view: onClose");
-
 		try {
 			server.stop();
 		} catch (Exception e) {
@@ -119,8 +113,6 @@ public class MolViewerView extends NodeView<MolViewerModel> implements ActionLis
 	 */
 	@Override
 	public void onOpen() {
-		logger.warn("mol view: onOpen");
-
 		try {
 			server.start();
 			current_uri_field.setText(server.getCurrentUri().toString());
