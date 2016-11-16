@@ -28,6 +28,8 @@ public class LigandsAndProteinsViewerView extends NodeView<LigandsAndProteinsVie
 	private JTextField current_uri_field;
 	private MolViewerServer server;
 	private HiLiteHandler ligandsHiLiteHandler = null;
+	// TODO remove # in url, by letting Jetty return index.html on 404
+	public static final String url = "#/ligands-and-proteins";
 
 	/**
 	 * Creates a new view.
@@ -38,7 +40,7 @@ public class LigandsAndProteinsViewerView extends NodeView<LigandsAndProteinsVie
 	public LigandsAndProteinsViewerView(final LigandsAndProteinsViewerModel nodeModel) {
 		super(nodeModel);
 		setupPanel();
-		server = new MolViewerServer("index.html");
+		server = new MolViewerServer(url);
 	}
 
 	private void setupPanel() {
