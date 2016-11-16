@@ -5,18 +5,18 @@
 	<name>Ligands and Proteins Viewer</name>
 
 	<shortDescription>
-		Node to view Ligands and Proteins in web browser
+		Node to view ligands and proteins in web browser
 	</shortDescription>
 
 	<fullDescription>
 		<intro>
-			<p>Node to view Ligands and Proteins in a web browser</p>
+			<p>Node to view ligands and proteins in a web browser</p>
 
-			<p>When view is opened will open a web browser with the viewer.</p>
+			<p>When view is opened then it will automatically open a web browser with the viewer.</p>
 			<p>
-				Source code available at
-				<a href="https://github.com/3D-e-Chem/knime-molviewer">Github</a>
-				.
+			Source code available at
+			<a href="https://github.com/3D-e-Chem/knime-molviewer">Github</a>
+			.
 			</p>
 		</intro>
 

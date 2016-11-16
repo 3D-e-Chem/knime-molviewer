@@ -1,4 +1,4 @@
-KNIME node which launches a web browser with SDF mol viewer powered by 3Dmol.js.
+KNIME node which launches a web browser with a molecule viewer powered by 3Dmol.js.
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 
@@ -26,7 +26,7 @@ Steps to get the MolViewer KNIME node inside KNIME:
 2. Find node in Node navigator panel under Community Nodes > 3D-e-Chem > Molviewer.
 3. Drag node to workflow canvas.
 
-See example workflow in `examples` directory.
+See example workflow in `examples/` directory.
 
 # Build
 
