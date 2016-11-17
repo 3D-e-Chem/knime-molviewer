@@ -18,3 +18,4 @@ The file is formatted as described on http://keepachangelog.com/.
 ### Fixed
 
 * UI hosted as / (#1)
+* sourceMappingURL-issue for Safari
