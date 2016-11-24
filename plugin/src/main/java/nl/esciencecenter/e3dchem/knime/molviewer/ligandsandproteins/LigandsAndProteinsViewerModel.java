@@ -19,6 +19,7 @@ import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
+import org.knime.core.data.DataValue;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
@@ -163,26 +164,45 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs) throws InvalidSettingsException {
 		boolean hasLigandColumn = false;
-		boolean hasProteinColumn = false;
 		for (int i = 0; i < inSpecs[LIGAND_PORT].getNumColumns(); i++) {
 			DataColumnSpec columnSpec = inSpecs[LIGAND_PORT].getColumnSpec(i);
 			if (columnSpec.getType().isCompatible(SdfValue.class) || columnSpec.getType().isCompatible(Mol2Value.class)) {
 				hasLigandColumn = true;
 			}
 		}
-		for (int i = 0; i < inSpecs[PROTEIN_PORT].getNumColumns(); i++) {
-			DataColumnSpec columnSpec = inSpecs[PROTEIN_PORT].getColumnSpec(i);
-			if (columnSpec.getType().isCompatible(PdbValue.class)) {
-				hasProteinColumn = true;
-			}
-		}
+
+		
 		if (!hasLigandColumn) {
 			throw new InvalidSettingsException("Input table on input port 0 must contain at least one SDF or Mol2 column");
 		}
-		if (!hasProteinColumn) {
-			throw new InvalidSettingsException("Input table on input port 1 must contain at least one PDB column");
-		}
+		configureProteinColumn(inSpecs[PROTEIN_PORT]);
+
 		return new DataTableSpec[] {};
+	}
+
+	private void configureProteinColumn(DataTableSpec spec) throws InvalidSettingsException {
+		int colIndex = -1;
+		if (m_protein_column.getStringValue() == null) {
+			for (int i = 0; i < spec.getNumColumns(); i++) {
+				DataColumnSpec columnSpec = spec.getColumnSpec(i);
+				if (columnSpec.getType().isCompatible(PdbValue.class)) {
+					colIndex = i;
+					break;
+				}
+			}
+			if (colIndex == -1) {
+				throw new InvalidSettingsException("Missing PDB column on port " + spec.getName());
+			}
+			m_protein_column.setStringValue(spec.getColumnSpec(colIndex).getName());
+		} else {
+			colIndex = spec.findColumnIndex(m_protein_column.getStringValue());
+			if (colIndex < 0) {
+				throw new InvalidSettingsException("No such column: " + m_protein_column.getStringValue() + " on port " + spec.getName());
+			}
+			if (!spec.getColumnSpec(colIndex).getType().isCompatible(PdbValue.class)) {
+				throw new InvalidSettingsException("Column: " + m_protein_column.getStringValue() + " wrong type, should be PDB column on port " + spec.getName());
+			}
+		}
 	}
 
 	/**
