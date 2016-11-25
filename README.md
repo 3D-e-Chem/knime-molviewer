@@ -1,6 +1,7 @@
 KNIME node which launches a web browser with a molecule viewer powered by 3Dmol.js.
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.168569.svg)](https://doi.org/10.5281/zenodo.168569)
 
 This project uses [Eclipse Tycho](https://www.eclipse.org/tycho/) to perform build steps.
 
@@ -112,7 +113,7 @@ The webserver has
 * on /api, a rest interface
 
   * to retrieve data from KNIME node input ports, /api/ligands
-  * to propogate selections in web page to KNIME node using the hilite mechanism of KNIME, /api/hilite
+  * to propogate selections in web page to KNIME node using the hilite mechanism of KNIME, /api/ligands/hilite
   * server sent events, /api/broadcast
 
 * on /, ui based on https://github.com/3D-e-Chem/molviewer-tsx
