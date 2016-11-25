@@ -30,7 +30,8 @@ public class LigandsAndProteinsViewerFactory extends NodeFactory<LigandsAndProte
 	 * {@inheritDoc}
 	 */
 	@Override
-	public NodeView<LigandsAndProteinsViewerModel> createNodeView(final int viewIndex, final LigandsAndProteinsViewerModel nodeModel) {
+	public NodeView<LigandsAndProteinsViewerModel> createNodeView(final int viewIndex,
+			final LigandsAndProteinsViewerModel nodeModel) {
 		return new LigandsAndProteinsViewerView(nodeModel);
 	}
 

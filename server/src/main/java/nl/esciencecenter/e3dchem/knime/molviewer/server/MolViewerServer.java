@@ -2,7 +2,6 @@ package nl.esciencecenter.e3dchem.knime.molviewer.server;
 
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.NetworkConnector;
@@ -16,23 +15,14 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
-import org.knime.core.node.property.hilite.HiLiteHandler;
 
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.BroadcasterResource;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.HiLiteResource;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.LigandsHiLiteResource;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.LigandsResource;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.ProteinsResource;
 
-public class MolViewerServer {
+abstract public class MolViewerServer {
 	private Server server;
 	private URI current_uri;
 	private BroadcasterResource sse_res;
-	private LigandsResource ligands_res;
 	private String page = "";
-	private HiLiteResource ligand_hilite_res;
-	private ProteinsResource proteins_res;
 
 	static public final String apiBasePath = "/api";
 
@@ -41,6 +31,8 @@ public class MolViewerServer {
 		this(page, 0);
 	}
 
+	abstract protected void setupResources(ResourceConfig rc);
+	
 	public MolViewerServer(String page, int port) {
 		this.page = page;
 		server = new Server(port);
@@ -59,12 +51,7 @@ public class MolViewerServer {
 		rc.register(SwaggerInfo.class);
 		sse_res = new BroadcasterResource();
 		rc.register(sse_res);
-		ligands_res = new LigandsResource();
-		rc.register(ligands_res);
-		ligand_hilite_res = new LigandsHiLiteResource();
-		rc.register(ligand_hilite_res);
-		proteins_res = new ProteinsResource();
-		rc.register(proteins_res);
+		setupResources(rc);
 		ServletContainer sc = new ServletContainer(rc);
 		ServletHolder holder = new ServletHolder(sc);
 		ServletContextHandler rest_handler = new ServletContextHandler();
@@ -110,17 +97,5 @@ public class MolViewerServer {
 
 	public void sendMessage(String message) {
 		sse_res.broadcastMessage(message);
-	}
-
-	public void updateLigands(List<Molecule> ligands) {
-		ligands_res.setMolecules(ligands);
-	}
-
-	public void updateProteins(List<Molecule> proteins) {
-		proteins_res.setMolecules(proteins);
-	}
-
-	public void setLigandsHiLiteHandler(HiLiteHandler hiliteHandler) {
-		ligand_hilite_res.setHiLiteHandler(hiliteHandler);
 	}
 }

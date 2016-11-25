@@ -1,16 +1,9 @@
 package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
-import java.util.zip.GZIPOutputStream;
 
 import org.knime.bio.types.PdbValue;
 import org.knime.chem.types.Mol2Value;
@@ -25,25 +18,19 @@ import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.ExecutionMonitor;
 import org.knime.core.node.InvalidSettingsException;
-import org.knime.core.node.NodeLogger;
-import org.knime.core.node.NodeModel;
 import org.knime.core.node.NodeSettingsRO;
 import org.knime.core.node.NodeSettingsWO;
-import org.knime.core.node.defaultnodesettings.SettingsModelBoolean;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
+import nl.esciencecenter.e3dchem.knime.molviewer.ViewerModel;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 /**
  * This is the model implementation of ligands and proteins MolViewer.
  *
  */
-public class LigandsAndProteinsViewerModel extends NodeModel {
-
-	// the logger instance
-	private static final NodeLogger logger = NodeLogger.getLogger(LigandsAndProteinsViewerModel.class);
-
+public class LigandsAndProteinsViewerModel extends ViewerModel {
 	public static final int LIGAND_PORT = 0;
 	public static final String CFGKEY_LIGAND = "ligandColumn";
 	public static final String CFGKEY_LIGAND_LABEL = "ligandLabelColumn";
@@ -67,11 +54,6 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 			LigandsAndProteinsViewerModel.CFGKEY_PROTEIN_LABEL, "");
 
 	private List<Molecule> proteins;
-
-	public static final String CFG_BROWSERAUTOOPEN = "browserAutoOpen";
-	private final SettingsModelBoolean m_browserAutoOpen = new SettingsModelBoolean(CFG_BROWSERAUTOOPEN, true);
-
-	// TODO add pharmacophores column on ligand and/or protein port
 
 	/**
 	 * Constructor for the node model.
@@ -159,10 +141,6 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		proteins = null;
 	}
 
-	private interface isCompatibleLambda {
-		boolean test(DataColumnSpec s);
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -184,79 +162,6 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		return new DataTableSpec[] {};
 	}
 
-	private void configureColumnWithRowID(DataTableSpec spec, SettingsModelColumnName setting,
-			isCompatibleLambda isCompatible, String columnLabel, String specName) throws InvalidSettingsException {
-		int colIndex = -1;
-		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null || setting.getStringValue().isEmpty();
-		boolean useRowId = setting.useRowID();
-		if (settingIsDefault && !useRowId) {
-			for (int i = 0; i < spec.getNumColumns(); i++) {
-				DataColumnSpec columnSpec = spec.getColumnSpec(i);
-				if (isCompatible.test(columnSpec)) {
-					// Select first column that matches
-					colIndex = i;
-					break;
-				}
-			}
-			if (colIndex == -1) {
-				setWarningMessage("RowID auto selected as " + columnLabel + " column on port " + specName);
-				setting.setSelection(null, true);
-			} else {
-				String selectedColumn = spec.getColumnSpec(colIndex).getName();
-				setWarningMessage("Column '" + selectedColumn + "' auto selected as " + columnLabel + " column on port "
-						+ specName);
-				setting.setStringValue(selectedColumn);
-			}
-		} else {
-			if (!setting.useRowID()) {
-				colIndex = spec.findColumnIndex(setting.getStringValue());
-				if (colIndex < 0) {
-					throw new InvalidSettingsException(
-							"Column '" + setting.getStringValue() + "' missing on port " + specName);
-				}
-				if (!isCompatible.test(spec.getColumnSpec(colIndex))) {
-					throw new InvalidSettingsException("Column '" + setting.getStringValue()
-							+ "' is incompatible, should be column with " + columnLabel + " on port " + specName);
-				}
-			} else {
-				// RowID selected
-			}
-		}
-	}
-
-	private void configureColumn(DataTableSpec spec, SettingsModelString setting, isCompatibleLambda isCompatible,
-			String columnLabel, String specName) throws InvalidSettingsException {
-		int colIndex = -1;
-		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null || setting.getStringValue().isEmpty();
-		if (settingIsDefault) {
-			for (int i = 0; i < spec.getNumColumns(); i++) {
-				DataColumnSpec columnSpec = spec.getColumnSpec(i);
-				if (isCompatible.test(columnSpec)) {
-					// Select first column that matches
-					colIndex = i;
-					break;
-				}
-			}
-			if (colIndex == -1) {
-				throw new InvalidSettingsException("Column with " + columnLabel + " missing on port " + specName);
-			}
-			String selectedColumn = spec.getColumnSpec(colIndex).getName();
-			setWarningMessage("Column '" + selectedColumn + "' auto selected as column with " + columnLabel
-					+ " on port " + specName);
-			setting.setStringValue(selectedColumn);
-		} else {
-			colIndex = spec.findColumnIndex(setting.getStringValue());
-			if (colIndex < 0) {
-				throw new InvalidSettingsException(
-						"Column '" + setting.getStringValue() + "' missing on port " + specName);
-			}
-			if (!isCompatible.test(spec.getColumnSpec(colIndex))) {
-				throw new InvalidSettingsException("Column '" + setting.getStringValue()
-						+ "' is incompatible, should be column with " + columnLabel + " on port " + specName);
-			}
-		}
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -266,7 +171,7 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		m_ligand_label_column.saveSettingsTo(settings);
 		m_protein_column.saveSettingsTo(settings);
 		m_protein_label_column.saveSettingsTo(settings);
-		m_browserAutoOpen.saveSettingsTo(settings);
+		super.saveSettingsTo(settings);
 	}
 
 	/**
@@ -278,7 +183,7 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		m_ligand_label_column.loadSettingsFrom(settings);
 		m_protein_column.loadSettingsFrom(settings);
 		m_protein_label_column.loadSettingsFrom(settings);
-		m_browserAutoOpen.loadSettingsFrom(settings);
+		super.loadValidatedSettingsFrom(settings);
 	}
 
 	/**
@@ -290,7 +195,7 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		m_ligand_label_column.validateSettings(settings);
 		m_protein_column.validateSettings(settings);
 		m_protein_label_column.validateSettings(settings);
-		m_browserAutoOpen.validateSettings(settings);
+		super.validateSettings(settings);
 	}
 
 	/**
@@ -303,23 +208,6 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		proteins = loadInternalsMolecules(new File(internDir, PROTEINS_FILE_NAME));
 	}
 
-	public List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
-		if (!file.canRead()) {
-			return new ArrayList<Molecule>();
-		}
-		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
-		try {
-			@SuppressWarnings("unchecked")
-			List<Molecule> ino = (List<Molecule>) in.readObject();
-			return ino;
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} finally {
-			in.close();
-		}
-		return new ArrayList<Molecule>();
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -329,20 +217,4 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		saveInternalsMolecules(new File(internDir, LIGANDS_FILE_NAME), ligands);
 		saveInternalsMolecules(new File(internDir, PROTEINS_FILE_NAME), proteins);
 	}
-
-	public void saveInternalsMolecules(final File file, List<Molecule> molecules)
-			throws FileNotFoundException, IOException {
-		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-		out.writeObject(molecules);
-		out.flush();
-		out.close();
-	}
-
-	/**
-	 * @return If browser should be automatically opened
-	 */
-	public boolean isBrowserAutoOpen() {
-		return m_browserAutoOpen.getBooleanValue();
-	}
-
 }

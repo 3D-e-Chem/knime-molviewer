@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import java.io.File;
 import java.io.IOException;
@@ -15,7 +15,7 @@ import org.knime.testing.core.TestrunConfiguration;
 
 import nl.esciencecenter.e3dchem.knime.testing.TestFlowRunner;
 
-public class MolViewerWorkflowTest {
+public class LigandsAndProteinsViewerWorkflowTest {
 	@Rule
 	public ErrorCollector collector = new ErrorCollector();
 	private TestFlowRunner runner;

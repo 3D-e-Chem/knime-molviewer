@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -15,7 +15,7 @@ import org.junit.rules.TemporaryFolder;
 import nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerModel;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
-public class MolViewerModelTest {
+public class LigandsAndProteinsViewerModelTest {
 
 	@Rule
 	public TemporaryFolder folder = new TemporaryFolder();

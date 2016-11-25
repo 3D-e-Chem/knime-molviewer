@@ -1,4 +1,4 @@
-package nl.esciencecenter.e3dchem.knime.molviewer;
+package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -14,15 +14,15 @@ import org.apache.http.util.EntityUtils;
 import org.junit.Before;
 import org.junit.Test;
 
-import nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerView;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.LigandsAndProteinsViewerServer;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
-public class MolViewerServerTest {
+public class LigandsAndProteinsViewerServerTest {
 	private MolViewerServer server;
 
 	@Before
 	public void setUp() throws Exception {
-		server = new MolViewerServer("SomeViewer");
+		server = new LigandsAndProteinsViewerServer("SomeViewer");
 		server.start();
 		// wait for server to spin up
 		// Thread.sleep(500);
@@ -55,9 +55,8 @@ public class MolViewerServerTest {
 	}
 
 	@Test
-	public void testStatic_LigandsAndProteinsViewer()
-			throws ClientProtocolException, IOException, URISyntaxException {
-		String viewerUrl = LigandsAndProteinsViewerView.url;
+	public void testStatic_LigandsAndProteinsViewer() throws ClientProtocolException, IOException, URISyntaxException {
+		String viewerUrl = "#/ligands-and-proteins";
 		URI uri = server.getBaseUri().resolve(viewerUrl);
 		String response = Request.Get(uri).execute().returnContent().asString();
 		assertTrue(response.contains("Molviewer"));
