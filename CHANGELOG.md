@@ -5,6 +5,8 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [0.1.4] - 2016-11-25
+
 ### Added
 
 * Example workflow (#2)
@@ -18,5 +20,4 @@ The file is formatted as described on http://keepachangelog.com/.
 ### Fixed
 
 * UI hosted as / (#1)
-* sourceMappingURL-issue for Safari 
-* Server Sent Events polyfill for MS Edge
+* Error if protein input is from Vernalis PDB Downloader node (#12) 

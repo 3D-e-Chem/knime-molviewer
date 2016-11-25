@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: MolViewer Nodes
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.molviewer.plugin;singleton:=true
-Bundle-Version: 0.1.3
+Bundle-Version: 0.1.4
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Activator: nl.esciencecenter.e3dchem.knime.molviewer.Activator
 Bundle-Vendor: Netherlands eScience Center
@@ -16,4 +16,5 @@ Require-Bundle: org.eclipse.core.runtime,
  nl.esciencecenter.e3dchem.knime.molviewer.server
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Export-Package: nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins
+Export-Package: nl.esciencecenter.e3dchem.knime.molviewer,
+ nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins
