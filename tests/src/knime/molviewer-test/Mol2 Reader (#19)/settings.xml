@@ -10,7 +10,7 @@
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
-<entry key="filename" type="xstring" value="/tmp/3Dmol.js/tests/test_structs/multiple.mol2"/>
+<entry key="filename" type="xstring" value="file:///tmp/3Dmol.js/tests/test_structs/multiple.mol2"/>
 <config key="generateID_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
