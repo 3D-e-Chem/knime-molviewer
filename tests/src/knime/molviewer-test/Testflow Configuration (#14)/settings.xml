@@ -17,10 +17,18 @@
 <entry key="array-size" type="xint" value="0"/>
 </config>
 <config key="failingNodes">
-<entry key="array-size" type="xint" value="0"/>
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xstring" value="24"/>
+<entry key="1" type="xstring" value="25"/>
+<entry key="2" type="xstring" value="26"/>
+<entry key="3" type="xstring" value="21"/>
 </config>
 <config key="requiredNodeWarnings">
-<entry key="count" type="xint" value="0"/>
+<entry key="nodeID_0" type="xstring" value="25"/>
+<entry key="message_0" type="xstring" value="Column with molecules missing on port ligands"/>
+<entry key="nodeID_1" type="xstring" value="26"/>
+<entry key="message_1" type="xstring" value="Column with molecules missing on port proteins"/>
+<entry key="count" type="xint" value="2"/>
 </config>
 <config key="requiredNodeErrors">
 <entry key="count" type="xint" value="0"/>
@@ -33,7 +41,7 @@
 <entry key="streamingTest" type="xboolean" value="false"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="EXECUTED"/>
+<entry key="state" type="xstring" value="CONFIGURED"/>
 <entry key="factory" type="xstring" value="org.knime.testing.node.config.TestConfigNodeFactory"/>
 <entry key="node-name" type="xstring" value="Testflow Configuration"/>
 <entry key="node-bundle-name" type="xstring" value="Test-Node extension for KNIME Workbench"/>
@@ -46,11 +54,11 @@
 <entry key="node-feature-version" type="xstring" value="3.2.1.v201608182043"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Testflow Configuration"/>
-<entry key="hasContent" type="xboolean" value="true"/>
+<entry key="hasContent" type="xboolean" value="false"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="4ca53ae0-e236-4a0b-a505-c025b33fad9d"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>

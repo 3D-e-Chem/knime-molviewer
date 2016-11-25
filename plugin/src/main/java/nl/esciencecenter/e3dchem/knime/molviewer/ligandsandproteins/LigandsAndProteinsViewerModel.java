@@ -19,7 +19,6 @@ import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
-import org.knime.core.data.DataValue;
 import org.knime.core.data.StringValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
@@ -37,7 +36,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 /**
- * This is the model implementation of MolViewer.
+ * This is the model implementation of ligands and proteins MolViewer.
  *
  */
 public class LigandsAndProteinsViewerModel extends NodeModel {
@@ -50,7 +49,8 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 	public static final String CFGKEY_LIGAND_LABEL = "ligandLabelColumn";
 	private static final String LIGANDS_FILE_NAME = "molViewerInternals.ligands.ser.gz";
 
-	private final SettingsModelString m_ligand_column = new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_LIGAND, "");
+	private final SettingsModelString m_ligand_column = new SettingsModelString(
+			LigandsAndProteinsViewerModel.CFGKEY_LIGAND, "");
 	private final SettingsModelColumnName m_ligand_label_column = new SettingsModelColumnName(
 			LigandsAndProteinsViewerModel.CFGKEY_LIGAND_LABEL, "");
 
@@ -61,7 +61,8 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 	public static final String CFGKEY_PROTEIN_LABEL = "proteinLabelColumn";
 	private static final String PROTEINS_FILE_NAME = "molViewerInternals.proteins.ser.gz";
 
-	private final SettingsModelString m_protein_column = new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_PROTEIN, "");
+	private final SettingsModelString m_protein_column = new SettingsModelString(
+			LigandsAndProteinsViewerModel.CFGKEY_PROTEIN, "");
 	private final SettingsModelColumnName m_protein_label_column = new SettingsModelColumnName(
 			LigandsAndProteinsViewerModel.CFGKEY_PROTEIN_LABEL, "");
 
@@ -124,7 +125,7 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 			} else if (currCell.getType().isCompatible(PdbValue.class)) {
 				mol.format = "pdb";
 			} else {
-				logger.warn("Row " + mol.id  + " is has invalid format, skipping");
+				logger.warn("Row " + mol.id + " is has invalid format, skipping");
 				continue;
 			}
 			mol.data = ((StringValue) currCell).getStringValue();
@@ -158,49 +159,100 @@ public class LigandsAndProteinsViewerModel extends NodeModel {
 		proteins = null;
 	}
 
+	private interface isCompatibleLambda {
+		boolean test(DataColumnSpec s);
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs) throws InvalidSettingsException {
-		boolean hasLigandColumn = false;
-		for (int i = 0; i < inSpecs[LIGAND_PORT].getNumColumns(); i++) {
-			DataColumnSpec columnSpec = inSpecs[LIGAND_PORT].getColumnSpec(i);
-			if (columnSpec.getType().isCompatible(SdfValue.class) || columnSpec.getType().isCompatible(Mol2Value.class)) {
-				hasLigandColumn = true;
-			}
-		}
+		isCompatibleLambda compatibleLigand = (DataColumnSpec s) -> s.getType().isCompatible(SdfValue.class)
+				|| s.getType().isCompatible(Mol2Value.class);
+		isCompatibleLambda compatibleProtein = (DataColumnSpec s) -> s.getType().isCompatible(PdbValue.class);
+		// as PDB, SDF and Mol2 are also string compatible exclude them for
+		// label
+		isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)
+				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
 
-		
-		if (!hasLigandColumn) {
-			throw new InvalidSettingsException("Input table on input port 0 must contain at least one SDF or Mol2 column");
-		}
-		configureProteinColumn(inSpecs[PROTEIN_PORT]);
+		configureColumn(inSpecs[LIGAND_PORT], m_ligand_column, compatibleLigand, "molecules", "ligands");
+		configureColumnWithRowID(inSpecs[LIGAND_PORT], m_ligand_label_column, compatibleLabel, "labels", "ligands");
+		configureColumn(inSpecs[PROTEIN_PORT], m_protein_column, compatibleProtein, "molecules", "proteins");
+		configureColumnWithRowID(inSpecs[PROTEIN_PORT], m_protein_label_column, compatibleLabel, "labels", "proteins");
 
 		return new DataTableSpec[] {};
 	}
 
-	private void configureProteinColumn(DataTableSpec spec) throws InvalidSettingsException {
+	private void configureColumnWithRowID(DataTableSpec spec, SettingsModelColumnName setting,
+			isCompatibleLambda isCompatible, String columnLabel, String specName) throws InvalidSettingsException {
 		int colIndex = -1;
-		if (m_protein_column.getStringValue() == null) {
+		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null || setting.getStringValue().isEmpty();
+		boolean useRowId = setting.useRowID();
+		if (settingIsDefault && !useRowId) {
 			for (int i = 0; i < spec.getNumColumns(); i++) {
 				DataColumnSpec columnSpec = spec.getColumnSpec(i);
-				if (columnSpec.getType().isCompatible(PdbValue.class)) {
+				if (isCompatible.test(columnSpec)) {
+					// Select first column that matches
 					colIndex = i;
 					break;
 				}
 			}
 			if (colIndex == -1) {
-				throw new InvalidSettingsException("Missing PDB column on port " + spec.getName());
+				setWarningMessage("RowID auto selected as " + columnLabel + " column on port " + specName);
+				setting.setSelection(null, true);
+			} else {
+				String selectedColumn = spec.getColumnSpec(colIndex).getName();
+				setWarningMessage("Column '" + selectedColumn + "' auto selected as " + columnLabel + " column on port "
+						+ specName);
+				setting.setStringValue(selectedColumn);
 			}
-			m_protein_column.setStringValue(spec.getColumnSpec(colIndex).getName());
 		} else {
-			colIndex = spec.findColumnIndex(m_protein_column.getStringValue());
-			if (colIndex < 0) {
-				throw new InvalidSettingsException("No such column: " + m_protein_column.getStringValue() + " on port " + spec.getName());
+			if (!setting.useRowID()) {
+				colIndex = spec.findColumnIndex(setting.getStringValue());
+				if (colIndex < 0) {
+					throw new InvalidSettingsException(
+							"Column '" + setting.getStringValue() + "' missing on port " + specName);
+				}
+				if (!isCompatible.test(spec.getColumnSpec(colIndex))) {
+					throw new InvalidSettingsException("Column '" + setting.getStringValue()
+							+ "' is incompatible, should be column with " + columnLabel + " on port " + specName);
+				}
+			} else {
+				// RowID selected
 			}
-			if (!spec.getColumnSpec(colIndex).getType().isCompatible(PdbValue.class)) {
-				throw new InvalidSettingsException("Column: " + m_protein_column.getStringValue() + " wrong type, should be PDB column on port " + spec.getName());
+		}
+	}
+
+	private void configureColumn(DataTableSpec spec, SettingsModelString setting, isCompatibleLambda isCompatible,
+			String columnLabel, String specName) throws InvalidSettingsException {
+		int colIndex = -1;
+		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null || setting.getStringValue().isEmpty();
+		if (settingIsDefault) {
+			for (int i = 0; i < spec.getNumColumns(); i++) {
+				DataColumnSpec columnSpec = spec.getColumnSpec(i);
+				if (isCompatible.test(columnSpec)) {
+					// Select first column that matches
+					colIndex = i;
+					break;
+				}
+			}
+			if (colIndex == -1) {
+				throw new InvalidSettingsException("Column with " + columnLabel + " missing on port " + specName);
+			}
+			String selectedColumn = spec.getColumnSpec(colIndex).getName();
+			setWarningMessage("Column '" + selectedColumn + "' auto selected as column with " + columnLabel
+					+ " on port " + specName);
+			setting.setStringValue(selectedColumn);
+		} else {
+			colIndex = spec.findColumnIndex(setting.getStringValue());
+			if (colIndex < 0) {
+				throw new InvalidSettingsException(
+						"Column '" + setting.getStringValue() + "' missing on port " + specName);
+			}
+			if (!isCompatible.test(spec.getColumnSpec(colIndex))) {
+				throw new InvalidSettingsException("Column '" + setting.getStringValue()
+						+ "' is incompatible, should be column with " + columnLabel + " on port " + specName);
 			}
 		}
 	}
