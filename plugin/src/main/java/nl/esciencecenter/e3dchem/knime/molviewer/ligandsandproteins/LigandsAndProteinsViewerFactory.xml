@@ -23,14 +23,14 @@
 		<option name="Ligands: Column with SDF molecules">Column with SDF or Mol2 formatted molecules in port 0.</option>
 		<option name="Ligands: Column with labels" optional="true">Column with
 			labels in port 0, if no column is selected uses Row ID.</option>
-		<option name="Proteins: Column with PDB molecules">Column with PDB formatted molecules in port 1.</option>
+		<option name="Proteins: Column with PDB molecules">Column with PDB or Mol2 formatted molecules in port 1.</option>
 		<option name="Proteins: Column with labels" optional="true">Column
 			with labels in port 1, if no column is selected uses Row ID.</option>
 	</fullDescription>
 
 	<ports>
 		<inPort index="0" name="Ligands">Table containing Ligands in SDF or Mol2 format</inPort>
-		<inPort index="1" name="Proteins">Table containing Proteins in PDB format</inPort>
+		<inPort index="1" name="Proteins">Table containing Proteins in PDB or Mol2 format</inPort>
 	</ports>
 	<views>
 		<view index="0" name="Web browser launcher">Display web browser launcher</view>

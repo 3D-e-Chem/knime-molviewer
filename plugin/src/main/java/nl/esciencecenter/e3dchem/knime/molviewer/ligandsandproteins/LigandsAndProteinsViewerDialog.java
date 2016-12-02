@@ -33,7 +33,7 @@ public class LigandsAndProteinsViewerDialog extends ViewerDialog {
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_LIGAND, null),
-				"Column with SDF formatted molecules", LigandsAndProteinsViewerModel.LIGAND_PORT, SdfValue.class,
+				"Column with SDF or Mol2 formatted molecules", LigandsAndProteinsViewerModel.LIGAND_PORT, SdfValue.class,
 				Mol2Value.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
@@ -44,7 +44,8 @@ public class LigandsAndProteinsViewerDialog extends ViewerDialog {
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(LigandsAndProteinsViewerModel.CFGKEY_PROTEIN, null),
-				"Column with PDB formatted molecules", LigandsAndProteinsViewerModel.PROTEIN_PORT, PdbValue.class));
+				"Column with PDB or Mol2 formatted molecules", LigandsAndProteinsViewerModel.PROTEIN_PORT, PdbValue.class,
+				Mol2Value.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelColumnName(LigandsAndProteinsViewerModel.CFGKEY_PROTEIN_LABEL, null),

@@ -59,11 +59,11 @@
 <entry key="node-bundle-name" type="xstring" value="MolViewer Nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.knime.molviewer.plugin"/>
 <entry key="node-bundle-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-bundle-version" type="xstring" value="0.1.9"/>
+<entry key="node-bundle-version" type="xstring" value="0.1.5"/>
 <entry key="node-feature-name" type="xstring" value="MolViewer nodes for KNIME"/>
 <entry key="node-feature-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.knime.molviewer.feature.feature.group"/>
 <entry key="node-feature-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-feature-version" type="xstring" value="0.1.9"/>
+<entry key="node-feature-version" type="xstring" value="0.1.5"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Ligands and Proteins Viewer"/>
 <entry key="hasContent" type="xboolean" value="false"/>

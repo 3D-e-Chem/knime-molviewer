@@ -18,6 +18,7 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
+					<useUIHarness>true</useUIHarness>
 					<argLine>${tycho.test.jvmArgs}</argLine>
 				</configuration>
 

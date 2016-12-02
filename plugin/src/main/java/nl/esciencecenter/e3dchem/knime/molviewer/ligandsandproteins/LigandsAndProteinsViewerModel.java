@@ -148,7 +148,8 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 	protected DataTableSpec[] configure(final DataTableSpec[] inSpecs) throws InvalidSettingsException {
 		isCompatibleLambda compatibleLigand = (DataColumnSpec s) -> s.getType().isCompatible(SdfValue.class)
 				|| s.getType().isCompatible(Mol2Value.class);
-		isCompatibleLambda compatibleProtein = (DataColumnSpec s) -> s.getType().isCompatible(PdbValue.class);
+		isCompatibleLambda compatibleProtein = (DataColumnSpec s) -> s.getType().isCompatible(PdbValue.class)
+				|| s.getType().isCompatible(Mol2Value.class);
 		// as PDB, SDF and Mol2 are also string compatible exclude them for
 		// label
 		isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)

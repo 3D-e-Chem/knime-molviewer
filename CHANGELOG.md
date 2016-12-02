@@ -7,6 +7,7 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## Changed
 
+* Allow proteins to be in mol2 format (#14)
 * Switched from 3Dmol to NGL (https://github.com/3D-e-Chem/molviewer-tsx/issues/4)
 
 ## [0.1.4] - 2016-11-25
