@@ -5,6 +5,8 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [0.1.5] - 2016-12-02
+
 ## Changed
 
 * Allow proteins to be in mol2 format (#14)
