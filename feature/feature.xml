@@ -12,10 +12,9 @@
    </description>
 
    <copyright>
-      Software uses 3Dmol.js
-Nicholas Rego and David Koes
-3Dmol.js: molecular visualization with WebGL
-Bioinformatics (2015) 31 (8): 1322-1324 doi:10.1093/bioinformatics/btu829
+      Software uses NGL
+      - AS Rose, AR Bradley, Y Valasatava, JM Duarte, A Prlić and PW Rose. Web-based molecular graphics for large complexes. ACM Proceedings of the 21st International Conference on Web3D Technology (Web3D '16): 185-186, 2016. doi:10.1145/2945292.2945324
+      - AS Rose and PW Hildebrand. NGL Viewer: a web application for molecular visualization. Nucl Acids Res (1 July 2015) 43 (W1): W576-W579 first published online April 29, 2015. doi:10.1093/nar/gkv402
    </copyright>
 
    <license url="https://www.apache.org/licenses/LICENSE-2.0.txt">

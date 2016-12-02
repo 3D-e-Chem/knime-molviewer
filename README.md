@@ -1,9 +1,9 @@
-KNIME node which launches a web browser with a molecule viewer powered by 3Dmol.js.
+KNIME node which launches a web browser with a molecule viewer powered by [NGL](https://github.com/arose/ngl).
 
 [![Build Status](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.168569.svg)](https://doi.org/10.5281/zenodo.168569)
 
-This project uses [Eclipse Tycho](https://www.eclipse.org/tycho/) to perform build steps.
+This project uses a web user interface based on https://github.com/3D-e-Chem/molviewer-tsx .
 
 # Installation
 
@@ -125,3 +125,5 @@ Server sent events are used to inform the web page that:
 * view closed
 * input changed
 * hilite changed
+
+This project uses [Eclipse Tycho](https://www.eclipse.org/tycho/) to perform build steps.

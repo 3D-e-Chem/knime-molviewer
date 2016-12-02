@@ -5,6 +5,10 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## Changed
+
+* Switched from 3Dmol to NGL (https://github.com/3D-e-Chem/molviewer-tsx/issues/4)
+
 ## [0.1.4] - 2016-11-25
 
 ### Added

@@ -74,7 +74,7 @@ public class LigandsAndProteinsViewerServerTest {
 	public void testSwaggerYaml() throws URISyntaxException, ClientProtocolException, IOException {
 		URI uri = server.getBaseUri().resolve("/api/swagger.yaml");
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("3DMol.js"));
+		assertTrue(response.contains("WebGL"));
 		assertTrue(response.contains("ligands"));
 		assertTrue(response.contains("hilite"));
 		assertTrue(response.contains("event-stream"));
@@ -84,7 +84,7 @@ public class LigandsAndProteinsViewerServerTest {
 	public void testSwaggerJson() throws URISyntaxException, ClientProtocolException, IOException {
 		URI uri = server.getBaseUri().resolve("/api/swagger.json");
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("3DMol.js"));
+		assertTrue(response.contains("WebGL"));
 		assertTrue(response.contains("ligands"));
 		assertTrue(response.contains("hilite"));
 		assertTrue(response.contains("event-stream"));
