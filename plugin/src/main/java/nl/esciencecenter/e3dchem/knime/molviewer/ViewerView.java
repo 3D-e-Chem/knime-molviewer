@@ -73,8 +73,12 @@ public abstract class ViewerView<T extends ViewerModel> extends NodeView<T> impl
 
 	protected void openBrowser() {
 		try {
-			// TODO test if browse() is supported
-			Desktop.getDesktop().browse(server.getCurrentUri());
+			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+				Desktop.getDesktop().browse(server.getCurrentUri());
+			} else {
+				logger.warn("Unable to open '" + server.getCurrentUri() + "' automatically in web browser");
+				logger.warn("Please copy/paste the URL manually into a web browser");
+			}
 		} catch (IOException e) {
 			logger.warn(e);
 			logger.warn(e.getCause());

@@ -16,7 +16,7 @@
 			<p>
 			Source code available at
 			<a href="https://github.com/3D-e-Chem/knime-molviewer">Github</a>
-			.
+			. If KNIME crashes then apply the workaround described <a href="https://tech.knime.org/faq#q32">here</a>.
 			</p>
 		</intro>
 

@@ -5,9 +5,17 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Added
+
+* KNIME crash workaround in node description (#16)
+
+### Changed
+
+* If KNIME is unable to open url in web browser then give a warning
+
 ## [0.1.5] - 2016-12-02
 
-## Changed
+### Changed
 
 * Allow proteins to be in mol2 format (#14)
 * Switched from 3Dmol to NGL (https://github.com/3D-e-Chem/molviewer-tsx/issues/4)
