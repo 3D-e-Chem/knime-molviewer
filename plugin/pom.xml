@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>nl.esciencecenter.e3dchem.knime.molviewer</groupId>
 		<artifactId>nl.esciencecenter.e3dchem.knime.molviewer</artifactId>
-		<version>0.1.5</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>nl.esciencecenter.e3dchem.knime.molviewer.plugin</artifactId>
 	<packaging>eclipse-plugin</packaging>

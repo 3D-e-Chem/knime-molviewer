@@ -5,6 +5,8 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.0.0] - 2017-01-23
+
 ### Added
 
 * KNIME crash workaround in node description (#16)
