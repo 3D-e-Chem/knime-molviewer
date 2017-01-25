@@ -19,11 +19,11 @@ Steps to get the MolViewer KNIME node inside KNIME:
 4. Select --all sites-- in `work with` pulldown
 5. Select the node called `MolViewer nodes for KNIME`
 6. Install software
-7. Restart Knime
+7. Restart KNIME
 
 # Usage
 
-1. Create a new Knime workflow.
+1. Create a new KNIME workflow.
 2. Find node in Node navigator panel under Community Nodes > 3D-e-Chem > Molviewer.
 3. Drag node to workflow canvas.
 
