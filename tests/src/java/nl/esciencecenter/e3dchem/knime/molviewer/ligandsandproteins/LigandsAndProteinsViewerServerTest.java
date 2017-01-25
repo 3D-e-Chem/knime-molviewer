@@ -63,8 +63,16 @@ public class LigandsAndProteinsViewerServerTest {
 	}
 
 	@Test
-	public void testRest() throws ClientProtocolException, IOException, URISyntaxException {
+	public void testFetchLigands() throws ClientProtocolException, IOException, URISyntaxException {
 		URI uri = server.getBaseUri().resolve("/api/ligands");
+		HttpResponse response = Request.Get(uri).addHeader("Accept", "application/json").execute().returnResponse();
+		String content = EntityUtils.toString(response.getEntity());
+		assertEquals("[]", content);
+	}
+
+	@Test
+	public void testFetchProteins() throws ClientProtocolException, IOException, URISyntaxException {
+		URI uri = server.getBaseUri().resolve("/api/proteins");
 		HttpResponse response = Request.Get(uri).addHeader("Accept", "application/json").execute().returnResponse();
 		String content = EntityUtils.toString(response.getEntity());
 		assertEquals("[]", content);

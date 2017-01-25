@@ -75,12 +75,20 @@
 														<file file="${project.basedir}/target/jacoco.exec" />
 													</executiondata>
 
-													<structure name="plugin">
+													<structure name="molviewer">
 														<classfiles>
 															<fileset dir="${source-location}/plugin/target/classes" />
 														</classfiles>
 														<sourcefiles encoding="UTF-8">
 															<fileset dir="${source-location}/plugin/src/main/java" />
+														</sourcefiles>
+													</structure>
+													<structure name="molviewer">
+														<classfiles>
+															<fileset dir="${source-location}/server/target/classes" />
+														</classfiles>
+														<sourcefiles encoding="UTF-8">
+															<fileset dir="${source-location}/server/src/main/java" />
 														</sourcefiles>
 													</structure>
 													<html destdir="${project.basedir}/target/jacoco/report" />

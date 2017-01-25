@@ -12,6 +12,10 @@ import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.LigandsResourc
 import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.ProteinsResource;
 
 public class LigandsAndProteinsViewerServer extends MolViewerServer {
+	private LigandsResource ligands_res;
+	private HiLiteResource ligand_hilite_res;
+	private ProteinsResource proteins_res;
+
 	public LigandsAndProteinsViewerServer(String page, int port) {
 		super(page, port);
 	}
@@ -19,10 +23,6 @@ public class LigandsAndProteinsViewerServer extends MolViewerServer {
 	public LigandsAndProteinsViewerServer(String page) {
 		super(page);
 	}
-
-	private LigandsResource ligands_res;
-	private HiLiteResource ligand_hilite_res;
-	private ProteinsResource proteins_res;
 
 	public void updateLigands(List<Molecule> ligands) {
 		ligands_res.setMolecules(ligands);

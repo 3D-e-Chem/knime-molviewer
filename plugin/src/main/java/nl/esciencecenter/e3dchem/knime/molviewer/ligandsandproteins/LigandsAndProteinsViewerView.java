@@ -39,7 +39,7 @@ public class LigandsAndProteinsViewerView extends ViewerView<LigandsAndProteinsV
 			ligandsHiLiteHandler.addHiLiteListener(this);
 			((LigandsAndProteinsViewerServer) server).setLigandsHiLiteHandler(hiliteHandler);
 		} else {
-			if (hiliteHandler != ligandsHiLiteHandler) {
+			if (!hiliteHandler.equals(ligandsHiLiteHandler)) {
 				ligandsHiLiteHandler.removeHiLiteListener(this);
 				ligandsHiLiteHandler = hiliteHandler;
 				ligandsHiLiteHandler.addHiLiteListener(this);

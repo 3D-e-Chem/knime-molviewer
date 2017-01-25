@@ -17,10 +17,6 @@ public class Molecule implements Serializable {
 	@ApiModelProperty(required = true, value = "Data of molecule aka atoms/bonds in specified format")
 	public String data;
 
-	public Molecule() {
-
-	}
-
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
