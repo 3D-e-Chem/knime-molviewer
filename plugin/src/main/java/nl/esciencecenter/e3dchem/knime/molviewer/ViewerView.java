@@ -73,17 +73,25 @@ public abstract class ViewerView<T extends ViewerModel> extends NodeView<T> impl
 
 	protected void openBrowser() {
 		try {
-			if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+			if (System.getProperty("os.name").contains("Linux")) {
+				// Don't trust Desktop.getDesktop().browse under Linux due to gtk2/3 problems, causing KNIME to core dump
+				openBrowserNativeLinux();
+			} else if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 				Desktop.getDesktop().browse(server.getCurrentUri());
 			} else {
 				logger.warn("Unable to open '" + server.getCurrentUri() + "' automatically in web browser");
 				logger.warn("Please copy/paste the URL manually into a web browser");
 			}
 		} catch (IOException e) {
-			logger.warn(e);
-			logger.warn(e.getCause());
-			e.printStackTrace();
+			logger.warn("Unable to open '" + server.getCurrentUri() + "' automatically in web browser");
+			logger.warn("Please copy/paste the URL manually into a web browser");
 		}
+	}
+
+	protected void openBrowserNativeLinux() throws IOException {
+		Runtime runtime = Runtime.getRuntime();
+		String[] command = { "xdg-open", server.getCurrentUri().toString() };
+		runtime.exec(command);
 	}
 
 	public void actionPerformed(ActionEvent e) {
