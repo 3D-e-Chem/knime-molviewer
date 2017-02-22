@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/nl.esciencecenter.e3dchem.knime.molviewer.feature-1.0.1.jar" id="nl.esciencecenter.e3dchem.knime.molviewer.feature" version="1.0.1">
+   <feature url="features/nl.esciencecenter.e3dchem.knime.molviewer.feature-1.0.2.jar" id="nl.esciencecenter.e3dchem.knime.molviewer.feature" version="1.0.2">
       <category name="nl.esciencecenter.3D-e-Chem"/>
    </feature>
     <category-def name="nl.esciencecenter.3D-e-Chem" label="KNIME 3D-e-Chem Contributions">

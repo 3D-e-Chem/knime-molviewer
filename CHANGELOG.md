@@ -5,6 +5,10 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Added
+
+- Pocket as ball+stick toggle
+
 ## [1.0.1] - 2017-01-25
 
 ### Changed
