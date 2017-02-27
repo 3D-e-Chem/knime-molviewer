@@ -5,9 +5,12 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.0.2] - 2017-02-27
+
 ### Added
 
 - Pocket as ball+stick toggle
+- Added slider for adjusting pocket selection radius
 
 ## [1.0.1] - 2017-01-25
 
