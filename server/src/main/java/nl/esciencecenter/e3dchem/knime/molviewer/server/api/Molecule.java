@@ -1,21 +1,17 @@
 package nl.esciencecenter.e3dchem.knime.molviewer.server.api;
 
-import java.io.Serializable;
 import java.util.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class Molecule implements Serializable {
+public class Molecule extends AnonymousMolecule {
 	private static final long serialVersionUID = 8195661028979524114L;
 
 	@ApiModelProperty(required = true, value = "Identifier")
 	public String id;
 	@ApiModelProperty(required = true, value = "Label")
 	public String label;
-	@ApiModelProperty(required = true, value = "Data format", allowableValues = "sdf, pdb")
-	public String format;
-	@ApiModelProperty(required = true, value = "Data of molecule aka atoms/bonds in specified format")
-	public String data;
+	
 
 	@Override
 	public boolean equals(Object obj) {
