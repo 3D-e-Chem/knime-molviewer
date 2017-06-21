@@ -7,16 +7,26 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class AnonymousMolecule implements Serializable {
 	private static final long serialVersionUID = 6270265632979848068L;
-
-	@ApiModelProperty(required = true, value = "Data format", allowableValues = "sdf, pdb")
+	@ApiModelProperty(required = true, value = "Data format", allowableValues = "mol2, pdb, phar, sdf")
 	public String format;
 	@ApiModelProperty(required = true, value = "Data of molecule aka atoms/bonds in specified format")
 	public String data;
-	
+
+	public AnonymousMolecule(String data, String format) {
+		super();
+		this.data = data;
+		this.format = format;
+	}
+
+	public AnonymousMolecule() {
+
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(format, data);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {

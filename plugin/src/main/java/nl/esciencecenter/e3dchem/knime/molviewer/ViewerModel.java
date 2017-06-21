@@ -12,6 +12,10 @@ import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import org.knime.bio.types.PdbValue;
+import org.knime.chem.types.Mol2Value;
+import org.knime.chem.types.SdfValue;
+import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.node.InvalidSettingsException;
@@ -168,5 +172,17 @@ public abstract class ViewerModel extends NodeModel {
 	 */
 	public boolean isBrowserAutoOpen() {
 		return m_browserAutoOpen.getBooleanValue();
+	}
+
+	protected String guessCellFormat(DataCell cell) throws InvalidFormatException {
+		if (cell.getType().isCompatible(Mol2Value.class)) {
+			return "mol2";
+		} else if (cell.getType().isCompatible(SdfValue.class)) {
+			return "sdf";
+		} else if (cell.getType().isCompatible(PdbValue.class)) {
+			return "pdb";
+		} else {
+			throw new InvalidFormatException();
+		}
 	}
 }

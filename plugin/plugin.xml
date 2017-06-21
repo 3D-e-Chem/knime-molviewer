@@ -14,6 +14,7 @@
 
     <extension point="org.knime.workbench.repository.nodes">
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerFactory"/>
+        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores.PharmacophoresViewerFactory"/>
     </extension>
 
 </plugin>

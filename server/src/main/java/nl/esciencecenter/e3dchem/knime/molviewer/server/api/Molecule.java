@@ -5,6 +5,14 @@ import java.util.Objects;
 import io.swagger.annotations.ApiModelProperty;
 
 public class Molecule extends AnonymousMolecule {
+	public Molecule(String data, String format) {
+		super(data, format);
+	}
+
+	public Molecule() {
+		super();
+	}
+
 	private static final long serialVersionUID = 8195661028979524114L;
 
 	@ApiModelProperty(required = true, value = "Identifier")

@@ -20,11 +20,11 @@
 			</p>
 		</intro>
 
-		<option name="Column with pharmacophores">Column with PHAR formatted pharmacophores.</option>
+		<option name="Column with pharmacophores">Column with <a href="http://silicos-it.be.s3-website-eu-west-1.amazonaws.com/software/align-it/1.0.4/align-it.html#format">PHAR formatted</a> pharmacophores.</option>
 		<option name="Column with labels" optional="true">Column
 			with labels, if no column is selected uses Row ID.</option>
-		<option name="Column with ligand molecules">Column with SDF or Mol2 formatted molecules, if no column is selected no ligands will be shown.</option>
-		<option name="Column with protein molecules">Column with PDB or Mol2 formatted molecules, if the pdb contain protein/ligand complex then the protein and ligand are shown, if no column is selected no proteins will be shown.</option>
+		<option name="Column with ligand molecules" optional="true">Column with SDF or Mol2 formatted molecules, if no column is selected no ligands will be shown.</option>
+		<option name="Column with protein molecules" optional="true">Column with PDB or Mol2 formatted molecules, if the pdb contain protein/ligand complex then the protein and ligand are shown, if no column is selected no proteins will be shown.</option>
 	</fullDescription>
 
 	<ports>

@@ -17,4 +17,5 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Export-Package: nl.esciencecenter.e3dchem.knime.molviewer,
- nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins
+ nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins,
+ nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores
