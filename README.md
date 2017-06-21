@@ -83,7 +83,7 @@ TODO incorperate fill libs/ command in mvn package
 
 ## Web interface
 
-The webinterface in the `server/src/main/resources/assets` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
+The webinterface in the `server/src/main/resources` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
 
 ## Tests
 
