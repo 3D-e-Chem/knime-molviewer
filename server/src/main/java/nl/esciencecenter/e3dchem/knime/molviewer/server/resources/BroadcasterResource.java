@@ -34,7 +34,7 @@ public class BroadcasterResource {
 	}
 
 	@GET
-	@ApiOperation(value = "Server sent events endpoint", response = String.class)
+	@ApiOperation(value = "Server sent events endpoint", response = String.class, notes = "For usage see https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events")
 	@Produces(SseFeature.SERVER_SENT_EVENTS)
 	public EventOutput listenToBroadcast() {
 		final EventOutput eventOutput = new EventOutput();
