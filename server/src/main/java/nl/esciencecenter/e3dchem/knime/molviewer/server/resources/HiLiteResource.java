@@ -13,6 +13,13 @@ import org.knime.core.node.property.hilite.HiLiteHandler;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
+/**
+ * Resource to send highlighted rows from server to client and to receive
+ * highlighted rows from client to server.
+ *
+ * When extending then override the rest API methods and add a unique nickname
+ * property to the @ApiOperation annotation.
+ */
 @Api(value = "hilite")
 @Produces("application/json")
 public class HiLiteResource {
