@@ -28,7 +28,7 @@
 	</fullDescription>
 
 	<ports>
-		<inPort index="0" name="Pharmacophores">Table containing pharmacophores in PHAR format and optionally proteins and/or ligands in SDF or Mol2 format</inPort>
+		<inPort index="0" name="Pharmacophores">Table containing pharmacophores in PHAR format and optionally proteins and/or ligands in PDB, SDF or Mol2 format</inPort>
 	</ports>
 	<views>
 		<view index="0" name="Web browser launcher">Display web browser launcher</view>

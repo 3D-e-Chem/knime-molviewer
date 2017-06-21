@@ -117,8 +117,8 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		DataTableSpec spec = inSpecs[PORT];
 		configureColumnWithRowID(spec, m_label_column, compatibleLabel, "labels", "pharmacophores");
 		configureColumn(spec, m_phar_column, compatibleLabel, "pharmacophores", "pharmacophores");
-		configureColumn(spec, m_ligand_column, compatibleLigand, "ligands", "pharmacophores");
-		configureColumn(spec, m_protein_column, compatibleProtein, "proteins", "pharmacophores");
+		configureColumnOptional(spec, m_ligand_column, compatibleLigand, "ligands", "pharmacophores");
+		configureColumnOptional(spec, m_protein_column, compatibleProtein, "proteins", "pharmacophores");
 
 		return new DataTableSpec[] {};
 	}

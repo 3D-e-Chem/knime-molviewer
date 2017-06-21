@@ -18,21 +18,20 @@ public class PharmacophoresViewerDialog extends ViewerDialog {
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelColumnName(PharmacophoresViewerModel.CFGKEY_LABEL, null), "Column with labels",
-				PharmacophoresViewerModel.PORT, StringValue.class));
+				PharmacophoresViewerModel.PORT, true, StringValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PHARMACOPHORE, null),
-				"Column with PHAR formatted pharmacophores", PharmacophoresViewerModel.PORT, SdfValue.class,
-				Mol2Value.class));
+				"Column with PHAR formatted pharmacophores", PharmacophoresViewerModel.PORT, true, StringValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND, null),
-				"Column with SDF or Mol2 formatted small molecules", PharmacophoresViewerModel.PORT, SdfValue.class,
+				"Column with SDF or Mol2 formatted small molecules (ligands)", PharmacophoresViewerModel.PORT, false, true, SdfValue.class,
 				Mol2Value.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN, null),
-				"Column with PDB or Mol2 formatted big molecules", PharmacophoresViewerModel.PORT, PdbValue.class,
+				"Column with PDB or Mol2 formatted big molecules (proteins)", PharmacophoresViewerModel.PORT, false, true, PdbValue.class,
 				Mol2Value.class));
 
 		advancedTab();

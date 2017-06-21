@@ -118,6 +118,39 @@ public abstract class ViewerModel extends NodeModel {
 		}
 	}
 
+	protected void configureColumnOptional(DataTableSpec spec, SettingsModelString setting,
+			isCompatibleLambda isCompatible, String columnLabel, String specName) throws InvalidSettingsException {
+		int colIndex = -1;
+		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
+				|| setting.getStringValue().isEmpty();
+		if (settingIsDefault) {
+			for (int i = 0; i < spec.getNumColumns(); i++) {
+				DataColumnSpec columnSpec = spec.getColumnSpec(i);
+				if (isCompatible.test(columnSpec)) {
+					// Select first column that matches
+					colIndex = i;
+					break;
+				}
+			}
+			if (colIndex > -1) {
+				String selectedColumn = spec.getColumnSpec(colIndex).getName();
+				setWarningMessage("Column '" + selectedColumn + "' auto selected as column with " + columnLabel
+						+ " on port " + specName);
+				setting.setStringValue(selectedColumn);
+			}
+		} else {
+			colIndex = spec.findColumnIndex(setting.getStringValue());
+			if (colIndex < 0) {
+				throw new InvalidSettingsException(
+						"Column '" + setting.getStringValue() + "' missing on port " + specName);
+			}
+			if (!isCompatible.test(spec.getColumnSpec(colIndex))) {
+				throw new InvalidSettingsException("Column '" + setting.getStringValue()
+						+ "' is incompatible, should be column with " + columnLabel + " on port " + specName);
+			}
+		}
+	}
+
 	public List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
 		if (!file.canRead()) {
 			return new ArrayList<Molecule>();
