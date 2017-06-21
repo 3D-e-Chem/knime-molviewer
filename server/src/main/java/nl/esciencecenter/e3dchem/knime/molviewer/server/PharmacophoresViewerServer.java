@@ -5,7 +5,7 @@ import java.util.List;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.knime.core.node.property.hilite.HiLiteHandler;
 
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Pharmacophore;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.PharmacophoresHiLiteResource;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.PharmacophoresResource;
 
@@ -21,7 +21,7 @@ public class PharmacophoresViewerServer extends MolViewerServer {
 		super(page);
 	}
 
-	public void updatePharmacophores(List<Pharmacophore> pharmacophores) {
+	public void updatePharmacophores(List<PharmacophoreContainer> pharmacophores) {
 		pharmacophoresRes.setPharmacophores(pharmacophores);
 	}
 	

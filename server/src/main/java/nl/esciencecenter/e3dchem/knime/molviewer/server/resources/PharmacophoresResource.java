@@ -9,30 +9,29 @@ import javax.ws.rs.Produces;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Pharmacophore;;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
 
 @Path("/pharmacophores")
 @Api(value = "Pharmacophores")
 @Produces("application/json")
 public class PharmacophoresResource {
-	private List<Pharmacophore> pharmacophores;
-
+	private List<PharmacophoreContainer> pharmacophores;
 
 	public PharmacophoresResource() {
 		this.pharmacophores = new ArrayList<>();
 	}
 
-	public PharmacophoresResource(List<Pharmacophore> pharmacophores) {
+	public PharmacophoresResource(List<PharmacophoreContainer> pharmacophores) {
 		this.pharmacophores = pharmacophores;
 	}
 
 	@GET
 	@ApiOperation(value = "List of pharmacophores")
-	public List<Pharmacophore> getPharmacophores() {
+	public List<PharmacophoreContainer> getPharmacophores() {
 		return pharmacophores;
 	}
 
-	public void setPharmacophores(List<Pharmacophore> pharmacophores) {
+	public void setPharmacophores(List<PharmacophoreContainer> pharmacophores) {
 		this.pharmacophores = pharmacophores;
 	}
 }

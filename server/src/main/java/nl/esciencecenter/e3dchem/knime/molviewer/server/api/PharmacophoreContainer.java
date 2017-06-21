@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class Pharmacophore implements Serializable {
+public class PharmacophoreContainer implements Serializable {
 	private static final long serialVersionUID = -5922466426587485779L;
 
 	@ApiModelProperty(required = true, value = "Identifier")
@@ -27,7 +27,7 @@ public class Pharmacophore implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		final Pharmacophore other = (Pharmacophore) obj;
+		final PharmacophoreContainer other = (PharmacophoreContainer) obj;
 		return Objects.equals(this.id, other.id) && Objects.equals(this.label, other.label)
 				&& Objects.equals(this.pharmacophore, other.pharmacophore) && Objects.equals(this.protein, other.protein) &&
 				Objects.equals(this.ligand, other.ligand);

@@ -20,7 +20,7 @@ import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
 public abstract class ViewerView<T extends ViewerModel> extends NodeView<T> implements ActionListener, HiLiteListener {
 	protected static final NodeLogger logger = NodeLogger.getLogger(ViewerView.class);
-	protected JTextField current_uri_field;
+	protected JTextField currentUriField;
 	protected MolViewerServer server;
 
 	protected ViewerView(T nodeModel) {
@@ -29,28 +29,28 @@ public abstract class ViewerView<T extends ViewerModel> extends NodeView<T> impl
 		server = setupServer();
 	}
 
-	abstract public String getUrl();
+	public abstract String getUrl();
 
-	abstract protected MolViewerServer setupServer();
+	protected abstract MolViewerServer setupServer();
 
 	protected void setupPanel() {
-		JPanel m_panel = new JPanel();
-		m_panel.setLayout(new BoxLayout(m_panel, BoxLayout.Y_AXIS));
-		setComponent(m_panel);
+		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		setComponent(panel);
 
 		JLabel help = new JLabel("If web browser has not opened press button below");
-		m_panel.add(help);
+		panel.add(help);
 
 		JButton openBrowser = new JButton("Open web browser");
 		openBrowser.addActionListener(this);
 		openBrowser.setActionCommand("open");
 		openBrowser.setMnemonic(KeyEvent.VK_ENTER);
-		m_panel.add(openBrowser);
+		panel.add(openBrowser);
 
-		current_uri_field = new JTextField(40);
+		currentUriField = new JTextField(40);
 
-		current_uri_field.setEditable(false);
-		m_panel.add(current_uri_field);
+		currentUriField.setEditable(false);
+		panel.add(currentUriField);
 	}
 
 	/**
@@ -60,14 +60,13 @@ public abstract class ViewerView<T extends ViewerModel> extends NodeView<T> impl
 	public void onOpen() {
 		try {
 			server.start();
-			current_uri_field.setText(server.getCurrentUri().toString());
+			currentUriField.setText(server.getCurrentUri().toString());
 			if (this.getNodeModel().isBrowserAutoOpen()) {
 				openBrowser();
 			}
 		} catch (Exception e) {
 			logger.warn(e);
 			logger.warn(e.getCause());
-			e.printStackTrace();
 		}
 	}
 
@@ -118,7 +117,6 @@ public abstract class ViewerView<T extends ViewerModel> extends NodeView<T> impl
 		} catch (Exception e) {
 			logger.warn(e);
 			logger.warn(e.getCause());
-			e.printStackTrace();
 		}
 	}
 

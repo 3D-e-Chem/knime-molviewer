@@ -16,12 +16,12 @@ import io.swagger.annotations.ApiOperation;
 @Api(value = "hilite")
 @Produces("application/json")
 public class HiLiteResource {
-	private HiLiteHandler m_hiliteHandler;
+	private HiLiteHandler hiliteHandler;
 
 	@GET
 	@ApiOperation(value = "List of highlighted row keys")
 	public Set<String> getHighlightedKeys() {
-		return m_hiliteHandler.getHiLitKeys().stream().map(d -> d.getString()).collect(Collectors.toSet());
+		return hiliteHandler.getHiLitKeys().stream().map(d -> d.getString()).collect(Collectors.toSet());
 	}
 
 	@POST
@@ -29,28 +29,28 @@ public class HiLiteResource {
 	public void setHighlightedKeys(Set<String> highlightedKeys) {
 		Set<RowKey> ids = highlightedKeys.stream().map(d -> new RowKey(d)).collect(Collectors.toSet());
 		if (ids.isEmpty()) {
-			if (m_hiliteHandler.getHiLitKeys().isEmpty()) {
+			if (hiliteHandler.getHiLitKeys().isEmpty()) {
 				// want to unhilite all, but nothing is hilited so done
 				return;
 			} else {
-				m_hiliteHandler.fireClearHiLiteEvent();
+				hiliteHandler.fireClearHiLiteEvent();
 			}
 		}
-		Set<RowKey> all_ids = m_hiliteHandler.getHiLitKeys();
-		if (all_ids.containsAll(ids)) {
+		Set<RowKey> allIds = hiliteHandler.getHiLitKeys();
+		if (allIds.containsAll(ids)) {
 			// ids are already selected
 			return;
 		}
-		Set<RowKey> ids2unhilite = m_hiliteHandler.getHiLitKeys();
+		Set<RowKey> ids2unhilite = hiliteHandler.getHiLitKeys();
 		// remove all ids which must be hilited, what remains are ids that must
 		// be unhilited
 		ids2unhilite.removeAll(ids);
 
-		m_hiliteHandler.fireHiLiteEvent(ids);
-		m_hiliteHandler.fireUnHiLiteEvent(ids2unhilite);
+		hiliteHandler.fireHiLiteEvent(ids);
+		hiliteHandler.fireUnHiLiteEvent(ids2unhilite);
 	}
 
 	public void setHiLiteHandler(HiLiteHandler hiliteHandler) {
-		m_hiliteHandler = hiliteHandler;
+		this.hiliteHandler = hiliteHandler;
 	}
 }

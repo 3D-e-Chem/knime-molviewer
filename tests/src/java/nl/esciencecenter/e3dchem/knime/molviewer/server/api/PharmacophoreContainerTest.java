@@ -4,50 +4,50 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class PharmacophoreTest {
+public class PharmacophoreContainerTest {
 
 	@Test
 	public void testHashCode() {
-		Pharmacophore phar = new Pharmacophore();
+		PharmacophoreContainer phar = new PharmacophoreContainer();
 		assertEquals(phar.hashCode(), 28629151L);
 	}
 
 	@Test
 	public void testEqualsNull() {
-		Pharmacophore phar = new Pharmacophore();
+		PharmacophoreContainer phar = new PharmacophoreContainer();
 		assertFalse(phar.equals(null));
 	}
 
 	@Test
 	public void testEqualsUnsetProps() {
-		Pharmacophore phar = new Pharmacophore();
-		Pharmacophore other = new Pharmacophore();
+		PharmacophoreContainer phar = new PharmacophoreContainer();
+		PharmacophoreContainer other = new PharmacophoreContainer();
 		assertTrue(phar.equals(other));
 	}
 	
 	@Test
 	public void testEqualsFilledProps_otherUnset() {
-		Pharmacophore phar = new Pharmacophore();
+		PharmacophoreContainer phar = new PharmacophoreContainer();
 		phar.id = "id1";
 		phar.label = "label1";
 		phar.pharmacophore = new AnonymousMolecule("...", "phar");
 		phar.ligand = new AnonymousMolecule("...", "sdf");
 		phar.protein = new AnonymousMolecule("...", "pdb");
 		
-		Pharmacophore other = new Pharmacophore();
+		PharmacophoreContainer other = new PharmacophoreContainer();
 		assertFalse(phar.equals(other));
 	}
 
 	@Test
 	public void testEqualsFilledProps_otherSameFill() {
-		Pharmacophore phar = new Pharmacophore();
+		PharmacophoreContainer phar = new PharmacophoreContainer();
 		phar.id = "id1";
 		phar.label = "label1";
 		phar.pharmacophore = new AnonymousMolecule("...", "phar");
 		phar.ligand = new AnonymousMolecule("...", "sdf");
 		phar.protein = new AnonymousMolecule("...", "pdb");
 		
-		Pharmacophore other = new Pharmacophore();
+		PharmacophoreContainer other = new PharmacophoreContainer();
 		other.id = "id1";
 		other.label = "label1";
 		other.pharmacophore = new AnonymousMolecule("...", "phar");

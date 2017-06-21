@@ -31,11 +31,12 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import nl.esciencecenter.e3dchem.knime.molviewer.InvalidFormatException;
 import nl.esciencecenter.e3dchem.knime.molviewer.ViewerModel;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.AnonymousMolecule;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Pharmacophore;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
 
 public class PharmacophoresViewerModel extends ViewerModel {
-	private List<Pharmacophore> pharmacophores = new ArrayList<>();
+	private List<PharmacophoreContainer> pharmacophores = new ArrayList<>();
 	public static final int PORT = 0;
+	private static final String PHARMACOPHORES = "pharmacophores";
 	private static final String TABLE_FILENAME = "internals.ser.gz";
 	public static final String CFGKEY_LABEL = "labelColumn";
 	public static final String CFGKEY_PHARMACOPHORE = "pharColumn";
@@ -71,7 +72,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 
 		pharmacophores.clear();
 		for (DataRow row : dataTable) {
-			Pharmacophore phar = new Pharmacophore();
+			PharmacophoreContainer phar = new PharmacophoreContainer();
 			phar.id = row.getKey().getString();
 			phar.pharmacophore = new AnonymousMolecule(((StringValue) row.getCell(pharIndex)).getStringValue(), "phar");
 			if (useRowKeyAsLabel) {
@@ -99,7 +100,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		}
 	}
 
-	public List<Pharmacophore> getPharmacophores() {
+	public List<PharmacophoreContainer> getPharmacophores() {
 		return pharmacophores;
 	}
 
@@ -115,10 +116,10 @@ public class PharmacophoresViewerModel extends ViewerModel {
 				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
 
 		DataTableSpec spec = inSpecs[PORT];
-		configureColumnWithRowID(spec, m_label_column, compatibleLabel, "labels", "pharmacophores");
-		configureColumn(spec, m_phar_column, compatibleLabel, "pharmacophores", "pharmacophores");
-		configureColumnOptional(spec, m_ligand_column, compatibleLigand, "ligands", "pharmacophores");
-		configureColumnOptional(spec, m_protein_column, compatibleProtein, "proteins", "pharmacophores");
+		configureColumnWithRowID(spec, m_label_column, compatibleLabel, "labels", PHARMACOPHORES);
+		configureColumn(spec, m_phar_column, compatibleLabel, PHARMACOPHORES, PHARMACOPHORES);
+		configureColumnOptional(spec, m_ligand_column, compatibleLigand, "ligands", PHARMACOPHORES);
+		configureColumnOptional(spec, m_protein_column, compatibleProtein, "proteins", PHARMACOPHORES);
 
 		return new DataTableSpec[] {};
 	}
@@ -161,7 +162,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		}
 		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
 		try {
-			pharmacophores = (List<Pharmacophore>) in.readObject();
+			pharmacophores = (List<PharmacophoreContainer>) in.readObject();
 		} catch (ClassNotFoundException e) {
 			pharmacophores.clear();
 			logger.warn(e.getMessage(), e);
@@ -174,10 +175,14 @@ public class PharmacophoresViewerModel extends ViewerModel {
 	public void saveInternals(File nodeInternDir, ExecutionMonitor exec)
 			throws IOException, CanceledExecutionException {
 		File file = new File(nodeInternDir, TABLE_FILENAME);
-		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-		out.writeObject(pharmacophores);
-		out.flush();
-		out.close();
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
+			out.writeObject((ArrayList<PharmacophoreContainer>) pharmacophores);
+			out.flush();
+		} finally {
+			out.close();
+		}
 	}
 
 	@Override

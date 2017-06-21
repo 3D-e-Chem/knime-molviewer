@@ -13,7 +13,7 @@ import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.AnonymousMolecule;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Pharmacophore;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
 
 public class PharmacophoresViewerModelTest {
 	@Rule
@@ -22,7 +22,7 @@ public class PharmacophoresViewerModelTest {
 	@Test
 	public void testSaveAndLoad() throws IOException, CanceledExecutionException {
 		PharmacophoresViewerModel node = new PharmacophoresViewerModel();
-		Pharmacophore phar = new Pharmacophore();
+		PharmacophoreContainer phar = new PharmacophoreContainer();
 		phar.id = "id1";
 		phar.label = "label1";
 		phar.pharmacophore = new AnonymousMolecule("...", "phar");
@@ -35,7 +35,7 @@ public class PharmacophoresViewerModelTest {
 		node.getPharmacophores().clear();
 		node.loadInternals(folder.getRoot(), exec);
 		
-		List<Pharmacophore> expected = Arrays.asList(phar);
+		List<PharmacophoreContainer> expected = Arrays.asList(phar);
 		assertEquals(expected , node.getPharmacophores());
 	}
 

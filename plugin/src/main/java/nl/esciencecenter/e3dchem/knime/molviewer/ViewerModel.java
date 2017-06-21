@@ -2,7 +2,6 @@ package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -151,14 +150,14 @@ public abstract class ViewerModel extends NodeModel {
 		}
 	}
 
-	public List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
+	public List<Molecule> loadInternalsMolecules(final File file) throws IOException {
 		if (!file.canRead()) {
 			return new ArrayList<Molecule>();
 		}
 		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
 		try {
 			@SuppressWarnings("unchecked")
-			List<Molecule> ino = (List<Molecule>) in.readObject();
+			List<Molecule> ino = (ArrayList<Molecule>) in.readObject();
 			return ino;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -168,12 +167,15 @@ public abstract class ViewerModel extends NodeModel {
 		return new ArrayList<Molecule>();
 	}
 
-	public void saveInternalsMolecules(final File file, List<Molecule> molecules)
-			throws FileNotFoundException, IOException {
-		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-		out.writeObject(molecules);
-		out.flush();
-		out.close();
+	public void saveInternalsMolecules(final File file, List<Molecule> molecules) throws IOException {
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
+			out.writeObject((ArrayList<Molecule>) molecules);
+			out.flush();
+		} finally {
+			out.close();
+		}
 	}
 
 	/**
