@@ -21,10 +21,6 @@ import nl.esciencecenter.e3dchem.knime.molviewer.ViewerDialog;
  */
 public class LigandsAndProteinsViewerDialog extends ViewerDialog {
 
-	/**
-	 * New pane for configuring MolViewer node dialog. This is just a suggestion
-	 * to demonstrate possible default dialog components.
-	 */
 	@SuppressWarnings("unchecked")
 	protected LigandsAndProteinsViewerDialog() {
 		super();

@@ -2,8 +2,8 @@ KNIME node which launches a web browser with a molecule viewer powered by [NGL](
 
 [![Build Status Linux](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 [![Build status Windows](https://ci.appveyor.com/api/projects/status/595y9gh13d69y61q?svg=true)](https://ci.appveyor.com/project/3D-e-Chem/knime-molviewer)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a1a1fd8cd5cf401e8ab5fbb328a7aa60)](https://www.codacy.com/app/3D-e-Chem/knime-molviewer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-molviewer&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/a1a1fd8cd5cf401e8ab5fbb328a7aa60)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&utm_medium=referral&utm_content=3D-e-Chem/knime-gpcrdb&utm_campaign=Badge_Coverage)
+[![SonarCloud Gate](https://sonarcloud.io/api/badges/gate?key=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)
+[![SonarCloud Coverage](https://sonarcloud.io/api/badges/measure?key=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer&metric=coverage)](https://sonarcloud.io/component_measures/domain/Coverage?id=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.168569.svg)](https://doi.org/10.5281/zenodo.168569)
 
 This project uses a web user interface based on https://github.com/3D-e-Chem/molviewer-tsx .
@@ -83,7 +83,7 @@ TODO incorperate fill libs/ command in mvn package
 
 ## Web interface
 
-The webinterface in the `server/src/main/resources/assets` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
+The webinterface in the `server/src/main/resources/webapp` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
 
 ## Tests
 
@@ -101,14 +101,17 @@ See https://github.com/3D-e-Chem/knime-testflow#3-add-test-workflow
 
 # New release
 
-1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>` command.
+1. Update versions in pom files with `mvn org.eclipse.tycho:tycho-versions-plugin:set-version -DnewVersion=<version>-SNAPSHOT` command.
 2. Commit and push changes
 3. Create package with `mvn package`, will create update site in `p2/target/repository`
-4. Append new release to an update site
+4. Test node by installing it from local update site
+5. Append new release to an update site
   1. Make clone of an update site repo
   2. Append release to the update site with `mvn install -Dtarget.update.site=<path to update site>`
-5. Add files, commit and push changes of update site repo.
-6. Make nodes available to 3D-e-Chem KNIME feature by following steps at https://github.com/3D-e-Chem/knime-node-collection#new-release
+6. Add files, commit and push changes of update site repo.
+7. Create a Github release
+8. Update Zenodo entry, fix authors and license
+9. Make nodes available to 3D-e-Chem KNIME feature by following steps at https://github.com/3D-e-Chem/knime-node-collection#new-release
 
 # Technical architecture
 

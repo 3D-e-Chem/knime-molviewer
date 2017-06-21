@@ -1,7 +1,8 @@
 package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
+import static org.hamcrest.core.StringContains.containsString;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertThat;
 
 import java.io.IOException;
 import java.net.URI;
@@ -11,47 +12,29 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.util.EntityUtils;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.knime.core.node.property.hilite.HiLiteHandler;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.server.LigandsAndProteinsViewerServer;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
 public class LigandsAndProteinsViewerServerTest {
-	private MolViewerServer server;
+	private LigandsAndProteinsViewerServer server;
 
 	@Before
 	public void setUp() throws Exception {
 		server = new LigandsAndProteinsViewerServer("SomeViewer");
+		HiLiteHandler hiLiteHandler = new HiLiteHandler();
+		server.setLigandsHiLiteHandler(hiLiteHandler);
 		server.start();
 		// wait for server to spin up
 		// Thread.sleep(500);
 	}
 
-	@Test
+	@After
 	public void cleanUp() throws Exception {
 		server.stop();
-	}
-
-	@Test
-	public void testCurrentUri() {
-		URI uri = server.getCurrentUri();
-		assertEquals("localhost", uri.getHost());
-		assertEquals("/SomeViewer", uri.getPath());
-	}
-
-	@Test
-	public void testStatic_index() throws ClientProtocolException, IOException, URISyntaxException {
-		URI uri = server.getBaseUri().resolve("/index.html");
-		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("Molviewer"));
-	}
-
-	@Test
-	public void testStatic_root() throws ClientProtocolException, IOException, URISyntaxException {
-		URI uri = server.getBaseUri().resolve("/");
-		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("Molviewer"));
 	}
 
 	@Test
@@ -59,7 +42,7 @@ public class LigandsAndProteinsViewerServerTest {
 		String viewerUrl = "#/ligands-and-proteins";
 		URI uri = server.getBaseUri().resolve(viewerUrl);
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("Molviewer"));
+		assertThat(response, containsString("Molviewer"));
 	}
 
 	@Test
@@ -82,20 +65,16 @@ public class LigandsAndProteinsViewerServerTest {
 	public void testSwaggerYaml() throws URISyntaxException, ClientProtocolException, IOException {
 		URI uri = server.getBaseUri().resolve("/api/swagger.yaml");
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("WebGL"));
-		assertTrue(response.contains("ligands"));
-		assertTrue(response.contains("hilite"));
-		assertTrue(response.contains("event-stream"));
+		assertThat(response, containsString("ligands"));
+		assertThat(response, containsString("hilite"));
 	}
 
 	@Test
 	public void testSwaggerJson() throws URISyntaxException, ClientProtocolException, IOException {
 		URI uri = server.getBaseUri().resolve("/api/swagger.json");
 		String response = Request.Get(uri).execute().returnContent().asString();
-		assertTrue(response.contains("WebGL"));
-		assertTrue(response.contains("ligands"));
-		assertTrue(response.contains("hilite"));
-		assertTrue(response.contains("event-stream"));
+		assertThat(response, containsString("ligands"));
+		assertThat(response, containsString("hilite"));
 	}
 
 }

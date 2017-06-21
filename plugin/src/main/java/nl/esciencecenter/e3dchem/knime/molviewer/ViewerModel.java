@@ -2,7 +2,6 @@ package nl.esciencecenter.e3dchem.knime.molviewer;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,6 +11,10 @@ import java.util.List;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import org.knime.bio.types.PdbValue;
+import org.knime.chem.types.Mol2Value;
+import org.knime.chem.types.SdfValue;
+import org.knime.core.data.DataCell;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.node.InvalidSettingsException;
@@ -114,14 +117,32 @@ public abstract class ViewerModel extends NodeModel {
 		}
 	}
 
-	public List<Molecule> loadInternalsMolecules(final File file) throws IOException, FileNotFoundException {
+	protected void configureColumnOptional(DataTableSpec spec, SettingsModelString setting,
+			isCompatibleLambda isCompatible, String columnLabel, String specName) throws InvalidSettingsException {
+		int colIndex = -1;
+		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
+				|| setting.getStringValue().isEmpty();
+		if (!settingIsDefault) {
+			colIndex = spec.findColumnIndex(setting.getStringValue());
+			if (colIndex < 0) {
+				throw new InvalidSettingsException(
+						"Column '" + setting.getStringValue() + "' missing on port " + specName);
+			}
+			if (!isCompatible.test(spec.getColumnSpec(colIndex))) {
+				throw new InvalidSettingsException("Column '" + setting.getStringValue()
+						+ "' is incompatible, should be column with " + columnLabel + " on port " + specName);
+			}
+		}
+	}
+
+	public List<Molecule> loadInternalsMolecules(final File file) throws IOException {
 		if (!file.canRead()) {
 			return new ArrayList<Molecule>();
 		}
 		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
 		try {
 			@SuppressWarnings("unchecked")
-			List<Molecule> ino = (List<Molecule>) in.readObject();
+			List<Molecule> ino = (ArrayList<Molecule>) in.readObject();
 			return ino;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -131,12 +152,15 @@ public abstract class ViewerModel extends NodeModel {
 		return new ArrayList<Molecule>();
 	}
 
-	public void saveInternalsMolecules(final File file, List<Molecule> molecules)
-			throws FileNotFoundException, IOException {
-		ObjectOutputStream out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
-		out.writeObject(molecules);
-		out.flush();
-		out.close();
+	public void saveInternalsMolecules(final File file, List<Molecule> molecules) throws IOException {
+		ObjectOutputStream out = null;
+		try {
+			out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
+			out.writeObject((ArrayList<Molecule>) molecules);
+			out.flush();
+		} finally {
+			out.close();
+		}
 	}
 
 	/**
@@ -168,5 +192,17 @@ public abstract class ViewerModel extends NodeModel {
 	 */
 	public boolean isBrowserAutoOpen() {
 		return m_browserAutoOpen.getBooleanValue();
+	}
+
+	protected String guessCellFormat(DataCell cell) throws InvalidFormatException {
+		if (cell.getType().isCompatible(Mol2Value.class)) {
+			return "mol2";
+		} else if (cell.getType().isCompatible(SdfValue.class)) {
+			return "sdf";
+		} else if (cell.getType().isCompatible(PdbValue.class)) {
+			return "pdb";
+		} else {
+			throw new InvalidFormatException();
+		}
 	}
 }

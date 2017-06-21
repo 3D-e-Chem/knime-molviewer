@@ -23,6 +23,7 @@ import org.knime.core.node.NodeSettingsWO;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
+import nl.esciencecenter.e3dchem.knime.molviewer.InvalidFormatException;
 import nl.esciencecenter.e3dchem.knime.molviewer.ViewerModel;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
@@ -100,13 +101,9 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 			Molecule mol = new Molecule();
 			DataCell currCell = currRow.getCell(molColIndex);
 			mol.id = currRow.getKey().getString();
-			if (currCell.getType().isCompatible(Mol2Value.class)) {
-				mol.format = "mol2";
-			} else if (currCell.getType().isCompatible(SdfValue.class)) {
-				mol.format = "sdf";
-			} else if (currCell.getType().isCompatible(PdbValue.class)) {
-				mol.format = "pdb";
-			} else {
+			try {
+				mol.format = guessCellFormat(currCell);
+			} catch (InvalidFormatException e) {
 				logger.warn("Row " + mol.id + " is has invalid format, skipping");
 				continue;
 			}

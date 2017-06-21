@@ -14,7 +14,7 @@ public class MoleculeResource {
 	private List<Molecule> molecules;
 
 	public MoleculeResource() {
-		this.molecules = new ArrayList<Molecule>();
+		this.molecules = new ArrayList<>();
 	}
 
 	public MoleculeResource(List<Molecule> molecules) {
