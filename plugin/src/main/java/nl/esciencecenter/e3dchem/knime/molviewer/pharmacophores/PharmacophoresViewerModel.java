@@ -90,7 +90,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 			}
 			if (proteinIndex > -1) {
 				try {
-					phar.ligand = new AnonymousMolecule(((StringValue) row.getCell(proteinIndex)).getStringValue(),
+					phar.protein = new AnonymousMolecule(((StringValue) row.getCell(proteinIndex)).getStringValue(),
 							guessCellFormat(row.getCell(proteinIndex)));
 				} catch (InvalidFormatException e) {
 					logger.warn("Row " + phar.id + " is has invalid format for protein, skipping");
