@@ -122,22 +122,7 @@ public abstract class ViewerModel extends NodeModel {
 		int colIndex = -1;
 		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
 				|| setting.getStringValue().isEmpty();
-		if (settingIsDefault) {
-			for (int i = 0; i < spec.getNumColumns(); i++) {
-				DataColumnSpec columnSpec = spec.getColumnSpec(i);
-				if (isCompatible.test(columnSpec)) {
-					// Select first column that matches
-					colIndex = i;
-					break;
-				}
-			}
-			if (colIndex > -1) {
-				String selectedColumn = spec.getColumnSpec(colIndex).getName();
-				setWarningMessage("Column '" + selectedColumn + "' auto selected as column with " + columnLabel
-						+ " on port " + specName);
-				setting.setStringValue(selectedColumn);
-			}
-		} else {
+		if (!settingIsDefault) {
 			colIndex = spec.findColumnIndex(setting.getStringValue());
 			if (colIndex < 0) {
 				throw new InvalidSettingsException(
