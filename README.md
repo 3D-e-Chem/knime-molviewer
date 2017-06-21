@@ -2,8 +2,8 @@ KNIME node which launches a web browser with a molecule viewer powered by [NGL](
 
 [![Build Status Linux](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 [![Build status Windows](https://ci.appveyor.com/api/projects/status/595y9gh13d69y61q?svg=true)](https://ci.appveyor.com/project/3D-e-Chem/knime-molviewer)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a1a1fd8cd5cf401e8ab5fbb328a7aa60)](https://www.codacy.com/app/3D-e-Chem/knime-molviewer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=3D-e-Chem/knime-molviewer&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/a1a1fd8cd5cf401e8ab5fbb328a7aa60)](https://www.codacy.com/app/3D-e-Chem/knime-gpcrdb?utm_source=github.com&utm_medium=referral&utm_content=3D-e-Chem/knime-gpcrdb&utm_campaign=Badge_Coverage)
+[![SonarCloud Gate](https://sonarcloud.io/api/badges/gate?key=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)
+[![SonarCloud Coverage](https://sonarcloud.io/api/badges/measure?key=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer&metric=coverage)](https://sonarcloud.io/component_measures/domain/Coverage?id=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.168569.svg)](https://doi.org/10.5281/zenodo.168569)
 
 This project uses a web user interface based on https://github.com/3D-e-Chem/molviewer-tsx .

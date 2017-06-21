@@ -124,5 +124,6 @@
 	<properties>
 		<!-- kill test JVM if tests take more than 1 minute (60 seconds) to finish -->
 		<surefire.timeout>60</surefire.timeout>
+		<sonar.skip>true</sonar.skip>
 	</properties>
 </project>

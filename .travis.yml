@@ -1,15 +1,14 @@
 sudo: false  
 language: java    
 jdk: oraclejdk8
-cache:  
-  directories:  
+cache:
+  directories:
    - $HOME/.m2
-before_install:
-  - curl -sL https://github.com/jpm4j/jpm4j.installers/raw/master/dist/biz.aQute.jpm.run.jar > ~/.m2/jpm4j.jar
-  - java -jar $HOME/.m2/jpm4j.jar -u install com.codacy:codacy-coverage-reporter:assembly
+   - $HOME/.sonar/cache
 install:
   - mvn package -B
-script: xvfb-run mvn verify -B
-after_success:
-  - $HOME/jpm/bin/codacy-coverage-reporter -l Java -r tests/target/jacoco/report/jacoco.xml
-
+script:
+  - xvfb-run mvn verify -B
+  - mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
+before_cache:
+  - rm -fr $HOME/.m2/repository/nl/esciencecenter/e3dchem/knime/molviewer

@@ -7,5 +7,7 @@
 		<version>1.0.2</version>
 	</parent>
 	<artifactId>nl.esciencecenter.e3dchem.knime.molviewer.plugin</artifactId>
-	<packaging>eclipse-plugin</packaging>
+	<packaging>eclipse-plugin</packaging><properties>
+		<sonar.jacoco.reportPaths>../tests/target/jacoco.exec</sonar.jacoco.reportPaths>
+	</properties>
 </project>
