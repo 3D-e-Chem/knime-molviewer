@@ -19,11 +19,14 @@ import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import io.swagger.jaxrs.config.BeanConfig;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.resources.BroadcasterResource;
 
 public abstract class MolViewerServer {
+	protected static final Logger logger = LoggerFactory.getLogger(MolViewerServer.class);
 	private Server server;
 	private URI currentUri;
 	private BroadcasterResource sseRes;
@@ -87,7 +90,7 @@ public abstract class MolViewerServer {
 			Attributes attr = manifest.getMainAttributes();
 			return attr.getValue("Bundle-Version");
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage(), e);
 			return "0.0.0";
 		}
 	}

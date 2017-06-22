@@ -37,9 +37,9 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 	public static final String CFGKEY_LIGAND_LABEL = "ligandLabelColumn";
 	private static final String LIGANDS_FILE_NAME = "molViewerInternals.ligands.ser.gz";
 
-	private final SettingsModelString m_ligand_column = new SettingsModelString(
+	private final SettingsModelString ligandColumn = new SettingsModelString(
 			LigandsAndProteinsViewerModel.CFGKEY_LIGAND, "");
-	private final SettingsModelColumnName m_ligand_label_column = new SettingsModelColumnName(
+	private final SettingsModelColumnName ligandLabelColumn = new SettingsModelColumnName(
 			LigandsAndProteinsViewerModel.CFGKEY_LIGAND_LABEL, "");
 
 	private List<Molecule> ligands;
@@ -49,9 +49,9 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 	public static final String CFGKEY_PROTEIN_LABEL = "proteinLabelColumn";
 	private static final String PROTEINS_FILE_NAME = "molViewerInternals.proteins.ser.gz";
 
-	private final SettingsModelString m_protein_column = new SettingsModelString(
+	private final SettingsModelString proteinColumn = new SettingsModelString(
 			LigandsAndProteinsViewerModel.CFGKEY_PROTEIN, "");
-	private final SettingsModelColumnName m_protein_label_column = new SettingsModelColumnName(
+	private final SettingsModelColumnName proteinLabelColumn = new SettingsModelColumnName(
 			LigandsAndProteinsViewerModel.CFGKEY_PROTEIN_LABEL, "");
 
 	private List<Molecule> proteins;
@@ -76,15 +76,15 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 
 	private void setLigands(final BufferedDataTable[] inData) {
 		int molPort = LIGAND_PORT;
-		String molColumnName = m_ligand_column.getStringValue();
-		SettingsModelColumnName molLabelColumn = m_ligand_label_column;
+		String molColumnName = ligandColumn.getStringValue();
+		SettingsModelColumnName molLabelColumn = ligandLabelColumn;
 		ligands = getMolecules(inData, molPort, molColumnName, molLabelColumn);
 	}
 
 	private void setProteins(BufferedDataTable[] inData) {
 		int molPort = PROTEIN_PORT;
-		String molColumnName = m_protein_column.getStringValue();
-		SettingsModelColumnName molLabelColumn = m_protein_label_column;
+		String molColumnName = proteinColumn.getStringValue();
+		SettingsModelColumnName molLabelColumn = proteinLabelColumn;
 		proteins = getMolecules(inData, molPort, molColumnName, molLabelColumn);
 	}
 
@@ -152,10 +152,10 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 		isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)
 				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
 
-		configureColumn(inSpecs[LIGAND_PORT], m_ligand_column, compatibleLigand, "molecules", "ligands");
-		configureColumnWithRowID(inSpecs[LIGAND_PORT], m_ligand_label_column, compatibleLabel, "labels", "ligands");
-		configureColumn(inSpecs[PROTEIN_PORT], m_protein_column, compatibleProtein, "molecules", "proteins");
-		configureColumnWithRowID(inSpecs[PROTEIN_PORT], m_protein_label_column, compatibleLabel, "labels", "proteins");
+		configureColumn(inSpecs[LIGAND_PORT], ligandColumn, compatibleLigand, "molecules", "ligands");
+		configureColumnWithRowID(inSpecs[LIGAND_PORT], ligandLabelColumn, compatibleLabel, "labels", "ligands");
+		configureColumn(inSpecs[PROTEIN_PORT], proteinColumn, compatibleProtein, "molecules", "proteins");
+		configureColumnWithRowID(inSpecs[PROTEIN_PORT], proteinLabelColumn, compatibleLabel, "labels", "proteins");
 
 		return new DataTableSpec[] {};
 	}
@@ -165,10 +165,10 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 	 */
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
-		m_ligand_column.saveSettingsTo(settings);
-		m_ligand_label_column.saveSettingsTo(settings);
-		m_protein_column.saveSettingsTo(settings);
-		m_protein_label_column.saveSettingsTo(settings);
+		ligandColumn.saveSettingsTo(settings);
+		ligandLabelColumn.saveSettingsTo(settings);
+		proteinColumn.saveSettingsTo(settings);
+		proteinLabelColumn.saveSettingsTo(settings);
 		super.saveSettingsTo(settings);
 	}
 
@@ -177,10 +177,10 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 	 */
 	@Override
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings) throws InvalidSettingsException {
-		m_ligand_column.loadSettingsFrom(settings);
-		m_ligand_label_column.loadSettingsFrom(settings);
-		m_protein_column.loadSettingsFrom(settings);
-		m_protein_label_column.loadSettingsFrom(settings);
+		ligandColumn.loadSettingsFrom(settings);
+		ligandLabelColumn.loadSettingsFrom(settings);
+		proteinColumn.loadSettingsFrom(settings);
+		proteinLabelColumn.loadSettingsFrom(settings);
 		super.loadValidatedSettingsFrom(settings);
 	}
 
@@ -189,10 +189,10 @@ public class LigandsAndProteinsViewerModel extends ViewerModel {
 	 */
 	@Override
 	protected void validateSettings(final NodeSettingsRO settings) throws InvalidSettingsException {
-		m_ligand_column.validateSettings(settings);
-		m_ligand_label_column.validateSettings(settings);
-		m_protein_column.validateSettings(settings);
-		m_protein_label_column.validateSettings(settings);
+		ligandColumn.validateSettings(settings);
+		ligandLabelColumn.validateSettings(settings);
+		proteinColumn.validateSettings(settings);
+		proteinLabelColumn.validateSettings(settings);
 		super.validateSettings(settings);
 	}
 

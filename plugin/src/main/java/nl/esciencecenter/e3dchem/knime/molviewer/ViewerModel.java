@@ -29,10 +29,9 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 
 public abstract class ViewerModel extends NodeModel {
-	// the logger instance
 	protected static final NodeLogger logger = NodeLogger.getLogger(ViewerModel.class);
 	public static final String CFG_BROWSERAUTOOPEN = "browserAutoOpen";
-	protected final SettingsModelBoolean m_browserAutoOpen = new SettingsModelBoolean(CFG_BROWSERAUTOOPEN, true);
+	protected final SettingsModelBoolean browserAutoOpen = new SettingsModelBoolean(CFG_BROWSERAUTOOPEN, true);
 
 	protected ViewerModel(int nrInDataPorts, int nrOutDataPorts) {
 		super(nrInDataPorts, nrOutDataPorts);
@@ -42,7 +41,7 @@ public abstract class ViewerModel extends NodeModel {
 		boolean test(DataColumnSpec s);
 	}
 
-	protected void configureColumnWithRowID(DataTableSpec spec, SettingsModelColumnName setting,
+	public void configureColumnWithRowID(DataTableSpec spec, SettingsModelColumnName setting,
 			isCompatibleLambda isCompatible, String columnLabel, String specName) throws InvalidSettingsException {
 		int colIndex = -1;
 		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
@@ -83,7 +82,7 @@ public abstract class ViewerModel extends NodeModel {
 		}
 	}
 
-	protected void configureColumn(DataTableSpec spec, SettingsModelString setting, isCompatibleLambda isCompatible,
+	public void configureColumn(DataTableSpec spec, SettingsModelString setting, isCompatibleLambda isCompatible,
 			String columnLabel, String specName) throws InvalidSettingsException {
 		int colIndex = -1;
 		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
@@ -117,7 +116,7 @@ public abstract class ViewerModel extends NodeModel {
 		}
 	}
 
-	protected void configureColumnOptional(DataTableSpec spec, SettingsModelString setting,
+	public void configureColumnOptional(DataTableSpec spec, SettingsModelString setting,
 			isCompatibleLambda isCompatible, String columnLabel, String specName) throws InvalidSettingsException {
 		int colIndex = -1;
 		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
@@ -145,7 +144,7 @@ public abstract class ViewerModel extends NodeModel {
 			List<Molecule> ino = (ArrayList<Molecule>) in.readObject();
 			return ino;
 		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+			logger.warn(e.getMessage(), e);
 		} finally {
 			in.close();
 		}
@@ -159,7 +158,9 @@ public abstract class ViewerModel extends NodeModel {
 			out.writeObject((ArrayList<Molecule>) molecules);
 			out.flush();
 		} finally {
-			out.close();
+			if (out != null) {
+				out.close();
+			}
 		}
 	}
 
@@ -168,7 +169,7 @@ public abstract class ViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void saveSettingsTo(final NodeSettingsWO settings) {
-		m_browserAutoOpen.saveSettingsTo(settings);
+		browserAutoOpen.saveSettingsTo(settings);
 	}
 
 	/**
@@ -176,7 +177,7 @@ public abstract class ViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void loadValidatedSettingsFrom(final NodeSettingsRO settings) throws InvalidSettingsException {
-		m_browserAutoOpen.loadSettingsFrom(settings);
+		browserAutoOpen.loadSettingsFrom(settings);
 	}
 
 	/**
@@ -184,14 +185,14 @@ public abstract class ViewerModel extends NodeModel {
 	 */
 	@Override
 	protected void validateSettings(final NodeSettingsRO settings) throws InvalidSettingsException {
-		m_browserAutoOpen.validateSettings(settings);
+		browserAutoOpen.validateSettings(settings);
 	}
 
 	/**
 	 * @return If browser should be automatically opened
 	 */
 	public boolean isBrowserAutoOpen() {
-		return m_browserAutoOpen.getBooleanValue();
+		return browserAutoOpen.getBooleanValue();
 	}
 
 	protected String guessCellFormat(DataCell cell) throws InvalidFormatException {

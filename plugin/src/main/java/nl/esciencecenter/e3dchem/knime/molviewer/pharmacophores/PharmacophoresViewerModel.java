@@ -181,7 +181,9 @@ public class PharmacophoresViewerModel extends ViewerModel {
 			out.writeObject((ArrayList<PharmacophoreContainer>) pharmacophores);
 			out.flush();
 		} finally {
-			out.close();
+			if (out != null) {
+				out.close();
+			}
 		}
 	}
 
