@@ -36,19 +36,19 @@ import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContain
 public class PharmacophoresViewerModel extends ViewerModel {
 	private List<PharmacophoreContainer> pharmacophores = new ArrayList<>();
 	public static final int PORT = 0;
-	private static final String PHARMACOPHORES = "pharmacophores";
+	private static final String PHARMACOPHORESTXT = "pharmacophores";
 	private static final String TABLE_FILENAME = "internals.ser.gz";
 	public static final String CFGKEY_LABEL = "labelColumn";
 	public static final String CFGKEY_PHARMACOPHORE = "pharColumn";
 	public static final String CFGKEY_LIGAND = "ligandColumn";
 	public static final String CFGKEY_PROTEIN = "proteinColumn";
-	private final SettingsModelColumnName m_label_column = new SettingsModelColumnName(
+	private final SettingsModelColumnName labelColumn = new SettingsModelColumnName(
 			PharmacophoresViewerModel.CFGKEY_LABEL, "");
-	private final SettingsModelString m_phar_column = new SettingsModelString(
+	private final SettingsModelString pharColumn = new SettingsModelString(
 			PharmacophoresViewerModel.CFGKEY_PHARMACOPHORE, "");
-	private final SettingsModelString m_ligand_column = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND,
+	private final SettingsModelString ligandColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND,
 			"");
-	private final SettingsModelString m_protein_column = new SettingsModelString(
+	private final SettingsModelString proteinColumn = new SettingsModelString(
 			PharmacophoresViewerModel.CFGKEY_PROTEIN, "");
 
 	public PharmacophoresViewerModel() {
@@ -64,11 +64,11 @@ public class PharmacophoresViewerModel extends ViewerModel {
 	private void setPharmacophores(BufferedDataTable[] inData) {
 		BufferedDataTable dataTable = inData[PORT];
 		DataTableSpec spec = dataTable.getDataTableSpec();
-		int pharIndex = spec.findColumnIndex(m_phar_column.getStringValue());
-		int labelIndex = spec.findColumnIndex(m_label_column.getColumnName());
-		boolean useRowKeyAsLabel = m_label_column.useRowID();
-		int ligandIndex = spec.findColumnIndex(m_ligand_column.getStringValue());
-		int proteinIndex = spec.findColumnIndex(m_protein_column.getStringValue());
+		int pharIndex = spec.findColumnIndex(pharColumn.getStringValue());
+		int labelIndex = spec.findColumnIndex(labelColumn.getColumnName());
+		boolean useRowKeyAsLabel = labelColumn.useRowID();
+		int ligandIndex = spec.findColumnIndex(ligandColumn.getStringValue());
+		int proteinIndex = spec.findColumnIndex(proteinColumn.getStringValue());
 
 		pharmacophores.clear();
 		for (DataRow row : dataTable) {
@@ -116,38 +116,38 @@ public class PharmacophoresViewerModel extends ViewerModel {
 				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
 
 		DataTableSpec spec = inSpecs[PORT];
-		configureColumnWithRowID(spec, m_label_column, compatibleLabel, "labels", PHARMACOPHORES);
-		configureColumn(spec, m_phar_column, compatibleLabel, PHARMACOPHORES, PHARMACOPHORES);
-		configureColumnOptional(spec, m_ligand_column, compatibleLigand, "ligands", PHARMACOPHORES);
-		configureColumnOptional(spec, m_protein_column, compatibleProtein, "proteins", PHARMACOPHORES);
+		configureColumnWithRowID(spec, labelColumn, compatibleLabel, "labels", PHARMACOPHORESTXT);
+		configureColumn(spec, pharColumn, compatibleLabel, PHARMACOPHORESTXT, PHARMACOPHORESTXT);
+		configureColumnOptional(spec, ligandColumn, compatibleLigand, "ligands", PHARMACOPHORESTXT);
+		configureColumnOptional(spec, proteinColumn, compatibleProtein, "proteins", PHARMACOPHORESTXT);
 
 		return new DataTableSpec[] {};
 	}
 
 	@Override
 	protected void saveSettingsTo(NodeSettingsWO settings) {
-		m_label_column.saveSettingsTo(settings);
-		m_phar_column.saveSettingsTo(settings);
-		m_ligand_column.saveSettingsTo(settings);
-		m_protein_column.saveSettingsTo(settings);
+		labelColumn.saveSettingsTo(settings);
+		pharColumn.saveSettingsTo(settings);
+		ligandColumn.saveSettingsTo(settings);
+		proteinColumn.saveSettingsTo(settings);
 		super.saveSettingsTo(settings);
 	}
 
 	@Override
 	protected void loadValidatedSettingsFrom(NodeSettingsRO settings) throws InvalidSettingsException {
-		m_label_column.loadSettingsFrom(settings);
-		m_phar_column.loadSettingsFrom(settings);
-		m_ligand_column.loadSettingsFrom(settings);
-		m_protein_column.loadSettingsFrom(settings);
+		labelColumn.loadSettingsFrom(settings);
+		pharColumn.loadSettingsFrom(settings);
+		ligandColumn.loadSettingsFrom(settings);
+		proteinColumn.loadSettingsFrom(settings);
 		super.loadValidatedSettingsFrom(settings);
 	}
 
 	@Override
 	protected void validateSettings(NodeSettingsRO settings) throws InvalidSettingsException {
-		m_label_column.validateSettings(settings);
-		m_phar_column.validateSettings(settings);
-		m_ligand_column.validateSettings(settings);
-		m_protein_column.validateSettings(settings);
+		labelColumn.validateSettings(settings);
+		pharColumn.validateSettings(settings);
+		ligandColumn.validateSettings(settings);
+		proteinColumn.validateSettings(settings);
 		super.validateSettings(settings);
 	}
 
@@ -175,14 +175,19 @@ public class PharmacophoresViewerModel extends ViewerModel {
 	public void saveInternals(File nodeInternDir, ExecutionMonitor exec)
 			throws IOException, CanceledExecutionException {
 		File file = new File(nodeInternDir, TABLE_FILENAME);
+		FileOutputStream in = null;
 		ObjectOutputStream out = null;
 		try {
-			out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
+			in = new FileOutputStream(file);
+			out = new ObjectOutputStream(new GZIPOutputStream(in));
 			out.writeObject((ArrayList<PharmacophoreContainer>) pharmacophores);
 			out.flush();
 		} finally {
 			if (out != null) {
 				out.close();
+			}
+			if (in != null) {
+				in.close();
 			}
 		}
 	}

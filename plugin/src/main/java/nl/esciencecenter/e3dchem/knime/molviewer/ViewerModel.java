@@ -152,14 +152,19 @@ public abstract class ViewerModel extends NodeModel {
 	}
 
 	public void saveInternalsMolecules(final File file, List<Molecule> molecules) throws IOException {
+		FileOutputStream in = null;
 		ObjectOutputStream out = null;
 		try {
-			out = new ObjectOutputStream(new GZIPOutputStream(new FileOutputStream(file)));
+			in = new FileOutputStream(file);
+			out = new ObjectOutputStream(new GZIPOutputStream(in));
 			out.writeObject((ArrayList<Molecule>) molecules);
 			out.flush();
 		} finally {
 			if (out != null) {
 				out.close();
+			}
+			if (in != null) {
+				in.close();
 			}
 		}
 	}
