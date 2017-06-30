@@ -32,6 +32,7 @@ import nl.esciencecenter.e3dchem.knime.molviewer.InvalidFormatException;
 import nl.esciencecenter.e3dchem.knime.molviewer.ViewerModel;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.AnonymousMolecule;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
+import nl.esciencecenter.e3dchem.knime.pharmacophore.PharValue;
 
 public class PharmacophoresViewerModel extends ViewerModel {
 	private List<PharmacophoreContainer> pharmacophores = new ArrayList<>();
@@ -48,8 +49,8 @@ public class PharmacophoresViewerModel extends ViewerModel {
 			PharmacophoresViewerModel.CFGKEY_PHARMACOPHORE, "");
 	private final SettingsModelString ligandColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND,
 			"");
-	private final SettingsModelString proteinColumn = new SettingsModelString(
-			PharmacophoresViewerModel.CFGKEY_PROTEIN, "");
+	private final SettingsModelString proteinColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN,
+			"");
 
 	public PharmacophoresViewerModel() {
 		super(1, 0);
@@ -74,7 +75,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		for (DataRow row : dataTable) {
 			PharmacophoreContainer phar = new PharmacophoreContainer();
 			phar.id = row.getKey().getString();
-			phar.pharmacophore = new AnonymousMolecule(((StringValue) row.getCell(pharIndex)).getStringValue(), "phar");
+			phar.pharmacophore = new AnonymousMolecule(((PharValue) row.getCell(pharIndex)).getStringValue(), "phar");
 			if (useRowKeyAsLabel) {
 				phar.label = row.getKey().getString();
 			} else {
@@ -114,10 +115,11 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		// label
 		isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)
 				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
+		isCompatibleLambda compatiblePhar = (DataColumnSpec s) -> s.getType().isCompatible(PharValue.class);
 
 		DataTableSpec spec = inSpecs[PORT];
 		configureColumnWithRowID(spec, labelColumn, compatibleLabel, "labels", PHARMACOPHORESTXT);
-		configureColumn(spec, pharColumn, compatibleLabel, PHARMACOPHORESTXT, PHARMACOPHORESTXT);
+		configureColumn(spec, pharColumn, compatiblePhar, PHARMACOPHORESTXT, PHARMACOPHORESTXT);
 		configureColumnOptional(spec, ligandColumn, compatibleLigand, "ligands", PHARMACOPHORESTXT);
 		configureColumnOptional(spec, proteinColumn, compatibleProtein, "proteins", PHARMACOPHORESTXT);
 

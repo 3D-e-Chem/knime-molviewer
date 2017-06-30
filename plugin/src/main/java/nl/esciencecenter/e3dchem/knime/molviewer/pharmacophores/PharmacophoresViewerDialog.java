@@ -9,6 +9,7 @@ import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.ViewerDialog;
+import nl.esciencecenter.e3dchem.knime.pharmacophore.PharValue;
 
 public class PharmacophoresViewerDialog extends ViewerDialog {
 
@@ -22,17 +23,17 @@ public class PharmacophoresViewerDialog extends ViewerDialog {
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PHARMACOPHORE, null),
-				"Column with PHAR formatted pharmacophores", PharmacophoresViewerModel.PORT, true, StringValue.class));
+				"Column with PHAR formatted pharmacophores", PharmacophoresViewerModel.PORT, true, PharValue.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND, null),
-				"Column with SDF or Mol2 formatted small molecules (ligands)", PharmacophoresViewerModel.PORT, false, true, SdfValue.class,
-				Mol2Value.class));
+				"Column with SDF or Mol2 formatted small molecules (ligands)", PharmacophoresViewerModel.PORT, false,
+				true, SdfValue.class, Mol2Value.class));
 
 		addDialogComponent(new DialogComponentColumnNameSelection(
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN, null),
-				"Column with PDB or Mol2 formatted big molecules (proteins)", PharmacophoresViewerModel.PORT, false, true, PdbValue.class,
-				Mol2Value.class));
+				"Column with PDB or Mol2 formatted big molecules (proteins)", PharmacophoresViewerModel.PORT, false,
+				true, PdbValue.class, Mol2Value.class));
 
 		advancedTab();
 	}
