@@ -19,7 +19,7 @@ public class PharmacophoreContainer implements Serializable {
 	@ApiModelProperty(required = false, value = "Ligand")
 	public AnonymousMolecule ligand;
 	@ApiModelProperty(required = false, value = "Transformation matrix")
-	public double[] transform = new double[16];
+	public double[] transform = new double[] { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 
 	@Override
 	public boolean equals(Object obj) {
