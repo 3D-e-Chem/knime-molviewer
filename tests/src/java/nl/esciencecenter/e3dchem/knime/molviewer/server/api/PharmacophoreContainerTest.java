@@ -1,16 +1,11 @@
 package nl.esciencecenter.e3dchem.knime.molviewer.server.api;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 public class PharmacophoreContainerTest {
-
-	@Test
-	public void testHashCode() {
-		PharmacophoreContainer phar = new PharmacophoreContainer();
-		assertEquals(phar.hashCode(), 28629151L);
-	}
 
 	@Test
 	public void testEqualsNull() {
@@ -24,7 +19,7 @@ public class PharmacophoreContainerTest {
 		PharmacophoreContainer other = new PharmacophoreContainer();
 		assertTrue(phar.equals(other));
 	}
-	
+
 	@Test
 	public void testEqualsFilledProps_otherUnset() {
 		PharmacophoreContainer phar = new PharmacophoreContainer();
@@ -33,7 +28,7 @@ public class PharmacophoreContainerTest {
 		phar.pharmacophore = new AnonymousMolecule("...", "phar");
 		phar.ligand = new AnonymousMolecule("...", "sdf");
 		phar.protein = new AnonymousMolecule("...", "pdb");
-		
+
 		PharmacophoreContainer other = new PharmacophoreContainer();
 		assertFalse(phar.equals(other));
 	}
@@ -46,7 +41,7 @@ public class PharmacophoreContainerTest {
 		phar.pharmacophore = new AnonymousMolecule("...", "phar");
 		phar.ligand = new AnonymousMolecule("...", "sdf");
 		phar.protein = new AnonymousMolecule("...", "pdb");
-		
+
 		PharmacophoreContainer other = new PharmacophoreContainer();
 		other.id = "id1";
 		other.label = "label1";

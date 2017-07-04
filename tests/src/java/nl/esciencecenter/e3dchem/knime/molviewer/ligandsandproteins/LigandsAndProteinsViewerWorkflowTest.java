@@ -25,6 +25,7 @@ public class LigandsAndProteinsViewerWorkflowTest {
 		TestrunConfiguration runConfiguration = new TestrunConfiguration();
 		runConfiguration.setTestDialogs(true);
 		runConfiguration.setTestViews(true);
+		runConfiguration.setLoadSaveLoad(false);
 		runner = new TestFlowRunner(collector, runConfiguration);
 	}
 

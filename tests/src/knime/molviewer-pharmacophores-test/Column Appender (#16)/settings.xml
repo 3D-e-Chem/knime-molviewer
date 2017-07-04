@@ -10,10 +10,10 @@
 <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
-<entry key="wrap_table" type="xboolean" value="true"/>
+<entry key="wrap_table" type="xboolean" value="false"/>
 <config key="row_key_select_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-<entry key="EnabledStatus" type="xboolean" value="false"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
 <entry key="row_key_select" type="xstring" value="Use row keys from FIRST table"/>
 </config>
@@ -24,11 +24,11 @@
 <entry key="node-bundle-name" type="xstring" value="KNIME Base Nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.base"/>
 <entry key="node-bundle-vendor" type="xstring" value="KNIME GmbH, Konstanz, Germany"/>
-<entry key="node-bundle-version" type="xstring" value="3.3.1.v201612190931"/>
+<entry key="node-bundle-version" type="xstring" value="3.3.2.v201704060940"/>
 <entry key="node-feature-name" type="xstring" value="KNIME Core"/>
 <entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.base.feature.group"/>
 <entry key="node-feature-vendor" type="xstring" value="KNIME GmbH, Konstanz, Germany"/>
-<entry key="node-feature-version" type="xstring" value="3.3.1.v201612192115"/>
+<entry key="node-feature-version" type="xstring" value="3.3.2.v201704061137"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Column Appender"/>
 <entry key="hasContent" type="xboolean" value="true"/>
@@ -44,6 +44,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="11fbfe30-3d9c-4828-bcd7-7d2fcb034884"/>
+<entry key="file_store_id" type="xstring" value="7cbfcbfa-501b-47c3-b648-4ba2500e14a9"/>
 </config>
 </config>

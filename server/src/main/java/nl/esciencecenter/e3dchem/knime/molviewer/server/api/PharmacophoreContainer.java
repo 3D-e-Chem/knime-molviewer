@@ -1,6 +1,7 @@
 package nl.esciencecenter.e3dchem.knime.molviewer.server.api;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ public class PharmacophoreContainer implements Serializable {
 		return Objects.equals(this.id, other.id) && Objects.equals(this.label, other.label)
 				&& Objects.equals(this.pharmacophore, other.pharmacophore)
 				&& Objects.equals(this.protein, other.protein) && Objects.equals(this.ligand, other.ligand)
-				&& Objects.equals(this.transform, other.transform);
+				&& Arrays.equals(this.transform, other.transform);
 	}
 
 	@Override

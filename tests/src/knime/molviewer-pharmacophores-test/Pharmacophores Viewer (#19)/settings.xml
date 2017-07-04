@@ -18,7 +18,7 @@
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
-<entry key="pharColumn" type="xstring" value="pharmacophore"/>
+<entry key="pharColumn" type="xstring" value="Pharmacophore"/>
 <config key="ligandColumn_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -29,6 +29,11 @@
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
 <entry key="proteinColumn" type="xstring" isnull="true" value=""/>
+<config key="transformColumn_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="transformColumn" type="xstring" isnull="true" value=""/>
 <config key="browserAutoOpen_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
@@ -41,7 +46,7 @@
 <entry key="x-coordinate" type="xint" value="743"/>
 <entry key="y-coordinate" type="xint" value="419"/>
 <entry key="width" type="xint" value="115"/>
-<entry key="height" type="xint" value="48"/>
+<entry key="height" type="xint" value="42"/>
 <entry key="alignment" type="xstring" value="CENTER"/>
 <entry key="borderSize" type="xint" value="0"/>
 <entry key="borderColor" type="xint" value="16777215"/>
@@ -56,11 +61,11 @@
 <entry key="node-bundle-name" type="xstring" value="MolViewer Nodes"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.knime.molviewer.plugin"/>
 <entry key="node-bundle-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-bundle-version" type="xstring" value="1.1.0.v201706211528"/>
+<entry key="node-bundle-version" type="xstring" value="1.1.0.v201707041810"/>
 <entry key="node-feature-name" type="xstring" value="MolViewer nodes for KNIME"/>
 <entry key="node-feature-symbolic-name" type="xstring" value="nl.esciencecenter.e3dchem.knime.molviewer.feature.feature.group"/>
 <entry key="node-feature-vendor" type="xstring" value="Netherlands eScience Center"/>
-<entry key="node-feature-version" type="xstring" value="1.1.0.v201706211528"/>
+<entry key="node-feature-version" type="xstring" value="1.1.0.v201707041810"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Pharmacophores Viewer"/>
 <entry key="hasContent" type="xboolean" value="false"/>

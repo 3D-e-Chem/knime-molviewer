@@ -24,24 +24,14 @@
 <config key="column_properties"/>
 </config>
 <config key="column_spec_1">
-<entry key="column_name" type="xstring" value="pharmacophore"/>
+<entry key="column_name" type="xstring" value="Pharmacophore"/>
 <config key="element_names">
 <entry key="array-size" type="xint" value="0"/>
 </config>
 <config key="column_type">
-<entry key="cell_class" type="xstring" value="org.knime.core.data.def.StringCell"/>
+<entry key="cell_class" type="xstring" value="nl.esciencecenter.e3dchem.knime.pharmacophore.PharCell"/>
 </config>
-<config key="column_domain">
-<config key="possible_values">
-<entry key="array-size" type="xint" value="1"/>
-<config key="0">
-<entry key="datacell" type="xstring" value="org.knime.core.data.def.StringCell"/>
-<config key="org.knime.core.data.def.StringCell">
-<entry key="StringCell" type="xstring" value="1HEW_NAG_A_201%%00010HDON 4.007 23.939 25.299 1 1 3.6554 24.6168 24.6533%%00010HYBH 6.692 24.491 24.991 1 1 7.18449 23.9669 24.2962%%00010HYBH 3.15 24.098 28.216 1 1 2.52572 23.4758 28.6884%%00010HYBH 4.196 26.571 29.463 1 1 3.6602 27.222 30.0007%%00010HYBH 7.944 25.194 29.718 1 1 8.34563 24.3482 30.0691%%00010HACC 6.936 25.335 27.116 1 1 7.82368 24.8818 27.1976%%00010HACC 3.999 21.786 25.641 1 1 4.31689 21.0157 26.1938%%00010$$$$%%00010"/>
-</config>
-</config>
-</config>
-</config>
+<config key="column_domain"/>
 <config key="column_properties"/>
 </config>
 </config>
