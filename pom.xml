@@ -27,7 +27,7 @@
 	</prerequisites>
 
 	<properties>
-		<knime.version>3.2</knime.version>
+		<knime.version>3.3</knime.version>
 		<knime.update.site>http://update.knime.org/analytics-platform/${knime.version}/</knime.update.site>
 		<tycho.version>1.0.0</tycho.version>
 		<tycho.extras.version>1.0.0</tycho.extras.version>
