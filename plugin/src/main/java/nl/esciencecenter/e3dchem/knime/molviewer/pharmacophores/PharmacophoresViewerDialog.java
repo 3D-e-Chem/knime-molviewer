@@ -4,6 +4,7 @@ import org.knime.bio.types.PdbValue;
 import org.knime.chem.types.Mol2Value;
 import org.knime.chem.types.SdfValue;
 import org.knime.core.data.StringValue;
+import org.knime.core.data.vector.doublevector.DoubleVectorValue;
 import org.knime.core.node.defaultnodesettings.DialogComponentColumnNameSelection;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
 import org.knime.core.node.defaultnodesettings.SettingsModelString;
@@ -34,6 +35,11 @@ public class PharmacophoresViewerDialog extends ViewerDialog {
 				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN, null),
 				"Column with PDB or Mol2 formatted big molecules (proteins)", PharmacophoresViewerModel.PORT, false,
 				true, PdbValue.class, Mol2Value.class));
+
+		addDialogComponent(new DialogComponentColumnNameSelection(
+				new SettingsModelString(PharmacophoresViewerModel.CFGKEY_TRANSFORM, null),
+				"Column with transformation matrix", PharmacophoresViewerModel.PORT, false, true,
+				DoubleVectorValue.class));
 
 		advancedTab();
 	}

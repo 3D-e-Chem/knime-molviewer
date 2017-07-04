@@ -18,6 +18,7 @@ import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataRow;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.data.StringValue;
+import org.knime.core.data.vector.doublevector.DoubleVectorValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionContext;
@@ -43,6 +44,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 	public static final String CFGKEY_PHARMACOPHORE = "pharColumn";
 	public static final String CFGKEY_LIGAND = "ligandColumn";
 	public static final String CFGKEY_PROTEIN = "proteinColumn";
+	public static final String CFGKEY_TRANSFORM = "transformColumn";
 	private final SettingsModelColumnName labelColumn = new SettingsModelColumnName(
 			PharmacophoresViewerModel.CFGKEY_LABEL, "");
 	private final SettingsModelString pharColumn = new SettingsModelString(
@@ -51,6 +53,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 			"");
 	private final SettingsModelString proteinColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN,
 			"");
+	private final SettingsModelString transformColumn = new SettingsModelString(CFGKEY_TRANSFORM, "");
 
 	public PharmacophoresViewerModel() {
 		super(1, 0);
@@ -67,6 +70,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		DataTableSpec spec = dataTable.getDataTableSpec();
 		int pharIndex = spec.findColumnIndex(pharColumn.getStringValue());
 		int labelIndex = spec.findColumnIndex(labelColumn.getColumnName());
+		int transformIndex = spec.findColumnIndex(transformColumn.getStringValue());
 		boolean useRowKeyAsLabel = labelColumn.useRowID();
 		int ligandIndex = spec.findColumnIndex(ligandColumn.getStringValue());
 		int proteinIndex = spec.findColumnIndex(proteinColumn.getStringValue());
@@ -87,6 +91,11 @@ public class PharmacophoresViewerModel extends ViewerModel {
 							guessCellFormat(row.getCell(ligandIndex)));
 				} catch (InvalidFormatException e) {
 					logger.warn("Row " + phar.id + " is has invalid format for ligand, skipping");
+				}
+			}
+			if (transformIndex > -1) {
+				for (int i = 0; i < 16; i++) {
+					phar.transform[i] = ((DoubleVectorValue) row.getCell(transformIndex)).getValue(i);
 				}
 			}
 			if (proteinIndex > -1) {
@@ -116,11 +125,14 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)
 				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
 		isCompatibleLambda compatiblePhar = (DataColumnSpec s) -> s.getType().isCompatible(PharValue.class);
+		isCompatibleLambda compatibleTransform = (DataColumnSpec s) -> s.getType()
+				.isCompatible(DoubleVectorValue.class);
 
 		DataTableSpec spec = inSpecs[PORT];
 		configureColumnWithRowID(spec, labelColumn, compatibleLabel, "labels", PHARMACOPHORESTXT);
 		configureColumn(spec, pharColumn, compatiblePhar, PHARMACOPHORESTXT, PHARMACOPHORESTXT);
 		configureColumnOptional(spec, ligandColumn, compatibleLigand, "ligands", PHARMACOPHORESTXT);
+		configureColumnOptional(spec, transformColumn, compatibleTransform, "transform", PHARMACOPHORESTXT);
 		configureColumnOptional(spec, proteinColumn, compatibleProtein, "proteins", PHARMACOPHORESTXT);
 
 		return new DataTableSpec[] {};
@@ -132,6 +144,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		pharColumn.saveSettingsTo(settings);
 		ligandColumn.saveSettingsTo(settings);
 		proteinColumn.saveSettingsTo(settings);
+		transformColumn.saveSettingsTo(settings);
 		super.saveSettingsTo(settings);
 	}
 
@@ -141,6 +154,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		pharColumn.loadSettingsFrom(settings);
 		ligandColumn.loadSettingsFrom(settings);
 		proteinColumn.loadSettingsFrom(settings);
+		transformColumn.loadSettingsFrom(settings);
 		super.loadValidatedSettingsFrom(settings);
 	}
 
@@ -150,6 +164,7 @@ public class PharmacophoresViewerModel extends ViewerModel {
 		pharColumn.validateSettings(settings);
 		ligandColumn.validateSettings(settings);
 		proteinColumn.validateSettings(settings);
+		transformColumn.validateSettings(settings);
 		super.validateSettings(settings);
 	}
 

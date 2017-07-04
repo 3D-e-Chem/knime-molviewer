@@ -18,7 +18,9 @@ public class PharmacophoreContainer implements Serializable {
 	public AnonymousMolecule protein;
 	@ApiModelProperty(required = false, value = "Ligand")
 	public AnonymousMolecule ligand;
-	
+	@ApiModelProperty(required = false, value = "Transformation matrix")
+	public double[] transform = new double[16];
+
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
@@ -29,12 +31,13 @@ public class PharmacophoreContainer implements Serializable {
 		}
 		final PharmacophoreContainer other = (PharmacophoreContainer) obj;
 		return Objects.equals(this.id, other.id) && Objects.equals(this.label, other.label)
-				&& Objects.equals(this.pharmacophore, other.pharmacophore) && Objects.equals(this.protein, other.protein) &&
-				Objects.equals(this.ligand, other.ligand);
+				&& Objects.equals(this.pharmacophore, other.pharmacophore)
+				&& Objects.equals(this.protein, other.protein) && Objects.equals(this.ligand, other.ligand)
+				&& Objects.equals(this.transform, other.transform);
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, label, pharmacophore, protein, ligand);
+		return Objects.hash(id, label, pharmacophore, protein, ligand, transform);
 	}
 }

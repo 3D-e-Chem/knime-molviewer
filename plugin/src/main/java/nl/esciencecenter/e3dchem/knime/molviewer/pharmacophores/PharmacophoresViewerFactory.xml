@@ -25,6 +25,7 @@
 			with labels, if no column is selected uses Row ID.</option>
 		<option name="Column with ligand molecules" optional="true">Column with SDF or Mol2 formatted molecules, if no column is selected no ligands will be shown.</option>
 		<option name="Column with protein molecules" optional="true">Column with PDB or Mol2 formatted molecules, if the pdb contain protein/ligand complex then the protein and ligand are shown, if no column is selected no proteins will be shown.</option>
+		<option name="Column with transformation matrix" optional="true">Column with transformation matrix. Will apply transformation matrix to content of pharmacophore/protein/ligand columns of the same row.</option>
 	</fullDescription>
 
 	<ports>
