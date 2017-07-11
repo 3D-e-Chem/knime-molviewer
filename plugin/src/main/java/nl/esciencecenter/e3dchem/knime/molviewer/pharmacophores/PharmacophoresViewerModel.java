@@ -94,8 +94,12 @@ public class PharmacophoresViewerModel extends ViewerModel {
 				}
 			}
 			if (transformIndex > -1) {
-				for (int i = 0; i < 16; i++) {
-					phar.transform[i] = ((DoubleVectorValue) row.getCell(transformIndex)).getValue(i);
+				if (row.getCell(transformIndex).isMissing()) {
+					// use default identity transform, aka transformation has no effect
+				} else {
+					for (int i = 0; i < 16; i++) {
+						phar.transform[i] = ((DoubleVectorValue) row.getCell(transformIndex)).getValue(i);
+					}
 				}
 			}
 			if (proteinIndex > -1) {
