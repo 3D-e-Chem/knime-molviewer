@@ -5,9 +5,14 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.1.0] - 2017-09-08
+
 ### Added
 
 - Node to view pharmacophores with optional protein/ligand (#11)
+- Node to view only ligands (#20)
+- Node to view only proteins (#22)
+- Color picker for ligands (#21)
 
 ## [1.0.2] - 2017-02-27
 
