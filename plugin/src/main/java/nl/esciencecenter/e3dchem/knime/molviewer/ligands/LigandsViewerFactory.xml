@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<knimeNode icon="../default.png" type="Visualizer"
+	xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">
+	<name>Ligands Viewer</name>
+
+	<shortDescription>
+		Node to view ligands in web browser
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			<p>Node to view ligands in a web browser</p>
+
+			<p>When view is opened then it will automatically open a web browser with the viewer.</p>
+			<p>
+			Source code available at
+			<a href="https://github.com/3D-e-Chem/knime-molviewer">Github</a>.
+			</p>
+		</intro>
+
+		<option name="Column with SDF molecules">Column with SDF or Mol2 formatted molecules in port 0.</option>
+		<option name="Column with labels" optional="true">Column with
+			labels in port 0, if no column is selected uses Row ID.</option>
+	</fullDescription>
+
+	<ports>
+		<inPort index="0" name="Ligands">Table containing Ligands in SDF or Mol2 format</inPort>
+	</ports>
+	<views>
+		<view index="0" name="Web browser launcher">Display web browser launcher</view>
+	</views>
+</knimeNode>
