@@ -145,10 +145,14 @@
 						</dependency>
 					</dependencies>
 					<configuration>
+						<timestampProvider>jgit</timestampProvider>
 						<sourceReferences>
 							<generate>true</generate>
 						</sourceReferences>
 						<format>'v'yyyyMMddHHmm</format>
+						<!-- Uncomment to package with uncommited code
+						<jgit.dirtyWorkingTree>warning</jgit.dirtyWorkingTree>
+						-->
 					</configuration>
 				</plugin>
 			</plugins>
