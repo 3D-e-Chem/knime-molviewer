@@ -5,6 +5,12 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.1.1] - 2017-04-10
+
+### Fixed
+
+- Executed node contains no data (#24)
+
 ## [1.1.0] - 2017-09-08
 
 ### Added

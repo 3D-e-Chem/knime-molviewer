@@ -2,7 +2,7 @@
 <feature
       id="nl.esciencecenter.e3dchem.knime.molviewer.feature"
       label="MolViewer nodes for KNIME"
-      version="1.1.0.qualifier"
+      version="1.1.1.qualifier"
       provider-name="Netherlands eScience Center">
 
    <description url="https://github.com/3D-e-Chem/knime-molviewer">
