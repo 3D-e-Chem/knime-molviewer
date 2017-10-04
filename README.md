@@ -34,10 +34,11 @@ Steps to get the MolViewer KNIME node inside KNIME:
 4. Give molviewer nodes Proteins, Ligands and/or Pharmacophores as input. 
 5. Open the view of the molviewer node, this will launch a web browser with the molecules visualized.
 6. In web browser you can
-  * Rotate/translate/zoom molecules with mouse
-  * Toggle which molecules are visible
-  * Transmit visible molecules as HiLite selection back to KNIME or do the reverse from KNIME to molviewer
-  * and more
+
+   * Rotate/translate/zoom molecules with mouse
+   * Toggle which molecules are visible
+   * Transmit visible molecules as HiLite selection back to KNIME or do the reverse from KNIME to molviewer
+   * and more
 
 See example workflow in `examples/` directory.
 
