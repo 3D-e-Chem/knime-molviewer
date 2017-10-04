@@ -8,6 +8,8 @@ KNIME node which launches a web browser with a molecule viewer powered by [NGL](
 
 This project uses a web user interface based on https://github.com/3D-e-Chem/molviewer-tsx .
 
+![From KNIME launch web browser with molviewer inside](https://raw.githubusercontent.com/3D-e-Chem/knime-molviewer/master/docs/molviewer-composite.png)
+
 # Installation
 
 Requirements:
@@ -29,6 +31,13 @@ Steps to get the MolViewer KNIME node inside KNIME:
 1. Create a new KNIME workflow.
 2. Find node in Node navigator panel under Community Nodes > 3D-e-Chem > Molviewer.
 3. Drag node to workflow canvas.
+4. Give molviewer nodes Proteins, Ligands and/or Pharmacophores as input. 
+5. Open the view of the molviewer node, this will launch a web browser with the molecules visualized.
+6. In web browser you can
+  * Rotate/translate/zoom molecules with mouse
+  * Toggle which molecules are visible
+  * Transmit visible molecules as HiLite selection back to KNIME or do the reverse from KNIME to molviewer
+  * and more
 
 See example workflow in `examples/` directory.
 
