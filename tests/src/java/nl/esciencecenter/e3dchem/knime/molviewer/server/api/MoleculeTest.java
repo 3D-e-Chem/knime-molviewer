@@ -176,4 +176,45 @@ public class MoleculeTest {
 		
 		assertNotEquals(mol.hashCode(), other.hashCode());
 	}
+
+    @Test
+    public void test_anonymousConstructor() {
+        Molecule mol = new Molecule();
+        assertNull(mol.format);
+        assertNull(mol.data);
+    }
+
+    @Test
+    public void test_constructor() {
+        Molecule mol = new Molecule("data", "format");
+        assertEquals("data", mol.data);
+        assertEquals("format", mol.format);
+    }
+
+    @Test
+    public void testEqualsNull_dataConstructor() {
+        Molecule mol = new Molecule("data", "format");
+
+        assertFalse(mol.equals(null));
+    }
+
+    @Test
+    public void testEqualsString() {
+        Molecule mol = new Molecule("data", "format");
+
+        assertFalse(mol.equals("no mol"));
+    }
+
+    @Test
+    public void testHashCode() {
+        Molecule mol = new Molecule("data", "format");
+        assertEquals(-673444332L, mol.hashCode());
+    }
+
+    @Test
+    public void testEqualsFilledProps_dataConstructor() {
+        Molecule mol = new Molecule("data1", "format1");
+        Molecule other = new Molecule("data1", "format1");
+        assertTrue(mol.equals(other));
+    }
 }

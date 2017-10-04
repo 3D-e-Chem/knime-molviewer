@@ -25,9 +25,9 @@ public class PharmacophoreContainerTest {
 		PharmacophoreContainer phar = new PharmacophoreContainer();
 		phar.id = "id1";
 		phar.label = "label1";
-		phar.pharmacophore = new AnonymousMolecule("...", "phar");
-		phar.ligand = new AnonymousMolecule("...", "sdf");
-		phar.protein = new AnonymousMolecule("...", "pdb");
+        phar.pharmacophore = new Molecule("...", "phar");
+        phar.ligand = new Molecule("...", "sdf");
+        phar.protein = new Molecule("...", "pdb");
 
 		PharmacophoreContainer other = new PharmacophoreContainer();
 		assertFalse(phar.equals(other));
@@ -38,16 +38,16 @@ public class PharmacophoreContainerTest {
 		PharmacophoreContainer phar = new PharmacophoreContainer();
 		phar.id = "id1";
 		phar.label = "label1";
-		phar.pharmacophore = new AnonymousMolecule("...", "phar");
-		phar.ligand = new AnonymousMolecule("...", "sdf");
-		phar.protein = new AnonymousMolecule("...", "pdb");
+        phar.pharmacophore = new Molecule("...", "phar");
+        phar.ligand = new Molecule("...", "sdf");
+        phar.protein = new Molecule("...", "pdb");
 
 		PharmacophoreContainer other = new PharmacophoreContainer();
 		other.id = "id1";
 		other.label = "label1";
-		other.pharmacophore = new AnonymousMolecule("...", "phar");
-		other.ligand = new AnonymousMolecule("...", "sdf");
-		other.protein = new AnonymousMolecule("...", "pdb");
+        other.pharmacophore = new Molecule("...", "phar");
+        other.ligand = new Molecule("...", "sdf");
+        other.protein = new Molecule("...", "pdb");
 		assertTrue(phar.equals(other));
 	}
 

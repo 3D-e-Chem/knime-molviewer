@@ -12,7 +12,7 @@ import org.junit.rules.TemporaryFolder;
 import org.knime.core.node.CanceledExecutionException;
 import org.knime.core.node.ExecutionMonitor;
 
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.AnonymousMolecule;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
 
 public class PharmacophoresViewerModelTest {
@@ -25,9 +25,9 @@ public class PharmacophoresViewerModelTest {
 		PharmacophoreContainer phar = new PharmacophoreContainer();
 		phar.id = "id1";
 		phar.label = "label1";
-		phar.pharmacophore = new AnonymousMolecule("...", "phar");
-		phar.ligand = new AnonymousMolecule("...", "sdf");
-		phar.protein = new AnonymousMolecule("...", "pdb");
+        phar.pharmacophore = new Molecule("...", "phar");
+        phar.ligand = new Molecule("...", "sdf");
+        phar.protein = new Molecule("...", "pdb");
 		node.getPharmacophores().add(phar);
 
 		ExecutionMonitor exec = null;

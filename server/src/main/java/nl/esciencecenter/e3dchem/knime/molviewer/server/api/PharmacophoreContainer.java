@@ -14,11 +14,11 @@ public class PharmacophoreContainer implements Serializable {
 	@ApiModelProperty(required = true, value = "Label")
 	public String label;
 	@ApiModelProperty(required = true, value = "Pharmacophore")
-	public AnonymousMolecule pharmacophore;
+    public Molecule pharmacophore;
 	@ApiModelProperty(required = false, value = "Protein")
-	public AnonymousMolecule protein;
+    public Molecule protein;
 	@ApiModelProperty(required = false, value = "Ligand")
-	public AnonymousMolecule ligand;
+    public Molecule ligand;
 	@ApiModelProperty(required = false, value = "Transformation matrix")
 	public double[] transform = new double[] { 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1 };
 

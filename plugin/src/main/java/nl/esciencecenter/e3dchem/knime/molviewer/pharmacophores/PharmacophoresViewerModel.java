@@ -31,190 +31,183 @@ import org.knime.core.node.defaultnodesettings.SettingsModelString;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.InvalidFormatException;
 import nl.esciencecenter.e3dchem.knime.molviewer.ViewerModel;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.api.AnonymousMolecule;
+import nl.esciencecenter.e3dchem.knime.molviewer.server.api.Molecule;
 import nl.esciencecenter.e3dchem.knime.molviewer.server.api.PharmacophoreContainer;
 import nl.esciencecenter.e3dchem.knime.pharmacophore.PharValue;
 
 public class PharmacophoresViewerModel extends ViewerModel {
-	private List<PharmacophoreContainer> pharmacophores = new ArrayList<>();
-	public static final int PORT = 0;
-	private static final String PHARMACOPHORESTXT = "pharmacophores";
-	private static final String TABLE_FILENAME = "internals.ser.gz";
-	public static final String CFGKEY_LABEL = "labelColumn";
-	public static final String CFGKEY_PHARMACOPHORE = "pharColumn";
-	public static final String CFGKEY_LIGAND = "ligandColumn";
-	public static final String CFGKEY_PROTEIN = "proteinColumn";
-	public static final String CFGKEY_TRANSFORM = "transformColumn";
-	private final SettingsModelColumnName labelColumn = new SettingsModelColumnName(
-			PharmacophoresViewerModel.CFGKEY_LABEL, "");
-	private final SettingsModelString pharColumn = new SettingsModelString(
-			PharmacophoresViewerModel.CFGKEY_PHARMACOPHORE, "");
-	private final SettingsModelString ligandColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND,
-			"");
-	private final SettingsModelString proteinColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN,
-			"");
-	private final SettingsModelString transformColumn = new SettingsModelString(CFGKEY_TRANSFORM, "");
+    private List<PharmacophoreContainer> pharmacophores = new ArrayList<>();
+    public static final int PORT = 0;
+    private static final String PHARMACOPHORESTXT = "pharmacophores";
+    private static final String TABLE_FILENAME = "internals.ser.gz";
+    public static final String CFGKEY_LABEL = "labelColumn";
+    public static final String CFGKEY_PHARMACOPHORE = "pharColumn";
+    public static final String CFGKEY_LIGAND = "ligandColumn";
+    public static final String CFGKEY_PROTEIN = "proteinColumn";
+    public static final String CFGKEY_TRANSFORM = "transformColumn";
+    private final SettingsModelColumnName labelColumn = new SettingsModelColumnName(PharmacophoresViewerModel.CFGKEY_LABEL, "");
+    private final SettingsModelString pharColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PHARMACOPHORE, "");
+    private final SettingsModelString ligandColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_LIGAND, "");
+    private final SettingsModelString proteinColumn = new SettingsModelString(PharmacophoresViewerModel.CFGKEY_PROTEIN, "");
+    private final SettingsModelString transformColumn = new SettingsModelString(CFGKEY_TRANSFORM, "");
 
-	public PharmacophoresViewerModel() {
-		super(1, 0);
-	}
+    public PharmacophoresViewerModel() {
+        super(1, 0);
+    }
 
-	@Override
-	protected BufferedDataTable[] execute(BufferedDataTable[] inData, ExecutionContext exec) throws Exception {
-		setPharmacophores(inData);
-		return new BufferedDataTable[] {};
-	}
+    @Override
+    protected BufferedDataTable[] execute(BufferedDataTable[] inData, ExecutionContext exec) throws Exception {
+        setPharmacophores(inData);
+        return new BufferedDataTable[] {};
+    }
 
-	private void setPharmacophores(BufferedDataTable[] inData) {
-		BufferedDataTable dataTable = inData[PORT];
-		DataTableSpec spec = dataTable.getDataTableSpec();
-		int pharIndex = spec.findColumnIndex(pharColumn.getStringValue());
-		int labelIndex = spec.findColumnIndex(labelColumn.getColumnName());
-		int transformIndex = spec.findColumnIndex(transformColumn.getStringValue());
-		boolean useRowKeyAsLabel = labelColumn.useRowID();
-		int ligandIndex = spec.findColumnIndex(ligandColumn.getStringValue());
-		int proteinIndex = spec.findColumnIndex(proteinColumn.getStringValue());
+    private void setPharmacophores(BufferedDataTable[] inData) {
+        BufferedDataTable dataTable = inData[PORT];
+        DataTableSpec spec = dataTable.getDataTableSpec();
+        int pharIndex = spec.findColumnIndex(pharColumn.getStringValue());
+        int labelIndex = spec.findColumnIndex(labelColumn.getColumnName());
+        int transformIndex = spec.findColumnIndex(transformColumn.getStringValue());
+        boolean useRowKeyAsLabel = labelColumn.useRowID();
+        int ligandIndex = spec.findColumnIndex(ligandColumn.getStringValue());
+        int proteinIndex = spec.findColumnIndex(proteinColumn.getStringValue());
 
-		pharmacophores.clear();
-		for (DataRow row : dataTable) {
-			PharmacophoreContainer phar = new PharmacophoreContainer();
-			phar.id = row.getKey().getString();
-			phar.pharmacophore = new AnonymousMolecule(((PharValue) row.getCell(pharIndex)).getStringValue(), "phar");
-			if (useRowKeyAsLabel) {
-				phar.label = row.getKey().getString();
-			} else {
-				phar.label = ((StringValue) row.getCell(labelIndex)).getStringValue();
-			}
-			if (ligandIndex > -1) {
-				try {
-					phar.ligand = new AnonymousMolecule(((StringValue) row.getCell(ligandIndex)).getStringValue(),
-							guessCellFormat(row.getCell(ligandIndex)));
-				} catch (InvalidFormatException e) {
-					logger.warn("Row " + phar.id + " is has invalid format for ligand, skipping");
-				}
-			}
-			if (transformIndex > -1) {
-				if (row.getCell(transformIndex).isMissing()) {
-					// use default identity transform, aka transformation has no effect
-				} else {
-					for (int i = 0; i < 16; i++) {
-						phar.transform[i] = ((DoubleVectorValue) row.getCell(transformIndex)).getValue(i);
-					}
-				}
-			}
-			if (proteinIndex > -1) {
-				try {
-					phar.protein = new AnonymousMolecule(((StringValue) row.getCell(proteinIndex)).getStringValue(),
-							guessCellFormat(row.getCell(proteinIndex)));
-				} catch (InvalidFormatException e) {
-					logger.warn("Row " + phar.id + " is has invalid format for protein, skipping");
-				}
-			}
-			pharmacophores.add(phar);
-		}
-	}
+        pharmacophores.clear();
+        for (DataRow row : dataTable) {
+            PharmacophoreContainer phar = new PharmacophoreContainer();
+            phar.id = row.getKey().getString();
+            phar.pharmacophore = new Molecule(((PharValue) row.getCell(pharIndex)).getStringValue(), "phar");
+            if (useRowKeyAsLabel) {
+                phar.label = row.getKey().getString();
+            } else {
+                phar.label = ((StringValue) row.getCell(labelIndex)).getStringValue();
+            }
+            if (ligandIndex > -1) {
+                try {
+                    phar.ligand = new Molecule(((StringValue) row.getCell(ligandIndex)).getStringValue(),
+                            guessCellFormat(row.getCell(ligandIndex)));
+                } catch (InvalidFormatException e) {
+                    logger.warn("Row " + phar.id + " is has invalid format for ligand, skipping");
+                }
+            }
+            if (transformIndex > -1) {
+                if (row.getCell(transformIndex).isMissing()) {
+                    // use default identity transform, aka transformation has no effect
+                } else {
+                    for (int i = 0; i < 16; i++) {
+                        phar.transform[i] = ((DoubleVectorValue) row.getCell(transformIndex)).getValue(i);
+                    }
+                }
+            }
+            if (proteinIndex > -1) {
+                try {
+                    phar.protein = new Molecule(((StringValue) row.getCell(proteinIndex)).getStringValue(),
+                            guessCellFormat(row.getCell(proteinIndex)));
+                } catch (InvalidFormatException e) {
+                    logger.warn("Row " + phar.id + " is has invalid format for protein, skipping");
+                }
+            }
+            pharmacophores.add(phar);
+        }
+    }
 
-	public List<PharmacophoreContainer> getPharmacophores() {
-		return pharmacophores;
-	}
+    public List<PharmacophoreContainer> getPharmacophores() {
+        return pharmacophores;
+    }
 
-	@Override
-	protected DataTableSpec[] configure(DataTableSpec[] inSpecs) throws InvalidSettingsException {
-		isCompatibleLambda compatibleLigand = (DataColumnSpec s) -> s.getType().isCompatible(SdfValue.class)
-				|| s.getType().isCompatible(Mol2Value.class);
-		isCompatibleLambda compatibleProtein = (DataColumnSpec s) -> s.getType().isCompatible(PdbValue.class)
-				|| s.getType().isCompatible(Mol2Value.class);
-		// as PDB, SDF and Mol2 are also string compatible exclude them for
-		// label
-		isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)
-				&& !(compatibleLigand.test(s) || compatibleProtein.test(s));
-		isCompatibleLambda compatiblePhar = (DataColumnSpec s) -> s.getType().isCompatible(PharValue.class);
-		isCompatibleLambda compatibleTransform = (DataColumnSpec s) -> s.getType()
-				.isCompatible(DoubleVectorValue.class);
+    @Override
+    protected DataTableSpec[] configure(DataTableSpec[] inSpecs) throws InvalidSettingsException {
+        isCompatibleLambda compatibleLigand = (DataColumnSpec s) -> s.getType().isCompatible(SdfValue.class)
+                || s.getType().isCompatible(Mol2Value.class);
+        isCompatibleLambda compatibleProtein = (DataColumnSpec s) -> s.getType().isCompatible(PdbValue.class)
+                || s.getType().isCompatible(Mol2Value.class);
+        // as PDB, SDF and Mol2 are also string compatible exclude them for
+        // label
+        isCompatibleLambda compatibleLabel = (DataColumnSpec s) -> s.getType().isCompatible(StringValue.class)
+                && !(compatibleLigand.test(s) || compatibleProtein.test(s));
+        isCompatibleLambda compatiblePhar = (DataColumnSpec s) -> s.getType().isCompatible(PharValue.class);
+        isCompatibleLambda compatibleTransform = (DataColumnSpec s) -> s.getType().isCompatible(DoubleVectorValue.class);
 
-		DataTableSpec spec = inSpecs[PORT];
-		configureColumnWithRowID(spec, labelColumn, compatibleLabel, "labels", PHARMACOPHORESTXT);
-		configureColumn(spec, pharColumn, compatiblePhar, PHARMACOPHORESTXT, PHARMACOPHORESTXT);
-		configureColumnOptional(spec, ligandColumn, compatibleLigand, "ligands", PHARMACOPHORESTXT);
-		configureColumnOptional(spec, transformColumn, compatibleTransform, "transform", PHARMACOPHORESTXT);
-		configureColumnOptional(spec, proteinColumn, compatibleProtein, "proteins", PHARMACOPHORESTXT);
+        DataTableSpec spec = inSpecs[PORT];
+        configureColumnWithRowID(spec, labelColumn, compatibleLabel, "labels", PHARMACOPHORESTXT);
+        configureColumn(spec, pharColumn, compatiblePhar, PHARMACOPHORESTXT, PHARMACOPHORESTXT);
+        configureColumnOptional(spec, ligandColumn, compatibleLigand, "ligands", PHARMACOPHORESTXT);
+        configureColumnOptional(spec, transformColumn, compatibleTransform, "transform", PHARMACOPHORESTXT);
+        configureColumnOptional(spec, proteinColumn, compatibleProtein, "proteins", PHARMACOPHORESTXT);
 
-		return new DataTableSpec[] {};
-	}
+        return new DataTableSpec[] {};
+    }
 
-	@Override
-	protected void saveSettingsTo(NodeSettingsWO settings) {
-		labelColumn.saveSettingsTo(settings);
-		pharColumn.saveSettingsTo(settings);
-		ligandColumn.saveSettingsTo(settings);
-		proteinColumn.saveSettingsTo(settings);
-		transformColumn.saveSettingsTo(settings);
-		super.saveSettingsTo(settings);
-	}
+    @Override
+    protected void saveSettingsTo(NodeSettingsWO settings) {
+        labelColumn.saveSettingsTo(settings);
+        pharColumn.saveSettingsTo(settings);
+        ligandColumn.saveSettingsTo(settings);
+        proteinColumn.saveSettingsTo(settings);
+        transformColumn.saveSettingsTo(settings);
+        super.saveSettingsTo(settings);
+    }
 
-	@Override
-	protected void loadValidatedSettingsFrom(NodeSettingsRO settings) throws InvalidSettingsException {
-		labelColumn.loadSettingsFrom(settings);
-		pharColumn.loadSettingsFrom(settings);
-		ligandColumn.loadSettingsFrom(settings);
-		proteinColumn.loadSettingsFrom(settings);
-		transformColumn.loadSettingsFrom(settings);
-		super.loadValidatedSettingsFrom(settings);
-	}
+    @Override
+    protected void loadValidatedSettingsFrom(NodeSettingsRO settings) throws InvalidSettingsException {
+        labelColumn.loadSettingsFrom(settings);
+        pharColumn.loadSettingsFrom(settings);
+        ligandColumn.loadSettingsFrom(settings);
+        proteinColumn.loadSettingsFrom(settings);
+        transformColumn.loadSettingsFrom(settings);
+        super.loadValidatedSettingsFrom(settings);
+    }
 
-	@Override
-	protected void validateSettings(NodeSettingsRO settings) throws InvalidSettingsException {
-		labelColumn.validateSettings(settings);
-		pharColumn.validateSettings(settings);
-		ligandColumn.validateSettings(settings);
-		proteinColumn.validateSettings(settings);
-		transformColumn.validateSettings(settings);
-		super.validateSettings(settings);
-	}
+    @Override
+    protected void validateSettings(NodeSettingsRO settings) throws InvalidSettingsException {
+        labelColumn.validateSettings(settings);
+        pharColumn.validateSettings(settings);
+        ligandColumn.validateSettings(settings);
+        proteinColumn.validateSettings(settings);
+        transformColumn.validateSettings(settings);
+        super.validateSettings(settings);
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public void loadInternals(File nodeInternDir, ExecutionMonitor exec)
-			throws IOException, CanceledExecutionException {
-		File file = new File(nodeInternDir, TABLE_FILENAME);
-		if (!file.canRead()) {
-			pharmacophores.clear();
-			return;
-		}
-		ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
-		try {
-			pharmacophores = (List<PharmacophoreContainer>) in.readObject();
-		} catch (ClassNotFoundException e) {
-			pharmacophores.clear();
-			logger.warn(e.getMessage(), e);
-		} finally {
-			in.close();
-		}
-	}
+    @SuppressWarnings("unchecked")
+    @Override
+    public void loadInternals(File nodeInternDir, ExecutionMonitor exec) throws IOException, CanceledExecutionException {
+        File file = new File(nodeInternDir, TABLE_FILENAME);
+        if (!file.canRead()) {
+            pharmacophores.clear();
+            return;
+        }
+        ObjectInputStream in = new ObjectInputStream(new GZIPInputStream(new FileInputStream(file)));
+        try {
+            pharmacophores = (List<PharmacophoreContainer>) in.readObject();
+        } catch (ClassNotFoundException e) {
+            pharmacophores.clear();
+            logger.warn(e.getMessage(), e);
+        } finally {
+            in.close();
+        }
+    }
 
-	@Override
-	public void saveInternals(File nodeInternDir, ExecutionMonitor exec)
-			throws IOException, CanceledExecutionException {
-		File file = new File(nodeInternDir, TABLE_FILENAME);
-		FileOutputStream in = null;
-		ObjectOutputStream out = null;
-		try {
-			in = new FileOutputStream(file);
-			out = new ObjectOutputStream(new GZIPOutputStream(in));
-			out.writeObject((ArrayList<PharmacophoreContainer>) pharmacophores);
-			out.flush();
-		} finally {
-			if (out != null) {
-				out.close();
-			}
-			if (in != null) {
-				in.close();
-			}
-		}
-	}
+    @Override
+    public void saveInternals(File nodeInternDir, ExecutionMonitor exec) throws IOException, CanceledExecutionException {
+        File file = new File(nodeInternDir, TABLE_FILENAME);
+        FileOutputStream in = null;
+        ObjectOutputStream out = null;
+        try {
+            in = new FileOutputStream(file);
+            out = new ObjectOutputStream(new GZIPOutputStream(in));
+            out.writeObject((ArrayList<PharmacophoreContainer>) pharmacophores);
+            out.flush();
+        } finally {
+            if (out != null) {
+                out.close();
+            }
+            if (in != null) {
+                in.close();
+            }
+        }
+    }
 
-	@Override
-	protected void reset() {
-		pharmacophores.clear();
-	}
+    @Override
+    protected void reset() {
+        pharmacophores.clear();
+    }
 }

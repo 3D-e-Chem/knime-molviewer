@@ -15,10 +15,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import nl.esciencecenter.e3dchem.knime.molviewer.server.LigandsAndProteinsViewerServer;
-import nl.esciencecenter.e3dchem.knime.molviewer.server.MolViewerServer;
 
 public class MolViewerServerTest {
-	private MolViewerServer server;
+    private LigandsAndProteinsViewerServer server;
 
 	@Before
 	public void setUp() throws Exception {
