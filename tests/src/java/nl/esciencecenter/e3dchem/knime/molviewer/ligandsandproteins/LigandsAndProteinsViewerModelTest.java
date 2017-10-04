@@ -1,10 +1,12 @@
 package nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,4 +39,13 @@ public class LigandsAndProteinsViewerModelTest {
 
 		assertThat(result, is(molecules));
 	}
+
+    @Test
+    public void testLoadInternalsMolecules() throws IOException {
+        LigandsAndProteinsViewerModel node = new LigandsAndProteinsViewerModel();
+        InputStream stream = getClass().getResourceAsStream("/src/resources/molViewerInternals.ligands.ser.gz");
+        List<Molecule> result = node.loadInternalsMolecules(stream);
+
+        assertThat(result.get(0).format, is(notNullValue()));
+    }
 }
