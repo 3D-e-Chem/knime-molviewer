@@ -5,6 +5,12 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.1.2] - 2017-12-11
+
+### Added
+
+- Centering on current scene (#21)
+
 ### Fixed
 
 - Handle missing values (#19)
