@@ -6,6 +6,13 @@ KNIME node which launches a web browser with a molecule viewer powered by [NGL](
 [![SonarCloud Coverage](https://sonarcloud.io/api/badges/measure?key=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer&metric=coverage)](https://sonarcloud.io/component_measures/domain/Coverage?id=nl.esciencecenter.e3dchem.knime.molviewer:nl.esciencecenter.e3dchem.knime.molviewer)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.168569.svg)](https://doi.org/10.5281/zenodo.168569)
 
+If you are using KNIME workflows with large molecules and you want to view them in 3D then the molviewer nodes are able to handle this.
+* Provides cheminformatics trying to model proteins within KNIME a way to view them
+* Adds nodes to KNIME to visualize proteins, small molecules and pharmacophores
+* Adds support to KNIME to  handle viewing big molecules
+* Used to compare pharmacophore generation tools
+* Used to check ligand repurposing
+
 This project uses a web user interface based on https://github.com/3D-e-Chem/molviewer-tsx .
 
 ![From KNIME launch web browser with molviewer inside](https://raw.githubusercontent.com/3D-e-Chem/knime-molviewer/master/docs/molviewer-composite.png)
@@ -88,12 +95,12 @@ mvn -f server/pom.libs.xml dependency:copy-dependencies -DoutputDirectory=libs
 ```
 The jars in the libs directory should be listed in the Bundle-ClassPath property of the `server/META-INF/MANIFEST.MF` file.
 
-TODO incorperate fill libs/ command in mvn package
+TODO incorporate fill libs/ command in mvn package
 
 
 ## Web interface
 
-The webinterface in the `server/src/main/resources/webapp` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
+The web interface in the `server/src/main/resources/webapp` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
 
 ## Tests
 
