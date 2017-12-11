@@ -16,11 +16,15 @@
 <config key="requiredLogInfos">
 <entry key="array-size" type="xint" value="0"/>
 </config>
+<config key="optionalLogMessages">
+<entry key="array-size" type="xint" value="0"/>
+</config>
 <config key="failingNodes">
-<entry key="array-size" type="xint" value="3"/>
+<entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xstring" value="25"/>
 <entry key="1" type="xstring" value="26"/>
-<entry key="2" type="xstring" value="21"/>
+<entry key="2" type="xstring" value="30"/>
+<entry key="3" type="xstring" value="21"/>
 </config>
 <config key="requiredNodeWarnings">
 <entry key="nodeID_0" type="xstring" value="25"/>
@@ -28,7 +32,9 @@
 <entry key="count" type="xint" value="1"/>
 </config>
 <config key="requiredNodeErrors">
-<entry key="count" type="xint" value="0"/>
+<entry key="nodeID_0" type="xstring" value="30"/>
+<entry key="message_0" type="xstring" value="Execute failed: Row is 'Row0' is missing ligand, unable to execute"/>
+<entry key="count" type="xint" value="1"/>
 </config>
 <entry key="timeout" type="xint" value="300"/>
 <entry key="maxHilitedRows" type="xint" value="2500"/>
@@ -39,24 +45,24 @@
 <entry key="requiredLoadVersion" type="xstring" value="&lt;future&gt;"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="EXECUTED"/>
+<entry key="state" type="xstring" value="CONFIGURED"/>
 <entry key="factory" type="xstring" value="org.knime.testing.node.config.TestConfigNodeFactory"/>
 <entry key="node-name" type="xstring" value="Testflow Configuration"/>
 <entry key="node-bundle-name" type="xstring" value="Test-Node extension for KNIME Workbench"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.testing"/>
-<entry key="node-bundle-vendor" type="xstring" value="KNIME GmbH, Konstanz, Germany"/>
-<entry key="node-bundle-version" type="xstring" value="3.3.2.v201703230956"/>
-<entry key="node-feature-name" type="xstring" value="KNIME Testing Framework"/>
-<entry key="node-feature-symbolic-name" type="xstring" value="org.knime.features.testingapplication.feature.group"/>
-<entry key="node-feature-vendor" type="xstring" value="KNIME GmbH, Konstanz, Germany"/>
-<entry key="node-feature-version" type="xstring" value="3.3.2.v201703230956"/>
+<entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
+<entry key="node-bundle-version" type="xstring" value="3.5.0.v201711041230"/>
+<entry key="node-feature-name" type="xstring" isnull="true" value=""/>
+<entry key="node-feature-symbolic-name" type="xstring" isnull="true" value=""/>
+<entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
+<entry key="node-feature-version" type="xstring" value="0.0.0"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Testflow Configuration"/>
-<entry key="hasContent" type="xboolean" value="true"/>
+<entry key="hasContent" type="xboolean" value="false"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="3e077d46-0043-43a0-844b-570cdc4a0729"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>

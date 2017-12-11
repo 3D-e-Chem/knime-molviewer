@@ -75,16 +75,26 @@ public class PharmacophoresViewerModel extends ViewerModel {
         for (DataRow row : dataTable) {
             PharmacophoreContainer phar = new PharmacophoreContainer();
             phar.id = row.getKey().getString();
-            phar.pharmacophore = new Molecule(((PharValue) row.getCell(pharIndex)).getStringValue(), "phar");
             if (useRowKeyAsLabel) {
                 phar.label = row.getKey().getString();
             } else {
-                phar.label = ((StringValue) row.getCell(labelIndex)).getStringValue();
+                if (row.getCell(labelIndex).isMissing()) {
+                    phar.label = row.getKey().getString();
+                } else {
+                    phar.label = ((StringValue) row.getCell(labelIndex)).getStringValue();
+                }
+            }
+            if (row.getCell(pharIndex).isMissing()) {
+                throw new IllegalStateException("Row is '" + phar.id + "' is missing pharmacophore, unable to execute");
+            } else {
+                phar.pharmacophore = new Molecule(((PharValue) row.getCell(pharIndex)).getStringValue(), "phar");
             }
             if (ligandIndex > -1) {
                 try {
-                    phar.ligand = new Molecule(((StringValue) row.getCell(ligandIndex)).getStringValue(),
-                            guessCellFormat(row.getCell(ligandIndex)));
+                    if (!row.getCell(ligandIndex).isMissing()) {
+                        phar.ligand = new Molecule(((StringValue) row.getCell(ligandIndex)).getStringValue(),
+                                guessCellFormat(row.getCell(ligandIndex)));
+                    }
                 } catch (InvalidFormatException e) {
                     logger.warn("Row " + phar.id + " is has invalid format for ligand, skipping");
                 }
@@ -100,8 +110,10 @@ public class PharmacophoresViewerModel extends ViewerModel {
             }
             if (proteinIndex > -1) {
                 try {
-                    phar.protein = new Molecule(((StringValue) row.getCell(proteinIndex)).getStringValue(),
-                            guessCellFormat(row.getCell(proteinIndex)));
+                    if (!row.getCell(proteinIndex).isMissing()) {
+                        phar.protein = new Molecule(((StringValue) row.getCell(proteinIndex)).getStringValue(),
+                                guessCellFormat(row.getCell(proteinIndex)));
+                    }
                 } catch (InvalidFormatException e) {
                     logger.warn("Row " + phar.id + " is has invalid format for protein, skipping");
                 }

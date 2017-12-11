@@ -81,6 +81,9 @@ public class ProteinsViewerModel extends ViewerModel {
 			Molecule mol = new Molecule();
 			DataCell currCell = currRow.getCell(molColIndex);
 			mol.id = currRow.getKey().getString();
+			if (currCell.isMissing()) {
+                            throw new IllegalStateException("Row is '" + mol.id + "' is missing protein, unable to execute");
+                        }
 			try {
 				mol.format = guessCellFormat(currCell);
 			} catch (InvalidFormatException e) {
@@ -92,7 +95,11 @@ public class ProteinsViewerModel extends ViewerModel {
 				mol.label = currRow.getKey().getString();
 			} else {
 				currCell = currRow.getCell(labelColIndex);
-				mol.label = ((StringValue) currCell).getStringValue();
+				if (currCell.isMissing()) {
+				    mol.label = currRow.getKey().getString();
+				} else {
+				    mol.label = ((StringValue) currCell).getStringValue();
+				}
 			}
 			molecules.add(mol);
 		}

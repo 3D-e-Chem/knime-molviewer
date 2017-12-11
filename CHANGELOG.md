@@ -5,6 +5,10 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+### Fixed
+
+- Handle missing values (#19)
+
 ## [1.1.1] - 2017-04-10
 
 ### Fixed
