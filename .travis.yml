@@ -1,6 +1,5 @@
-sudo: false  
 language: java    
-jdk: oraclejdk8
+jdk: openjdk8
 cache:
   directories:
    - $HOME/.m2
@@ -11,4 +10,4 @@ script:
   - xvfb-run mvn verify -B
   - mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN
 before_cache:
-  - rm -fr $HOME/.m2/repository/nl/esciencecenter/e3dchem/knime/molviewer
+  - rm -fr $HOME/.m2/repository/nl/esciencecenter/e3dchem

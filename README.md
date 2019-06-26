@@ -21,7 +21,7 @@ This project uses a web user interface based on https://github.com/3D-e-Chem/mol
 
 Requirements:
 
-* KNIME, https://www.knime.org, version 3.1 or higher
+* KNIME, https://www.knime.org, version 4.0 or higher
 
 Steps to get the MolViewer KNIME node inside KNIME:
 
@@ -60,28 +60,13 @@ The update site can be used to perform a local installation.
 
 # Development
 
-Steps to get development environment setup:
+Steps to get development environment setup based on https://github.com/knime/knime-sdk-setup#sdk-setup:
 
-1. Download KNIME SDK from https://www.knime.org/downloads/overview
-2. Install/Extract/start KNIME SDK
-3. Start SDK
-4. Install m2e (Maven integration for Eclipse) + KNIME Testing framework
-
-    1. Goto Help > Install new software ...
-    2. Make sure the following Update sites are in the pull down list otherwise add them
-
-        * http://download.eclipse.org/releases/mars
-        * http://download.eclipse.org/eclipse/updates/4.5
-        * http://update.knime.org/analytics-platform/3.1
-        * https://3d-e-chem.github.io/updates
-
-    3. Select --all sites-- in work with pulldown
-    4. Select m2e (Maven integration for Eclipse)
-    5. Select `KNIME Testing framework`
-    6. Select `Splash & node category for 3D-e-Chem KNIME nodes`
-    7. Install software & restart
-
-5. Import this repo as an Existing Maven project
+1. Install Java 8
+2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-ide-rcp-and-rap-developers)
+3. Configure Java 8 inside Eclipse Window > Preferences > Java > Installed JREs
+4. Import this repo as an Existing Maven project
+5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (4.0) - nl.esciencecenter.e3dchem.knime.sstea.targetplatform/KNIME-AP-4.0.target` target definition.
 
 During import the Tycho Eclipse providers must be installed.
 
