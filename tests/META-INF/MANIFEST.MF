@@ -2,19 +2,20 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: nl.esciencecenter.e3dchem.knime.molviewer.tests
-Bundle-Version: 1.1.2.qualifier
+Bundle-Version: 1.1.3.qualifier
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.junit;bundle-version="4.12.0",
- org.knime.core;bundle-version="[3.3.0,4.0.0)",
- org.knime.base;bundle-version="[3.3.0,4.0.0)",
- org.knime.chem.base;bundle-version="[3.3.0,4.0.0)",
- org.knime.testing;bundle-version="[3.3.0,4.0.0)",
- org.knime.jsnippets;bundle-version="[3.3.0,4.0.0)",
- com.vernalis.knime;bundle-version="[1.0.0,2.0.0)",
+ org.knime.core;bundle-version="[4.0.0,5.0.0)",
+ org.knime.base;bundle-version="[4.0.0,5.0.0)",
+ org.knime.chem.base;bundle-version="[4.0.0,5.0.0)",
+ org.knime.testing;bundle-version="[4.0.0,5.0.0)",
+ org.knime.jsnippets;bundle-version="[4.0.0,5.0.0)",
+ com.vernalis.knime;bundle-version="[1.20.3,2.0.0)",
  nl.esciencecenter.e3dchem.knime.testing.plugin;bundle-version="[1.0.0,2.0.0)",
  nl.esciencecenter.e3dchem.knime.molviewer.server,
  nl.esciencecenter.e3dchem.knime.molviewer.plugin,
  org.apache.httpcomponents.httpclient;bundle-version="4.3.6",
- org.apache.httpcomponents.httpcore;bundle-version="4.3.3"
+ org.apache.httpcomponents.fluent-hc;bundle-version="4.3.6",
+ org.apache.httpcomponents.httpcore;bundle-version="4.3.6"
 Bundle-Vendor: Netherlands eScience Center
 Bundle-ClassPath: .
