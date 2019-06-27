@@ -3,7 +3,7 @@
 cff-version: 1.0.3
 message: If you use this software, please cite it as below.
 title: KNIME molecule viewer nodes
-doi: 10.5281/zenodo.168569
+doi: 10.5281/zenodo.3258201
 authors:
 - given-names: Stefan
   family-names: Verhoeven
