@@ -20,6 +20,7 @@
 	<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 		<unit id="nl.esciencecenter.e3dchem.knime.testing.plugin" version="0.0.0"/>
 		<unit id="nl.esciencecenter.e3dchem.plugin" version="0.0.0"/>
+		<unit id="nl.esciencecenter.e3dchem.knime.pharmacophore.plugin" version="0.0.0"/>
 		<repository location="https://3d-e-chem.github.io/updates"/>
 	</location>
 	<location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
