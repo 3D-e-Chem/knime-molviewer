@@ -5,6 +5,10 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [1.1.3] - 2019-06-27
+
+- Compatible with KNIME 4 ((#25)[https://github.com/3D-e-Chem/knime-molviewer/issues/25])
+
 ## [1.1.2] - 2017-12-11
 
 ### Added
