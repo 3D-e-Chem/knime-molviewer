@@ -2,7 +2,8 @@ KNIME node which launches a web browser with a molecule viewer powered by [NGL](
 
 [![Build Status Linux](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
 [![Build status Windows](https://ci.appveyor.com/api/projects/status/595y9gh13d69y61q?svg=true)](https://ci.appveyor.com/project/3D-e-Chem/knime-molviewer)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer&metric=alert_status)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewe[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer&metric=coverage)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer&metric=alert_status)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer&metric=coverage)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.597231.svg)](https://doi.org/10.5281/zenodo.597231)
 
 If you are using KNIME workflows with large molecules and you want to view them in 3D then the molviewer nodes are able to handle this.
