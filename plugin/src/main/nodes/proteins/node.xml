@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:knimeNode
+	xmlns:js="http://knime.org/dynamicjsnode/v3.0"
+	xmlns="http://knime.org/dynamicnode/v3.0"
+	xmlns:n="http://knime.org/node/v2.12"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/dynamicjsnode/v3.0 http://www.knime.org/node/dynamicJSNode_v3.0.xsd"
+	jsNamespace="molviewerProteins" nodeID="molviewer_proteins"
+	categoryPath="/community/3d-e-chem/molviewer"
+	icon="../../../../icons/molviewer.png" type="Visualizer">
+	<name>Proteins Viewer</name>
+	<shortDescription>
+		Node to view proteins in 3D
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			<n:p>Node to view proteins in 3D</n:p>
+
+			<n:p>
+				Source code available at
+				<n:a href="https://github.com/3D-e-Chem/knime-molviewer">Github</n:a>
+				.
+			</n:p>
+		</intro>
+
+		<options>
+			<columnSelectorOption
+				name="Column with PDB molecules" id="pdbs" inPortIndex="0"
+				label="Column with PDB molecules" saveInView="true"
+				filterClasses="org.knime.bio.types.PdbValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
+			<columnSelectorOption name="Column with labels"
+				id="labels" inPortIndex="0" label="Column with labels"
+				saveInView="true" filterClasses="org.knime.bio.types.PdbValue"
+				allowRowID="true" optional="true"></columnSelectorOption>
+		</options>
+	</fullDescription>
+	<outputOptions>
+		<dataOutputOption outPortIndex="1" id="selection"
+			additionalColumnName="Protein Selection"
+			additionalColumnType="BOOLEAN" inPortIndex="0" />
+	</outputOptions>
+	<interactiveView name="Proteins viewer">
+		The KNIME Proteins viewer with
+		NGL.
+	</interactiveView>
+	<ports>
+		<inPort portType="Data" name="Display data" index="0">
+			Table
+			containing Proteins in PDB or Mol2 format
+		</inPort>
+		<outPort portType="Image" name="Proteins image" index="0">
+			PNG
+			image of the proteins if that option has been enabled.
+		</outPort>
+		<outPort portType="Data" name="Input Data + View Selection"
+			index="1">
+			Data table containing the input data with an appended boolean
+			column representing which rows were selected in the view.
+		</outPort>
+	</ports>
+	<js:resources>
+		<js:resource type="js" path="proteins.js" />
+		<js:resource type="css" path="proteins.css" />
+	</js:resources>
+	<js:dependencies>
+		<js:dependency name="ngl" path="ngl_v2.0.0-dev.31"
+			type="local" exports="NGL" />
+	</js:dependencies>
+</js:knimeNode>

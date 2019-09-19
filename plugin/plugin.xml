@@ -16,7 +16,37 @@
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerFactory"/>
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores.PharmacophoresViewerFactory"/>
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligands.LigandsViewerFactory"/>
+<!--
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.proteins.ProteinsViewerFactory"/>
+        
+        -->
+    </extension>
+    <extension
+          point="org.knime.dynamic.node.generation.dynamicNodes">
+       <dynamicNodeFolder
+             function="js"
+             name="Molviewer dynamic js nodes"
+             path="src/main/nodes">
+       </dynamicNodeFolder>
+    </extension>
+    <extension
+          point="org.knime.js.core.webResources">
+       <webResourceBundle
+             debug="false"
+             exports="NGL"
+             name="ngl"
+             usesDefine="true"
+             version="v2.0.0-dev.31"
+             webResourceBundleID="ngl_v2.0.0-dev.31">
+          <webResource
+                relativePathSource="src/main/js-lib/ngl/ngl_v2.0.0-dev.31.js"
+                relativePathTarget="js-lib/ngl/ngl_v2.0.0-dev.31.js">
+          </webResource>
+          <importResource
+                relativePath="js-lib/ngl/ngl_v2.0.0-dev.31.js"
+                type="JAVASCRIPT">
+          </importResource>
+       </webResourceBundle>
     </extension>
 
 </plugin>
