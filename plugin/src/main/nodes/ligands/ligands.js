@@ -73,7 +73,7 @@ window.molviewerLigands = function () {
     }
 
     MolviewerLigands.validate = function () {
-
+        return true;
     }
 
     MolviewerLigands.setValidationError = function () {

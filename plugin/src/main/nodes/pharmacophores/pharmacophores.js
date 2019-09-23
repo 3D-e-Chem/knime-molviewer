@@ -109,7 +109,7 @@ window.molviewerPharmacophores = function () {
     }
 
     MolviewerPharmacophores.validate = function () {
-
+        return true;
     }
 
     MolviewerPharmacophores.setValidationError = function () {

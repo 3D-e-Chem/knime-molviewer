@@ -127,7 +127,7 @@ window.molviewerLigandsAndProteins = function () {
     }
 
     MolviewerLigandsAndProteins.validate = function () {
-
+        return true;
     }
 
     MolviewerLigandsAndProteins.setValidationError = function () {

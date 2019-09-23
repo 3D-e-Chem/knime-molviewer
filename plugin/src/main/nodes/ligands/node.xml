@@ -58,4 +58,7 @@
 		<js:dependency name="MolViewer" path="molviewer-1.0.0"
 			type="local" exports="Molviewer" />
 	</js:dependencies>
+	<js:javaProcessor
+		className="nl.esciencecenter.e3dchem.knime.molviewer.LigandsCheck"
+		hidesLimitRowOption="false" />
 </js:knimeNode>

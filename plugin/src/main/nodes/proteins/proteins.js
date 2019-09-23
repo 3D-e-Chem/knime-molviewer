@@ -72,7 +72,7 @@ window.molviewerProteins = function () {
     }
 
     MolviewerProteins.validate = function () {
-
+        return true;
     }
 
     MolviewerProteins.setValidationError = function () {
