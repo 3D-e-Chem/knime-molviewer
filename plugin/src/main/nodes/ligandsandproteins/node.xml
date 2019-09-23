@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:knimeNode
+	xmlns:js="http://knime.org/dynamicjsnode/v3.0"
+	xmlns="http://knime.org/dynamicnode/v3.0"
+	xmlns:n="http://knime.org/node/v2.12"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/dynamicjsnode/v3.0 http://www.knime.org/node/dynamicJSNode_v3.0.xsd"
+	jsNamespace="molviewerLigandsAndProteins" nodeID="molviewer_ligands_proteins"
+	categoryPath="/community/3d-e-chem/molviewer"
+	icon="../../../../icons/molviewer.png" type="Visualizer">
+	<name>Ligands and Proteins Viewer</name>
+	<shortDescription>
+		Node to view ligands and proteins
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			<n:p>Node to view ligands and proteins in 3D</n:p>
+
+			<n:p>
+				Source code available at
+				<n:a href="https://github.com/3D-e-Chem/knime-molviewer">Github</n:a>
+				.
+			</n:p>
+		</intro>
+
+		<options>
+			<columnSelectorOption
+				name="Column with SDF or Mol2 formatted molecules" id="ligands" inPortIndex="0"
+				label="Column with SDF or Mol2 molecules in port 0" saveInView="true"
+				filterClasses="org.knime.chem.types.SdfValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
+			<columnSelectorOption name="Column with labels"
+				id="liglabels" inPortIndex="0" label="Column with labels"
+				saveInView="true" filterClasses="org.knime.core.data.StringValue"
+				allowRowID="true" optional="true">
+				Column with
+			labels in port 0, if no column is selected uses Row ID.</columnSelectorOption>
+			<columnSelectorOption
+				name="Column with PDB molecules" id="pdbs" inPortIndex="1"
+				label="Column with  PDB or Mol2 formatted molecules in port 1" saveInView="true"
+				filterClasses="org.knime.bio.types.PdbValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
+			<columnSelectorOption name="Column with labels"
+				id="protlabels" inPortIndex="1" label="Column with labels"
+				saveInView="true" filterClasses="org.knime.core.data.StringValue"
+				allowRowID="true" optional="true">
+				Column
+			with labels in port 1, if no column is selected uses Row ID.
+				</columnSelectorOption>
+		</options>
+	</fullDescription>
+	<outputOptions>
+		<dataOutputOption outPortIndex="1" id="selection"
+			additionalColumnName="Molecule Selection"
+			additionalColumnType="BOOLEAN" inPortIndex="0" />
+	</outputOptions>
+	<interactiveView name="Molecule viewer">
+		The KNIME ligands and proteins viewer with
+		NGL.
+	</interactiveView>
+	<ports>
+		<inPort portType="Data" name="Ligands" index="0">
+			Table containing Ligands in SDF or Mol2 format
+		</inPort>
+		<inPort portType="Data" name="Proteins" index="1">
+			Table containing Proteins in PDB or Mol2 format
+		</inPort>
+	</ports>
+	<js:resources>
+		<js:resource type="js" path="ligandsandproteins.js" />
+		<js:resource type="css" path="ligandsandproteins.css" />
+	</js:resources>
+	<js:dependencies>
+		<js:dependency name="MolViewer" path="molviewer-1.0.0"
+			type="local" exports="Molviewer" />
+	</js:dependencies>
+</js:knimeNode>

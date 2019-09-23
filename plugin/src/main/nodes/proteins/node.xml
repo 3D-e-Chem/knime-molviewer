@@ -26,8 +26,8 @@
 
 		<options>
 			<columnSelectorOption
-				name="Column with PDB molecules" id="pdbs" inPortIndex="0"
-				label="Column with PDB molecules" saveInView="true"
+				name="Column with protein molecules" id="pdbs" inPortIndex="0"
+				label="Column with protein molecules" saveInView="true"
 				filterClasses="org.knime.bio.types.PdbValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
 			<columnSelectorOption name="Column with labels"
 				id="labels" inPortIndex="0" label="Column with labels"
