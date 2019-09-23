@@ -39,17 +39,17 @@
 				name="Column with SDF or Mol2 formatted small molecules (ligands)"
 				id="ligands" inPortIndex="0"
 				label="Column with SDF or Mol2 formatted small molecules (ligands)"
-				saveInView="true" optional="true"
+				saveInView="true" optional="true" allowNoneColumn="true"
 				filterClasses="org.knime.chem.types.SdfValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
 			<columnSelectorOption
 				name="Column with PDB or Mol2 formatted big molecules (proteins)"
 				id="proteins" inPortIndex="0"
 				label="Column with PDB or Mol2 formatted big molecules (proteins)"
-				saveInView="true" optional="true"
+				saveInView="true" optional="true" allowNoneColumn="true"
 				filterClasses="org.knime.bio.types.PdbValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
 			<columnSelectorOption
 				name="Column with transformation matrix" id="transform"
-				inPortIndex="0" label="Column with transformation matrix"
+				inPortIndex="0" label="Column with transformation matrix" allowNoneColumn="true"
 				saveInView="true" filterClasses="org.knime.core.data.vector.doublevector.DoubleVectorValue"
 				optional="true"></columnSelectorOption>
 		</options>
