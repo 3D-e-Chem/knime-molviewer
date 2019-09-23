@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="workflow.knime">
-<entry key="created_by" type="xstring" value="3.2.0.v201607061829"/>
-<entry key="version" type="xstring" value="3.1.0"/>
+<entry key="created_by" type="xstring" value="4.0.1.v201908131317"/>
+<entry key="created_by_nightly" type="xboolean" value="false"/>
+<entry key="version" type="xstring" value="3.8.0"/>
 <entry key="name" type="xstring" isnull="true" value=""/>
 <config key="authorInformation">
 <entry key="authored-by" type="xstring" value="stefanv"/>
 <entry key="authored-when" type="xstring" value="2016-08-15 17:54:41 +0200"/>
-<entry key="lastEdited-by" type="xstring" value="verhoes"/>
-<entry key="lastEdited-when" type="xstring" value="2016-12-02 17:48:25 +0100"/>
+<entry key="lastEdited-by" type="xstring" value="stefanv"/>
+<entry key="lastEdited-when" type="xstring" value="2019-09-23 17:03:23 +0200"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="IDLE"/>
+<entry key="state" type="xstring" value="CONFIGURED"/>
 <config key="workflow_credentials"/>
 <config key="nodes">
 <config key="node_3">
@@ -26,22 +27,6 @@
 <entry key="1" type="xint" value="57"/>
 <entry key="2" type="xint" value="75"/>
 <entry key="3" type="xint" value="79"/>
-</config>
-</config>
-</config>
-<config key="node_4">
-<entry key="id" type="xint" value="4"/>
-<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#4)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="524"/>
-<entry key="1" type="xint" value="97"/>
-<entry key="2" type="xint" value="99"/>
-<entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>
@@ -109,22 +94,6 @@
 </config>
 </config>
 </config>
-<config key="node_20">
-<entry key="id" type="xint" value="20"/>
-<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#20)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="524"/>
-<entry key="1" type="xint" value="277"/>
-<entry key="2" type="xint" value="99"/>
-<entry key="3" type="xint" value="95"/>
-</config>
-</config>
-</config>
 <config key="node_22">
 <entry key="id" type="xint" value="22"/>
 <entry key="node_settings_file" type="xstring" value="Table Creator (#22)/settings.xml"/>
@@ -141,9 +110,9 @@
 </config>
 </config>
 </config>
-<config key="node_25">
-<entry key="id" type="xint" value="25"/>
-<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#25)/settings.xml"/>
+<config key="node_28">
+<entry key="id" type="xint" value="28"/>
+<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#28)/settings.xml"/>
 <entry key="node_is_meta" type="xboolean" value="false"/>
 <entry key="node_type" type="xstring" value="NativeNode"/>
 <entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
@@ -151,15 +120,15 @@
 <config key="extrainfo.node.bounds">
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="524"/>
-<entry key="1" type="xint" value="577"/>
+<entry key="1" type="xint" value="97"/>
 <entry key="2" type="xint" value="99"/>
 <entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>
-<config key="node_26">
-<entry key="id" type="xint" value="26"/>
-<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#26)/settings.xml"/>
+<config key="node_29">
+<entry key="id" type="xint" value="29"/>
+<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#29)/settings.xml"/>
 <entry key="node_is_meta" type="xboolean" value="false"/>
 <entry key="node_type" type="xstring" value="NativeNode"/>
 <entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
@@ -167,15 +136,15 @@
 <config key="extrainfo.node.bounds">
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="524"/>
-<entry key="1" type="xint" value="717"/>
+<entry key="1" type="xint" value="277"/>
 <entry key="2" type="xint" value="99"/>
 <entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>
-<config key="node_27">
-<entry key="id" type="xint" value="27"/>
-<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#27)/settings.xml"/>
+<config key="node_30">
+<entry key="id" type="xint" value="30"/>
+<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#30)/settings.xml"/>
 <entry key="node_is_meta" type="xboolean" value="false"/>
 <entry key="node_type" type="xstring" value="NativeNode"/>
 <entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
@@ -189,29 +158,61 @@
 </config>
 </config>
 </config>
+<config key="node_31">
+<entry key="id" type="xint" value="31"/>
+<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#31)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="524"/>
+<entry key="1" type="xint" value="577"/>
+<entry key="2" type="xint" value="99"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
+<config key="node_32">
+<entry key="id" type="xint" value="32"/>
+<entry key="node_settings_file" type="xstring" value="Ligands and Proteins Viewer (#32)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="524"/>
+<entry key="1" type="xint" value="717"/>
+<entry key="2" type="xint" value="99"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
 </config>
 <config key="connections">
 <config key="connection_0">
 <entry key="sourceID" type="xint" value="3"/>
-<entry key="destID" type="xint" value="4"/>
+<entry key="destID" type="xint" value="28"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_1">
 <entry key="sourceID" type="xint" value="12"/>
-<entry key="destID" type="xint" value="25"/>
+<entry key="destID" type="xint" value="28"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="2"/>
 </config>
 <config key="connection_2">
 <entry key="sourceID" type="xint" value="12"/>
-<entry key="destID" type="xint" value="4"/>
+<entry key="destID" type="xint" value="29"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="2"/>
 </config>
 <config key="connection_3">
 <entry key="sourceID" type="xint" value="12"/>
-<entry key="destID" type="xint" value="20"/>
+<entry key="destID" type="xint" value="31"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="2"/>
 </config>
@@ -223,39 +224,39 @@
 </config>
 <config key="connection_5">
 <entry key="sourceID" type="xint" value="19"/>
-<entry key="destID" type="xint" value="20"/>
+<entry key="destID" type="xint" value="29"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_6">
 <entry key="sourceID" type="xint" value="19"/>
-<entry key="destID" type="xint" value="27"/>
+<entry key="destID" type="xint" value="30"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_7">
 <entry key="sourceID" type="xint" value="19"/>
-<entry key="destID" type="xint" value="27"/>
+<entry key="destID" type="xint" value="30"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="2"/>
 </config>
 <config key="connection_8">
 <entry key="sourceID" type="xint" value="19"/>
-<entry key="destID" type="xint" value="26"/>
+<entry key="destID" type="xint" value="32"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_9">
 <entry key="sourceID" type="xint" value="22"/>
-<entry key="destID" type="xint" value="26"/>
+<entry key="destID" type="xint" value="31"/>
 <entry key="sourcePort" type="xint" value="1"/>
-<entry key="destPort" type="xint" value="2"/>
+<entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_10">
 <entry key="sourceID" type="xint" value="22"/>
-<entry key="destID" type="xint" value="25"/>
+<entry key="destID" type="xint" value="32"/>
 <entry key="sourcePort" type="xint" value="1"/>
-<entry key="destPort" type="xint" value="1"/>
+<entry key="destPort" type="xint" value="2"/>
 </config>
 </config>
 <config key="workflow_editor_settings">
@@ -264,5 +265,7 @@
 <entry key="workflow.editor.gridX" type="xint" value="20"/>
 <entry key="workflow.editor.gridY" type="xint" value="20"/>
 <entry key="workflow.editor.zoomLevel" type="xdouble" value="1.0"/>
+<entry key="workflow.editor.curvedConnections" type="xboolean" value="false"/>
+<entry key="workflow.editor.connectionWidth" type="xint" value="1"/>
 </config>
 </config>
