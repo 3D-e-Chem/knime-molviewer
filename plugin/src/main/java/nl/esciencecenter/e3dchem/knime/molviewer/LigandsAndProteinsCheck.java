@@ -9,6 +9,7 @@ import org.knime.core.data.StringValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.port.PortObject;
 import org.knime.dynamic.js.v30.DynamicJSConfig;
 
@@ -28,14 +29,14 @@ public class LigandsAndProteinsCheck extends Check {
 
 		BufferedDataTable ligandsTable = (BufferedDataTable) inObjects[0];
 		DataTableSpec ligandsSpec = ligandsTable.getSpec();
-		hasCompatibleColumn(ligandsSpec, (SettingsModelColumnName) config.getModel("ligands"), compatibleLigand, "molecules",
+		hasCompatibleColumn(ligandsSpec, (SettingsModelString) config.getModel("ligands"), compatibleLigand, "molecules",
 				"ligands");
 		hasCompatibleColumnWithRowID(ligandsSpec, (SettingsModelColumnName) config.getModel("labels"), compatibleLabel,
 				"labels", "ligands");
 		
 		BufferedDataTable protTable = (BufferedDataTable) inObjects[1];
 		DataTableSpec protSpec = protTable.getSpec();
-		hasCompatibleColumn(protSpec, (SettingsModelColumnName) config.getModel("pdbs"), compatibleProtein, "molecules",
+		hasCompatibleColumn(protSpec, (SettingsModelString) config.getModel("pdbs"), compatibleProtein, "molecules",
 				"proteins");
 		hasCompatibleColumnWithRowID(protSpec, (SettingsModelColumnName) config.getModel("labels"), compatibleLabel,
 				"labels", "proteins");

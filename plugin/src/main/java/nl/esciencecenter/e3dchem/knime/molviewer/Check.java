@@ -3,6 +3,7 @@ package nl.esciencecenter.e3dchem.knime.molviewer;
 import org.knime.core.data.DataColumnSpec;
 import org.knime.core.data.DataTableSpec;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.dynamic.js.v30.DynamicStatefulJSProcessor;
 
 public abstract class Check extends DynamicStatefulJSProcessor {
@@ -15,7 +16,7 @@ public abstract class Check extends DynamicStatefulJSProcessor {
 		super();
 	}
 
-	protected void hasCompatibleColumn(DataTableSpec spec, SettingsModelColumnName setting,
+	protected void hasCompatibleColumn(DataTableSpec spec, SettingsModelString setting,
 			isCompatibleLambda isCompatible, String columnLabel, String specName) {
 		int colIndex = -1;
 		boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
@@ -81,7 +82,7 @@ public abstract class Check extends DynamicStatefulJSProcessor {
 		}
 	}
 	
-	protected void hasCompatibleColumnOptional(DataTableSpec spec, SettingsModelColumnName setting, isCompatibleLambda isCompatible, String columnLabel, String specName) {
+	protected void hasCompatibleColumnOptional(DataTableSpec spec, SettingsModelString setting, isCompatibleLambda isCompatible, String columnLabel, String specName) {
 		int colIndex = -1;
         boolean settingIsDefault = setting.getStringValue() == "" || setting.getStringValue() == null
                 || setting.getStringValue().isEmpty();

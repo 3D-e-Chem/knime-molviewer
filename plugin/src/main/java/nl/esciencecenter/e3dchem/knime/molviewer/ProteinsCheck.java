@@ -9,6 +9,7 @@ import org.knime.core.data.StringValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.port.PortObject;
 import org.knime.dynamic.js.v30.DynamicJSConfig;
 
@@ -29,7 +30,7 @@ public class ProteinsCheck extends Check {
 		BufferedDataTable table = (BufferedDataTable) inObjects[0];
 		DataTableSpec spec = table.getSpec();
 
-		hasCompatibleColumn(spec, (SettingsModelColumnName) config.getModel("pdbs"), compatibleProtein, "molecules",
+		hasCompatibleColumn(spec, (SettingsModelString) config.getModel("pdbs"), compatibleProtein, "molecules",
 				"proteins");
 		hasCompatibleColumnWithRowID(spec, (SettingsModelColumnName) config.getModel("labels"), compatibleLabel,
 				"labels", "proteins");

@@ -10,6 +10,7 @@ import org.knime.core.data.vector.doublevector.DoubleVectorValue;
 import org.knime.core.node.BufferedDataTable;
 import org.knime.core.node.ExecutionContext;
 import org.knime.core.node.defaultnodesettings.SettingsModelColumnName;
+import org.knime.core.node.defaultnodesettings.SettingsModelString;
 import org.knime.core.node.port.PortObject;
 import org.knime.dynamic.js.v30.DynamicJSConfig;
 
@@ -35,15 +36,15 @@ public class PharmacophoresCheck extends Check {
 		BufferedDataTable table = (BufferedDataTable) inObjects[0];
 		DataTableSpec spec = table.getSpec();
 
-		hasCompatibleColumn(spec, (SettingsModelColumnName) config.getModel("pharmacophores"), compatiblePhar,
+		hasCompatibleColumn(spec, (SettingsModelString) config.getModel("pharmacophores"), compatiblePhar,
 				"molecules", "pharmacophores");
 		hasCompatibleColumnWithRowID(spec, (SettingsModelColumnName) config.getModel("labels"), compatibleLabel,
 				"labels", "pharmacophores");
-		hasCompatibleColumnOptional(spec, (SettingsModelColumnName) config.getModel("ligands"), compatibleLigand,
+		hasCompatibleColumnOptional(spec, (SettingsModelString) config.getModel("ligands"), compatibleLigand,
 				"ligands", "pharmacophores");
-		hasCompatibleColumnOptional(spec, (SettingsModelColumnName) config.getModel("proteins"), compatibleProtein,
+		hasCompatibleColumnOptional(spec, (SettingsModelString) config.getModel("proteins"), compatibleProtein,
 				"proteins", "pharmacophores");
-		hasCompatibleColumnOptional(spec, (SettingsModelColumnName) config.getModel("transform"), compatibleTransform,
+		hasCompatibleColumnOptional(spec, (SettingsModelString) config.getModel("transform"), compatibleTransform,
 				"transform", "pharmacophores");
 
 		return inObjects;
