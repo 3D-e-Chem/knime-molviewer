@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="workflow.knime">
-<entry key="created_by" type="xstring" value="3.5.0.v201712041255"/>
+<entry key="created_by" type="xstring" value="4.0.1.v201908131317"/>
 <entry key="created_by_nightly" type="xboolean" value="false"/>
-<entry key="version" type="xstring" value="3.1.0"/>
+<entry key="version" type="xstring" value="3.8.0"/>
 <entry key="name" type="xstring" isnull="true" value=""/>
 <config key="authorInformation">
 <entry key="authored-by" type="xstring" value="stefanv"/>
 <entry key="authored-when" type="xstring" value="2017-06-21 15:18:13 +0200"/>
-<entry key="lastEdited-by" type="xstring" value="verhoes"/>
-<entry key="lastEdited-when" type="xstring" value="2017-12-11 10:54:37 +0100"/>
+<entry key="lastEdited-by" type="xstring" value="stefanv"/>
+<entry key="lastEdited-when" type="xstring" value="2019-09-23 16:08:41 +0200"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
 <entry key="state" type="xstring" value="CONFIGURED"/>
@@ -25,24 +25,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="584"/>
 <entry key="1" type="xint" value="77"/>
-<entry key="2" type="xint" value="112"/>
-<entry key="3" type="xint" value="91"/>
-</config>
-</config>
-</config>
-<config key="node_2">
-<entry key="id" type="xint" value="2"/>
-<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#2)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="784"/>
-<entry key="1" type="xint" value="217"/>
-<entry key="2" type="xint" value="108"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="84"/>
+<entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>
@@ -57,8 +41,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="64"/>
 <entry key="1" type="xint" value="37"/>
-<entry key="2" type="xint" value="113"/>
-<entry key="3" type="xint" value="77"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -73,8 +57,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="444"/>
 <entry key="1" type="xint" value="717"/>
-<entry key="2" type="xint" value="90"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="123"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -89,24 +73,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="604"/>
 <entry key="1" type="xint" value="717"/>
-<entry key="2" type="xint" value="90"/>
-<entry key="3" type="xint" value="91"/>
-</config>
-</config>
-</config>
-<config key="node_6">
-<entry key="id" type="xint" value="6"/>
-<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#6)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="784"/>
-<entry key="1" type="xint" value="717"/>
-<entry key="2" type="xint" value="108"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="123"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -121,8 +89,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="184"/>
 <entry key="1" type="xint" value="297"/>
-<entry key="2" type="xint" value="111"/>
-<entry key="3" type="xint" value="77"/>
+<entry key="2" type="xint" value="75"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -137,8 +105,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="44"/>
 <entry key="1" type="xint" value="297"/>
-<entry key="2" type="xint" value="121"/>
-<entry key="3" type="xint" value="77"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -153,8 +121,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="184"/>
 <entry key="1" type="xint" value="417"/>
-<entry key="2" type="xint" value="111"/>
-<entry key="3" type="xint" value="77"/>
+<entry key="2" type="xint" value="75"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -169,8 +137,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="404"/>
 <entry key="1" type="xint" value="197"/>
-<entry key="2" type="xint" value="96"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="113"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -185,8 +153,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="524"/>
 <entry key="1" type="xint" value="217"/>
-<entry key="2" type="xint" value="96"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="113"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -201,56 +169,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="644"/>
 <entry key="1" type="xint" value="217"/>
-<entry key="2" type="xint" value="139"/>
-<entry key="3" type="xint" value="77"/>
-</config>
-</config>
-</config>
-<config key="node_19">
-<entry key="id" type="xint" value="19"/>
-<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#19)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="784"/>
-<entry key="1" type="xint" value="357"/>
-<entry key="2" type="xint" value="108"/>
-<entry key="3" type="xint" value="91"/>
-</config>
-</config>
-</config>
-<config key="node_20">
-<entry key="id" type="xint" value="20"/>
-<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#20)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="784"/>
-<entry key="1" type="xint" value="537"/>
-<entry key="2" type="xint" value="108"/>
-<entry key="3" type="xint" value="91"/>
-</config>
-</config>
-</config>
-<config key="node_21">
-<entry key="id" type="xint" value="21"/>
-<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#21)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="784"/>
-<entry key="1" type="xint" value="57"/>
-<entry key="2" type="xint" value="108"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="104"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -266,7 +186,7 @@
 <entry key="0" type="xint" value="64"/>
 <entry key="1" type="xint" value="177"/>
 <entry key="2" type="xint" value="101"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>
@@ -281,8 +201,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="264"/>
 <entry key="1" type="xint" value="77"/>
-<entry key="2" type="xint" value="96"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="113"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -297,8 +217,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="164"/>
 <entry key="1" type="xint" value="737"/>
-<entry key="2" type="xint" value="121"/>
-<entry key="3" type="xint" value="77"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -313,24 +233,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="444"/>
 <entry key="1" type="xint" value="877"/>
-<entry key="2" type="xint" value="90"/>
-<entry key="3" type="xint" value="91"/>
-</config>
-</config>
-</config>
-<config key="node_26">
-<entry key="id" type="xint" value="26"/>
-<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#26)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="784"/>
-<entry key="1" type="xint" value="877"/>
-<entry key="2" type="xint" value="108"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="123"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -345,8 +249,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="604"/>
 <entry key="1" type="xint" value="877"/>
-<entry key="2" type="xint" value="90"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="123"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -361,8 +265,8 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="304"/>
 <entry key="1" type="xint" value="877"/>
-<entry key="2" type="xint" value="121"/>
-<entry key="3" type="xint" value="77"/>
+<entry key="2" type="xint" value="85"/>
+<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -377,8 +281,104 @@
 <entry key="array-size" type="xint" value="4"/>
 <entry key="0" type="xint" value="304"/>
 <entry key="1" type="xint" value="717"/>
-<entry key="2" type="xint" value="96"/>
-<entry key="3" type="xint" value="91"/>
+<entry key="2" type="xint" value="113"/>
+<entry key="3" type="xint" value="79"/>
+</config>
+</config>
+</config>
+<config key="node_30">
+<entry key="id" type="xint" value="30"/>
+<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#30)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="784"/>
+<entry key="1" type="xint" value="57"/>
+<entry key="2" type="xint" value="108"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
+<config key="node_31">
+<entry key="id" type="xint" value="31"/>
+<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#31)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="784"/>
+<entry key="1" type="xint" value="217"/>
+<entry key="2" type="xint" value="108"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
+<config key="node_32">
+<entry key="id" type="xint" value="32"/>
+<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#32)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="784"/>
+<entry key="1" type="xint" value="357"/>
+<entry key="2" type="xint" value="108"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
+<config key="node_33">
+<entry key="id" type="xint" value="33"/>
+<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#33)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="784"/>
+<entry key="1" type="xint" value="537"/>
+<entry key="2" type="xint" value="108"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
+<config key="node_34">
+<entry key="id" type="xint" value="34"/>
+<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#34)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="784"/>
+<entry key="1" type="xint" value="717"/>
+<entry key="2" type="xint" value="108"/>
+<entry key="3" type="xint" value="95"/>
+</config>
+</config>
+</config>
+<config key="node_35">
+<entry key="id" type="xint" value="35"/>
+<entry key="node_settings_file" type="xstring" value="Pharmacophores Viewer (#35)/settings.xml"/>
+<entry key="node_is_meta" type="xboolean" value="false"/>
+<entry key="node_type" type="xstring" value="NativeNode"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
+<config key="ui_settings">
+<config key="extrainfo.node.bounds">
+<entry key="array-size" type="xint" value="4"/>
+<entry key="0" type="xint" value="784"/>
+<entry key="1" type="xint" value="877"/>
+<entry key="2" type="xint" value="108"/>
+<entry key="3" type="xint" value="95"/>
 </config>
 </config>
 </config>
@@ -398,7 +398,7 @@
 </config>
 <config key="connection_2">
 <entry key="sourceID" type="xint" value="5"/>
-<entry key="destID" type="xint" value="6"/>
+<entry key="destID" type="xint" value="34"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
@@ -434,25 +434,29 @@
 </config>
 <config key="connection_8">
 <entry key="sourceID" type="xint" value="17"/>
-<entry key="destID" type="xint" value="19"/>
+<entry key="destID" type="xint" value="31"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_9">
 <entry key="sourceID" type="xint" value="17"/>
-<entry key="destID" type="xint" value="21"/>
+<entry key="destID" type="xint" value="30"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
+<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.ConnectionUIInformation"/>
+<config key="ui_settings">
+<entry key="extrainfo.conn.bendpoints_size" type="xint" value="0"/>
+</config>
 </config>
 <config key="connection_10">
 <entry key="sourceID" type="xint" value="17"/>
-<entry key="destID" type="xint" value="20"/>
+<entry key="destID" type="xint" value="33"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_11">
 <entry key="sourceID" type="xint" value="17"/>
-<entry key="destID" type="xint" value="2"/>
+<entry key="destID" type="xint" value="32"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
@@ -488,7 +492,7 @@
 </config>
 <config key="connection_17">
 <entry key="sourceID" type="xint" value="27"/>
-<entry key="destID" type="xint" value="26"/>
+<entry key="destID" type="xint" value="35"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
