@@ -232,10 +232,4 @@ http://www.apache.org/licenses/
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-   <plugin
-         id="nl.esciencecenter.e3dchem.knime.molviewer.server"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
 </feature>

@@ -15,12 +15,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.knime.dynamic.node.generation;bundle-version="[4.0.0,5.0.0)",
  org.knime.js.core;bundle-version="[4.0.0,5.0.0)",
  nl.esciencecenter.e3dchem.plugin;bundle-version="[1.0.0,2.0.0)",
- nl.esciencecenter.e3dchem.knime.molviewer.server,
  nl.esciencecenter.e3dchem.knime.pharmacophore.plugin;bundle-version="[1.0.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Export-Package: nl.esciencecenter.e3dchem.knime.molviewer,
- nl.esciencecenter.e3dchem.knime.molviewer.ligands,
- nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins,
- nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores,
- nl.esciencecenter.e3dchem.knime.molviewer.proteins
