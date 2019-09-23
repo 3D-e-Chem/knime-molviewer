@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:knimeNode
+	xmlns:js="http://knime.org/dynamicjsnode/v3.0"
+	xmlns="http://knime.org/dynamicnode/v3.0"
+	xmlns:n="http://knime.org/node/v2.12"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/dynamicjsnode/v3.0 http://www.knime.org/node/dynamicJSNode_v3.0.xsd"
+	jsNamespace="molviewerLigands" nodeID="molviewer_ligands"
+	categoryPath="/community/3d-e-chem/molviewer"
+	icon="../../../../icons/molviewer.png" type="Visualizer">
+	<name>Ligands Viewer</name>
+	<shortDescription>
+		Node to view ligands in 3D
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			<n:p>Node to view ligands or small molecules in 3D</n:p>
+
+			<n:p>
+				Source code available at
+				<n:a href="https://github.com/3D-e-Chem/knime-molviewer">Github</n:a>
+				.
+			</n:p>
+		</intro>
+
+		<options>
+			<columnSelectorOption
+				name="Column with SDF or Mol2 formatted molecules" id="ligands" inPortIndex="0"
+				label="Column with SDF or Mol2 molecules" saveInView="true"
+				filterClasses="org.knime.chem.types.SdfValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
+			<columnSelectorOption name="Column with labels"
+				id="labels" inPortIndex="0" label="Column with labels"
+				saveInView="true" filterClasses="org.knime.core.data.StringValue"
+				allowRowID="true" optional="true"></columnSelectorOption>
+		</options>
+	</fullDescription>
+	<outputOptions>
+		<dataOutputOption outPortIndex="1" id="selection"
+			additionalColumnName="Molecule Selection"
+			additionalColumnType="BOOLEAN" inPortIndex="0" />
+	</outputOptions>
+	<interactiveView name="Molecule viewer">
+		The KNIME Small molecules or ligands viewer with
+		NGL.
+	</interactiveView>
+	<ports>
+		<inPort portType="Data" name="Display data" index="0">
+			Table
+			containing molecules in SDF or Mol2 format
+		</inPort>
+	</ports>
+	<js:resources>
+		<js:resource type="js" path="ligands.js" />
+		<js:resource type="css" path="ligands.css" />
+	</js:resources>
+	<js:dependencies>
+		<js:dependency name="MolViewer" path="molviewer-1.0.0"
+			type="local" exports="Molviewer" />
+	</js:dependencies>
+</js:knimeNode>

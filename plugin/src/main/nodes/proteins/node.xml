@@ -31,7 +31,7 @@
 				filterClasses="org.knime.bio.types.PdbValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
 			<columnSelectorOption name="Column with labels"
 				id="labels" inPortIndex="0" label="Column with labels"
-				saveInView="true" filterClasses="org.knime.bio.types.PdbValue"
+				saveInView="true" filterClasses="org.knime.core.data.StringValue"
 				allowRowID="true" optional="true"></columnSelectorOption>
 		</options>
 	</fullDescription>
@@ -49,22 +49,13 @@
 			Table
 			containing Proteins in PDB or Mol2 format
 		</inPort>
-		<outPort portType="Image" name="Proteins image" index="0">
-			PNG
-			image of the proteins if that option has been enabled.
-		</outPort>
-		<outPort portType="Data" name="Input Data + View Selection"
-			index="1">
-			Data table containing the input data with an appended boolean
-			column representing which rows were selected in the view.
-		</outPort>
 	</ports>
 	<js:resources>
 		<js:resource type="js" path="proteins.js" />
 		<js:resource type="css" path="proteins.css" />
 	</js:resources>
 	<js:dependencies>
-		<js:dependency name="ngl" path="ngl_v2.0.0-dev.31"
-			type="local" exports="NGL" />
+		<js:dependency name="MolViewer" path="molviewer-1.0.0"
+			type="local" exports="Molviewer" />
 	</js:dependencies>
 </js:knimeNode>

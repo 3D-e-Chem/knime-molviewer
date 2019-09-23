@@ -15,8 +15,8 @@
     <extension point="org.knime.workbench.repository.nodes">
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerFactory"/>
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores.PharmacophoresViewerFactory"/>
+        <!--
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligands.LigandsViewerFactory"/>
-<!--
         <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.proteins.ProteinsViewerFactory"/>
         
         -->
@@ -33,19 +33,31 @@
           point="org.knime.js.core.webResources">
        <webResourceBundle
              debug="false"
-             exports="NGL"
-             name="ngl"
+             exports="MolViewer"
+             name="MolViewer"
              usesDefine="true"
-             version="v2.0.0-dev.31"
-             webResourceBundleID="ngl_v2.0.0-dev.31">
+             version="1.0.0"
+             webResourceBundleID="molviewer-1.0.0">
           <webResource
-                relativePathSource="src/main/js-lib/ngl/ngl_v2.0.0-dev.31.js"
-                relativePathTarget="js-lib/ngl/ngl_v2.0.0-dev.31.js">
+                relativePathSource="src/main/js-lib/molviewer/css/static/media/"
+                relativePathTarget="js-lib/molviewer/css/static/media/">
+          </webResource>
+          <webResource
+                relativePathSource="src/main/js-lib/molviewer/css/main.css"
+                relativePathTarget="js-lib/molviewer/css/main.css">
+         </webResource>
+         <webResource
+                relativePathSource="src/main/js-lib/molviewer/js/main.js"
+                relativePathTarget="js-lib/molviewer/js/main.js">
           </webResource>
           <importResource
-                relativePath="js-lib/ngl/ngl_v2.0.0-dev.31.js"
+                relativePath="js-lib/molviewer/js/main.js"
                 type="JAVASCRIPT">
           </importResource>
+          <importResource
+               relativePath="js-lib/molviewer/css/main.css"
+               type="CSS">
+         </importResource>
        </webResourceBundle>
     </extension>
 
