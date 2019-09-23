@@ -7,7 +7,7 @@
 	xsi:schemaLocation="http://knime.org/dynamicjsnode/v3.0 http://www.knime.org/node/dynamicJSNode_v3.0.xsd"
 	jsNamespace="molviewerLigandsAndProteins" nodeID="molviewer_ligands_proteins"
 	categoryPath="/community/3d-e-chem/molviewer"
-	icon="../../../../icons/molviewer.png" type="Visualizer">
+	icon="../molviewer.png" type="Visualizer">
 	<name>Ligands and Proteins Viewer</name>
 	<shortDescription>
 		Node to view ligands and proteins

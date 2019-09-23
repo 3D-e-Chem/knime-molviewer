@@ -7,7 +7,7 @@
 	xsi:schemaLocation="http://knime.org/dynamicjsnode/v3.0 http://www.knime.org/node/dynamicJSNode_v3.0.xsd"
 	jsNamespace="molviewerPharmacophores" nodeID="molviewer_pharmacophores"
 	categoryPath="/community/3d-e-chem/molviewer"
-	icon="../../../../icons/molviewer.png" type="Visualizer">
+	icon="../molviewer.png" type="Visualizer">
 	<name>Pharmacophores Viewer</name>
 	<shortDescription>
 		Node to view pharmacophores in 3D

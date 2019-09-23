@@ -18,3 +18,4 @@ Require-Bundle: org.eclipse.core.runtime,
  nl.esciencecenter.e3dchem.knime.pharmacophore.plugin;bundle-version="[1.0.0,2.0.0)"
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
+Eclipse-BundleShape: dir

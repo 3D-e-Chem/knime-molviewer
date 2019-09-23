@@ -5,7 +5,7 @@
   <extension point="org.knime.workbench.repository.categories">
       <category
           description="Category containing molecule viewer nodes"
-          icon="icons/molviewer.png"
+          icon="src/main/nodes/molviewer.png"
           level-id="molviewer"
           locked="false"
           name="Molviewer"
