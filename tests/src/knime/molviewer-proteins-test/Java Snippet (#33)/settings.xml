@@ -38,6 +38,9 @@
 <entry key="version" type="xstring" value="version 1.x"/>
 <entry key="templateUUID" type="xstring" isnull="true" value=""/>
 <entry key="runOnExecute" type="xboolean" value="false"/>
+<config key="bundles">
+<entry key="array-size" type="xint" value="0"/>
+</config>
 </config>
 <config key="nodeAnnotation">
 <entry key="text" type="xstring" value="Missing label"/>
@@ -45,7 +48,7 @@
 <entry key="x-coordinate" type="xint" value="443"/>
 <entry key="y-coordinate" type="xint" value="639"/>
 <entry key="width" type="xint" value="115"/>
-<entry key="height" type="xint" value="14"/>
+<entry key="height" type="xint" value="16"/>
 <entry key="alignment" type="xstring" value="CENTER"/>
 <entry key="borderSize" type="xint" value="0"/>
 <entry key="borderColor" type="xint" value="16777215"/>
@@ -80,6 +83,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="a5117111-ec46-46aa-9037-b903d95d49c4"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>

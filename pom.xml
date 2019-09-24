@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>nl.esciencecenter.e3dchem.knime.molviewer</groupId>
 	<artifactId>nl.esciencecenter.e3dchem.knime.molviewer</artifactId>
-	<version>1.1.3-SNAPSHOT</version>
+	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<scm>
@@ -159,11 +159,10 @@
 		</profile>
 	</profiles>
 	<modules>
-		<module>server</module>
 		<module>plugin</module>
 		<module>feature</module>
 		<module>p2</module>
 		<module>tests</module>
-                <module>targetplatform</module>
+		<module>targetplatform</module>
 	</modules>
 </project>

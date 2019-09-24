@@ -4,51 +4,40 @@ import org.knime.core.node.NodeDialogPane;
 import org.knime.core.node.NodeFactory;
 import org.knime.core.node.NodeView;
 
-/**
- * <code>NodeFactory</code> for the "MolViewer" Node.
- *
- */
-public class LigandsViewerFactory extends NodeFactory<LigandsViewerModel> {
+import nl.esciencecenter.e3dchem.knime.molviewer.ViewerModel;
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public LigandsViewerModel createNodeModel() {
-		return new LigandsViewerModel();
+@Deprecated
+public class LigandsViewerFactory extends NodeFactory<ViewerModel> {
+
+	public LigandsViewerFactory() {
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public int getNrNodeViews() {
-		return 1;
+	public LigandsViewerFactory(boolean lazyInitialization) {
+		super(lazyInitialization);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public NodeView<LigandsViewerModel> createNodeView(final int viewIndex,
-			final LigandsViewerModel nodeModel) {
-		return new LigandsViewerView(nodeModel);
+	public ViewerModel createNodeModel() {
+		return new ViewerModel(1, 0);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public boolean hasDialog() {
-		return true;
+	protected int getNrNodeViews() {
+		return 0;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public NodeDialogPane createNodeDialogPane() {
-		return new LigandsViewerDialog();
+	public NodeView createNodeView(int viewIndex, ViewerModel nodeModel) {
+		return null;
 	}
 
+	@Override
+	protected boolean hasDialog() {
+		return false;
+	}
+
+	@Override
+	protected NodeDialogPane createNodeDialogPane() {
+		return null;
+	}
 }

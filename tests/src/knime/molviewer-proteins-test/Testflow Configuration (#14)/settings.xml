@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.knime.org/2008/09/XMLConfig" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.knime.org/2008/09/XMLConfig http://www.knime.org/XMLConfig_2008_09.xsd" key="settings.xml">
 <entry key="node_file" type="xstring" value="settings.xml"/>
-<config key="flow_stack"/>
+<config key="flow_stack">
+<config key="Variable_0">
+<entry key="type" type="xstring" value="variable"/>
+<entry key="name" type="xstring" value="testing.workflow-result-path"/>
+<entry key="class" type="xstring" value="STRING"/>
+<entry key="value" type="xstring" value="/tmp/mv-tests/molviewer-proteins-test"/>
+</config>
+</config>
 <config key="internal_node_subsettings">
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
 <entry key="owner" type="xstring" value="s.verhoeven@esciencecenter.nl"/>
 <config key="requiredLogErrors">
-<entry key="array-size" type="xint" value="1"/>
-<entry key="0" type="xstring" value="Execute failed: Row is 'Row0' is missing protein, unable to execute"/>
+<entry key="array-size" type="xint" value="0"/>
 </config>
 <config key="requiredLogWarnings">
 <entry key="array-size" type="xint" value="0"/>
@@ -28,14 +34,10 @@
 <entry key="3" type="xstring" value="21"/>
 </config>
 <config key="requiredNodeWarnings">
-<entry key="nodeID_0" type="xstring" value="24"/>
-<entry key="message_0" type="xstring" value="Column with molecules missing on port proteins"/>
-<entry key="count" type="xint" value="1"/>
+<entry key="count" type="xint" value="0"/>
 </config>
 <config key="requiredNodeErrors">
-<entry key="nodeID_0" type="xstring" value="25"/>
-<entry key="message_0" type="xstring" value="Execute failed: Row is 'Row0' is missing protein, unable to execute"/>
-<entry key="count" type="xint" value="1"/>
+<entry key="count" type="xint" value="0"/>
 </config>
 <entry key="timeout" type="xint" value="300"/>
 <entry key="maxHilitedRows" type="xint" value="2500"/>
@@ -52,7 +54,7 @@
 <entry key="node-bundle-name" type="xstring" value="Test-Node extension for KNIME Workbench"/>
 <entry key="node-bundle-symbolic-name" type="xstring" value="org.knime.testing"/>
 <entry key="node-bundle-vendor" type="xstring" value="KNIME AG, Zurich, Switzerland"/>
-<entry key="node-bundle-version" type="xstring" value="3.5.0.v201711041230"/>
+<entry key="node-bundle-version" type="xstring" value="4.0.0.v201906201739"/>
 <entry key="node-feature-name" type="xstring" isnull="true" value=""/>
 <entry key="node-feature-symbolic-name" type="xstring" isnull="true" value=""/>
 <entry key="node-feature-vendor" type="xstring" isnull="true" value=""/>
