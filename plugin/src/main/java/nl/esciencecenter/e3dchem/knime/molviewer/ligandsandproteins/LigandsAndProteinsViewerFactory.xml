@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<knimeNode icon="/src/main/nodes/molviewer.png" type="Visualizer" deprecated="true"
+	xmlns="http://knime.org/node/v2.8" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	
+	xsi:schemaLocation="http://knime.org/node/v2.10 http://knime.org/node/v2.10.xsd">	
+	<name>Ligands and Proteins Viewer</name>	
+
+	<shortDescription>	
+		Node to view ligands and proteins in web browser	
+	</shortDescription>	
+
+	<fullDescription>	
+		<intro>	
+			<p>Node to view ligands and proteins in a web browser</p>	
+
+			<p>When view is opened then it will automatically open a web browser with the viewer.</p>	
+			<p>	
+			Source code available at	
+			<a href="https://github.com/3D-e-Chem/knime-molviewer">Github</a>.	
+			</p>	
+		</intro>	
+
+		<option name="Ligands: Column with SDF molecules">Column with SDF or Mol2 formatted molecules in port 0.</option>	
+		<option name="Ligands: Column with labels" optional="true">Column with	
+			labels in port 0, if no column is selected uses Row ID.</option>	
+		<option name="Proteins: Column with PDB molecules">Column with PDB or Mol2 formatted molecules in port 1.</option>	
+		<option name="Proteins: Column with labels" optional="true">Column	
+			with labels in port 1, if no column is selected uses Row ID.</option>	
+	</fullDescription>	
+
+	<ports>	
+		<inPort index="0" name="Ligands">Table containing Ligands in SDF or Mol2 format</inPort>	
+		<inPort index="1" name="Proteins">Table containing Proteins in PDB or Mol2 format</inPort>	
+	</ports>	
+</knimeNode>
