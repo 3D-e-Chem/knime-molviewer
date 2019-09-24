@@ -31,14 +31,14 @@ public class LigandsAndProteinsCheck extends Check {
 		DataTableSpec ligandsSpec = ligandsTable.getSpec();
 		hasCompatibleColumn(ligandsSpec, (SettingsModelString) config.getModel("ligands"), compatibleLigand, "molecules",
 				"ligands");
-		hasCompatibleColumnWithRowID(ligandsSpec, (SettingsModelColumnName) config.getModel("labels"), compatibleLabel,
+		hasCompatibleColumnWithRowID(ligandsSpec, (SettingsModelColumnName) config.getModel("liglabels"), compatibleLabel,
 				"labels", "ligands");
 		
 		BufferedDataTable protTable = (BufferedDataTable) inObjects[1];
 		DataTableSpec protSpec = protTable.getSpec();
 		hasCompatibleColumn(protSpec, (SettingsModelString) config.getModel("pdbs"), compatibleProtein, "molecules",
 				"proteins");
-		hasCompatibleColumnWithRowID(protSpec, (SettingsModelColumnName) config.getModel("labels"), compatibleLabel,
+		hasCompatibleColumnWithRowID(protSpec, (SettingsModelColumnName) config.getModel("protlabels"), compatibleLabel,
 				"labels", "proteins");
 		
 		return inObjects;
