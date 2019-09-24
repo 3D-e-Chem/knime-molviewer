@@ -57,7 +57,7 @@
 <config key="styles"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="EXECUTED"/>
+<entry key="state" type="xstring" value="CONFIGURED"/>
 <entry key="factory" type="xstring" value="org.knime.dynamic.js.v30.DynamicJSNodeFactory"/>
 <entry key="node-name" type="xstring" value="Ligands and Proteins Viewer"/>
 <entry key="node-bundle-name" type="xstring" value="MolViewer Nodes"/>
@@ -72,11 +72,11 @@
 <entry key="nodeDir" type="xstring" value="nl.esciencecenter.e3dchem.knime.molviewer.plugin:src/main/nodes:ligandsandproteins"/>
 </config>
 <entry key="name" type="xstring" value="Ligands and Proteins Viewer"/>
-<entry key="hasContent" type="xboolean" value="true"/>
+<entry key="hasContent" type="xboolean" value="false"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="2d4eee8c-6042-47be-9ac2-bccb78daca70"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>

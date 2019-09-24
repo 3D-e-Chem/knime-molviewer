@@ -6,34 +6,39 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<config key="ligands_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<config key="maxRowsmodel_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
-<entry key="ligands" type="xstring" value="lig"/>
-<config key="transform_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-<entry key="EnabledStatus" type="xboolean" value="true"/>
-</config>
-<entry key="transform" type="xstring" isnull="true" value=""/>
-<config key="pharmacophores_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-<entry key="EnabledStatus" type="xboolean" value="true"/>
-</config>
-<entry key="pharmacophores" type="xstring" value="Pharmacophore"/>
-<config key="proteins_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
-<entry key="EnabledStatus" type="xboolean" value="true"/>
-</config>
-<entry key="proteins" type="xstring" value="prot"/>
+<entry key="maxRowsmodel" type="xint" value="2500"/>
 <config key="labels_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
 <config key="labels">
 <entry key="useRowID" type="xboolean" value="false"/>
-<entry key="columnName" type="xstring" value="lig"/>
+<entry key="columnName" type="xstring" value="label"/>
 </config>
+<config key="pharmacophores_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="pharmacophores" type="xstring" value="Pharmacophore"/>
+<config key="ligands_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="ligands" type="xstring" value="lig"/>
+<config key="proteins_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="proteins" type="xstring" value="prot"/>
+<config key="transform_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_string"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="transform" type="xstring" isnull="true" value=""/>
 <entry key="hideInWizard" type="xboolean" value="false"/>
 <entry key="maxRows" type="xint" value="2500"/>
 <entry key="generateImage" type="xboolean" value="false"/>

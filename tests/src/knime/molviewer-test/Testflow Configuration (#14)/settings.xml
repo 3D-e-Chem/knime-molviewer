@@ -6,7 +6,7 @@
 <entry key="type" type="xstring" value="variable"/>
 <entry key="name" type="xstring" value="testing.workflow-result-path"/>
 <entry key="class" type="xstring" value="STRING"/>
-<entry key="value" type="xstring" value="/tmp/molviewer-test"/>
+<entry key="value" type="xstring" value="/tmp/mv-tests/molviewer-test"/>
 </config>
 </config>
 <config key="internal_node_subsettings">
@@ -52,7 +52,7 @@
 <entry key="requiredLoadVersion" type="xstring" value="&lt;future&gt;"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
-<entry key="state" type="xstring" value="CONFIGURED"/>
+<entry key="state" type="xstring" value="EXECUTED"/>
 <entry key="factory" type="xstring" value="org.knime.testing.node.config.TestConfigNodeFactory"/>
 <entry key="node-name" type="xstring" value="Testflow Configuration"/>
 <entry key="node-bundle-name" type="xstring" value="Test-Node extension for KNIME Workbench"/>
@@ -65,11 +65,11 @@
 <entry key="node-feature-version" type="xstring" value="0.0.0"/>
 <config key="factory_settings"/>
 <entry key="name" type="xstring" value="Testflow Configuration"/>
-<entry key="hasContent" type="xboolean" value="false"/>
+<entry key="hasContent" type="xboolean" value="true"/>
 <entry key="isInactive" type="xboolean" value="false"/>
 <config key="ports"/>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" isnull="true" value=""/>
+<entry key="file_store_id" type="xstring" value="f754cd34-a04d-457f-a223-a2387349ae04"/>
 </config>
 </config>

@@ -6,11 +6,6 @@
 <entry key="memory_policy" type="xstring" value="CacheSmallInMemory"/>
 </config>
 <config key="model">
-<config key="maxRowsmodel_Internals">
-<entry key="SettingsModelID" type="xstring" value="SMID_integer"/>
-<entry key="EnabledStatus" type="xboolean" value="true"/>
-</config>
-<entry key="maxRowsmodel" type="xint" value="2499"/>
 <config key="pdbs_Internals">
 <entry key="SettingsModelID" type="xstring" value="SMID_string"/>
 <entry key="EnabledStatus" type="xboolean" value="true"/>

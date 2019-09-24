@@ -8,7 +8,7 @@
 <entry key="authored-by" type="xstring" value="verhoes"/>
 <entry key="authored-when" type="xstring" value="2017-09-08 09:57:05 +0200"/>
 <entry key="lastEdited-by" type="xstring" value="stefanv"/>
-<entry key="lastEdited-when" type="xstring" value="2019-09-23 16:54:53 +0200"/>
+<entry key="lastEdited-when" type="xstring" value="2019-09-24 10:01:58 +0200"/>
 </config>
 <entry key="customDescription" type="xstring" isnull="true" value=""/>
 <entry key="state" type="xstring" value="CONFIGURED"/>
@@ -59,22 +59,6 @@
 <entry key="1" type="xint" value="57"/>
 <entry key="2" type="xint" value="84"/>
 <entry key="3" type="xint" value="95"/>
-</config>
-</config>
-</config>
-<config key="node_22">
-<entry key="id" type="xint" value="22"/>
-<entry key="node_settings_file" type="xstring" value="Table Creator (#22)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="344"/>
-<entry key="1" type="xint" value="337"/>
-<entry key="2" type="xint" value="85"/>
-<entry key="3" type="xint" value="79"/>
 </config>
 </config>
 </config>
@@ -142,22 +126,6 @@
 </config>
 </config>
 </config>
-<config key="node_36">
-<entry key="id" type="xint" value="36"/>
-<entry key="node_settings_file" type="xstring" value="Proteins Viewer (#36)/settings.xml"/>
-<entry key="node_is_meta" type="xboolean" value="false"/>
-<entry key="node_type" type="xstring" value="NativeNode"/>
-<entry key="ui_classname" type="xstring" value="org.knime.core.node.workflow.NodeUIInformation"/>
-<config key="ui_settings">
-<config key="extrainfo.node.bounds">
-<entry key="array-size" type="xint" value="4"/>
-<entry key="0" type="xint" value="564"/>
-<entry key="1" type="xint" value="337"/>
-<entry key="2" type="xint" value="99"/>
-<entry key="3" type="xint" value="79"/>
-</config>
-</config>
-</config>
 <config key="node_37">
 <entry key="id" type="xint" value="37"/>
 <entry key="node_settings_file" type="xstring" value="Proteins Viewer (#37)/settings.xml"/>
@@ -211,24 +179,18 @@
 <entry key="destPort" type="xint" value="1"/>
 </config>
 <config key="connection_3">
-<entry key="sourceID" type="xint" value="22"/>
-<entry key="destID" type="xint" value="36"/>
-<entry key="sourcePort" type="xint" value="1"/>
-<entry key="destPort" type="xint" value="1"/>
-</config>
-<config key="connection_4">
 <entry key="sourceID" type="xint" value="28"/>
 <entry key="destID" type="xint" value="29"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
-<config key="connection_5">
+<config key="connection_4">
 <entry key="sourceID" type="xint" value="29"/>
 <entry key="destID" type="xint" value="37"/>
 <entry key="sourcePort" type="xint" value="1"/>
 <entry key="destPort" type="xint" value="1"/>
 </config>
-<config key="connection_6">
+<config key="connection_5">
 <entry key="sourceID" type="xint" value="33"/>
 <entry key="destID" type="xint" value="38"/>
 <entry key="sourcePort" type="xint" value="1"/>
