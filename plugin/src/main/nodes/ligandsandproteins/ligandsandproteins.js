@@ -9,11 +9,15 @@ window.molviewerLigandsAndProteins = function () {
         document.body.append(div);
 
         const app = new window.MolViewer.LigandsAndProteinsViewerApp(div);
+        this.app = app;
+
         app.render();
 
         const ligandsPort = representation.inObjects[0];
         const ligandsColumnName = value.options.ligands;
         const ligandsColumnIndex = ligandsPort.spec.colNames.findIndex(n => n === ligandsColumnName);
+
+        this.value = value;
 
         let ligandLabelColumnIndex = undefined;
         if ('liglabels' in value.options) {
@@ -34,13 +38,12 @@ window.molviewerLigandsAndProteins = function () {
         // From outside to inside
         const ligandTableId = ligandsPort.id;
         knimeService.subscribeToSelection(ligandTableId, e => {
-            // TODO bi-directional selection causes infinite loop
-            // disabled recieving selections
+            const currently_shown = new Set(this.app.store.getState().ligands.filter(m => m.visible).map(m => m.id));
             if ('added' in e.changeSet) {
-                // e.changeSet.added.forEach(app.toggleLigandVisibility);
+                e.changeSet.added.filter(id => !currently_shown.has(id)).forEach(app.toggleLigandVisibility);
             }
             if ('removed' in e.changeSet) {
-                // e.changeSet.removed.forEach(app.toggleLigandVisibility);
+                e.changeSet.removed.filter(id => currently_shown.has(id)).forEach(app.toggleLigandVisibility);
             }
         });
         // From inside to outside
@@ -63,6 +66,15 @@ window.molviewerLigandsAndProteins = function () {
         })
         
         app.setLigands(ligands);
+
+        const initialLigandSelection = {
+            selectionMethod: "selection",
+            changeSet: {
+                added: this.app.store.getState().ligands.filter(m => m.visible).map(m => m.id),
+                removed: this.app.store.getState().ligands.filter(m => !m.visible).map(m => m.id)
+            }
+        };
+        knimeService.publishSelection(ligandTableId, initialLigandSelection, true)
 
         const proteinsPort = representation.inObjects[1];
         const proteinColumnName = value.options.pdbs;
@@ -87,11 +99,12 @@ window.molviewerLigandsAndProteins = function () {
         // From outside to inside
         const proteinTableId = proteinsPort.id;
         knimeService.subscribeToSelection(proteinTableId, e => {
+            const currently_shown = new Set(this.app.store.getState().proteins.filter(m => m.visible).map(m => m.id));
             if ('added' in e.changeSet) {
-                e.changeSet.added.forEach(app.toggleProteinVisibility);
+                e.changeSet.added.filter(id => !currently_shown.has(id)).forEach(app.toggleProteinVisibility);
             }
             if ('removed' in e.changeSet) {
-                e.changeSet.removed.forEach(app.toggleProteinVisibility);
+                e.changeSet.removed.filter(id => currently_shown.has(id)).forEach(app.toggleProteinVisibility);
             }
         });
         // From inside to outside
@@ -110,12 +123,19 @@ window.molviewerLigandsAndProteins = function () {
                     selection.changeSet.removed.push(toggle.id);
                 }
             });
-            // TODO bi-directional selection causes infinite loop
-            // disabled recieving selections
-            // knimeService.publishSelection(proteinTableId, selection, true) 
+            knimeService.publishSelection(proteinTableId, selection, true) 
         })
 
         app.setProteins(proteins);
+
+        const initialSelection = {
+            selectionMethod: "selection",
+            changeSet: {
+                added: this.app.store.getState().proteins.filter(m => m.visible).map(m => m.id),
+                removed: this.app.store.getState().proteins.filter(m => !m.visible).map(m => m.id)
+            }
+        };
+        knimeService.publishSelection(proteinTableId, initialSelection, true)
     }
 
     MolviewerLigandsAndProteins.getPNG = function () {
@@ -123,7 +143,20 @@ window.molviewerLigandsAndProteins = function () {
     }
 
     MolviewerLigandsAndProteins.getComponentValue = function () {
-        return {};
+        const state = this.app.store.getState();
+        const ligandselection = {};
+        state.ligands.forEach(m => {
+            ligandselection[m.id] = m.visible;
+        });
+        const proteinselection = {};
+        state.proteins.forEach(m => {
+            proteinselection[m.id] = m.visible;
+        });
+        this.value.outColumns = {
+            ligandselection,
+            proteinselection
+        };
+        return this.value;
     }
 
     MolviewerLigandsAndProteins.validate = function () {

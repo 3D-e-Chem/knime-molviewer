@@ -1,19 +1,21 @@
 window.molviewerLigands = function () {
     const MolviewerLigands = {};
     MolviewerLigands.init = function (representation, value, modules) {
-        debugger
-        // const Molviewer = modules[0];
-
         const div = document.createElement('div');
         div.setAttribute('id', 'viewport');
         document.body.append(div);
 
         const app = new window.MolViewer.LigandsViewerApp(div);
+        this.app = app;
+
         app.render();
 
         const ligandsPort = representation.inObjects[0];
         const molColumnName = value.options.ligands;
         const molColumnIndex = ligandsPort.spec.colNames.findIndex(n => n === molColumnName);
+        const tableId = ligandsPort.id;
+
+        this.value = value;
 
         let labelColumnIndex = undefined;
         if ('labels' in value.options) {
@@ -21,7 +23,7 @@ window.molviewerLigands = function () {
             labelColumnIndex = ligandsPort.spec.colNames.findIndex(n => n === labelColumnName);
         }
 
-        const Ligands = ligandsPort.rows.map(row => {
+        const ligands = ligandsPort.rows.map(row => {
             return {
                 id: row.rowKey,
                 label: labelColumnIndex !== undefined ? row.data[labelColumnIndex] : row.rowKey,
@@ -32,15 +34,13 @@ window.molviewerLigands = function () {
 
         // Hookup selection events
         // From outside to inside
-        const tableId = ligandsPort.id;
         knimeService.subscribeToSelection(tableId, e => {
-            // TODO bi-directional selection causes infinite loop
-            // disabled recieving selections
+            const currently_shown = new Set(this.app.store.getState().ligands.filter(m => m.visible).map(m => m.id));
             if ('added' in e.changeSet) {
-                // e.changeSet.added.forEach(app.toggleVisibility);
+                e.changeSet.added.filter(id => !currently_shown.has(id)).forEach(app.toggleVisibility);
             }
             if ('removed' in e.changeSet) {
-                // e.changeSet.removed.forEach(app.toggleVisibility);
+                e.changeSet.removed.filter(id => currently_shown.has(id)).forEach(app.toggleVisibility);
             }
         });
         // From inside to outside
@@ -59,9 +59,18 @@ window.molviewerLigands = function () {
                     selection.changeSet.removed.push(toggle.id);
                 }
             });
-            knimeService.publishSelection(tableId, selection, true) 
+            knimeService.publishSelection(tableId, selection, true)
         })
-        app.setLigands(Ligands);
+        app.setLigands(ligands);
+
+        const initialSelection = {
+            selectionMethod: "selection",
+            changeSet: {
+                added: this.app.store.getState().ligands.filter(m => m.visible).map(m => m.id),
+                removed: this.app.store.getState().ligands.filter(m => !m.visible).map(m => m.id)
+            }
+        };
+        knimeService.publishSelection(tableId, initialSelection, true)
     }
 
     MolviewerLigands.getPNG = function () {
@@ -69,7 +78,15 @@ window.molviewerLigands = function () {
     }
 
     MolviewerLigands.getComponentValue = function () {
-        return {};
+        const state = this.app.store.getState();
+        const selection = {};
+        state.ligands.forEach(m => {
+            selection[m.id] = m.visible;
+        });
+        this.value.outColumns = {
+            selection
+        };
+        return this.value;
     }
 
     MolviewerLigands.validate = function () {

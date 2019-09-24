@@ -49,9 +49,12 @@
 		</options>
 	</fullDescription>
 	<outputOptions>
-		<dataOutputOption outPortIndex="1" id="selection"
-			additionalColumnName="Molecule Selection"
+		<dataOutputOption outPortIndex="0" id="ligandselection"
+			additionalColumnName="Ligand Selection"
 			additionalColumnType="BOOLEAN" inPortIndex="0" />
+		<dataOutputOption outPortIndex="1" id="proteinselection"
+			additionalColumnName="Protein Selection"
+			additionalColumnType="BOOLEAN" inPortIndex="1" />
 	</outputOptions>
 	<interactiveView name="Molecule viewer">
 		The KNIME ligands and proteins viewer with
@@ -59,11 +62,21 @@
 	</interactiveView>
 	<ports>
 		<inPort portType="Data" name="Ligands" index="0">
-			Table containing Ligands in SDF or Mol2 format
+			Table containing ligands in SDF or Mol2 format
 		</inPort>
 		<inPort portType="Data" name="Proteins" index="1">
-			Table containing Proteins in PDB or Mol2 format
+			Table containing proteins in PDB or Mol2 format
 		</inPort>
+		<outPort portType="Data" name="Ligands input Data + View Selection"
+			index="0">
+			Data table containing the ligands input data with an appended boolean
+			column representing which rows were selected in the view.
+		</outPort>
+		<outPort portType="Data" name="Proteins input Data + View Selection"
+			index="1">
+			Data table containing the proteins input data with an appended boolean
+			column representing which rows were selected in the view.
+		</outPort>
 	</ports>
 	<js:resources>
 		<js:resource type="js" path="ligandsandproteins.js" />

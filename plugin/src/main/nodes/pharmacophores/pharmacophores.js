@@ -9,11 +9,16 @@ window.molviewerPharmacophores = function () {
         document.body.append(div);
 
         const app = new window.MolViewer.PharmacophoresViewerApp(div);
+        this.app = app;
+
         app.render();
 
         const pharmacophoresPort = representation.inObjects[0];
         const pharColumnName = value.options.pharmacophores;
         const pharColumnIndex = pharmacophoresPort.spec.colNames.findIndex(n => n === pharColumnName);
+        const tableId = pharmacophoresPort.id;
+
+        this.value = value;
 
         let labelColumnIndex = undefined;
         if ('labels' in value.options) {
@@ -68,15 +73,13 @@ window.molviewerPharmacophores = function () {
 
         // Hookup selection events
         // From outside to inside
-        const tableId = pharmacophoresPort.id;
         knimeService.subscribeToSelection(tableId, e => {
-            // TODO bi-directional selection causes infinite loop
-            // disabled recieving selections
+            const currently_shown = new Set(this.app.store.getState().pharmacophores.filter(m => m.visible).map(m => m.id));
             if ('added' in e.changeSet) {
-                // e.changeSet.added.forEach(app.toggleVisibility);
+                e.changeSet.added.filter(id => !currently_shown.has(id)).forEach(app.toggleVisibility);
             }
             if ('removed' in e.changeSet) {
-                // e.changeSet.removed.forEach(app.toggleVisibility);
+                e.changeSet.removed.filter(id => currently_shown.has(id)).forEach(app.toggleVisibility);
             }
         });
         // From inside to outside
@@ -98,6 +101,15 @@ window.molviewerPharmacophores = function () {
             knimeService.publishSelection(tableId, selection, true) 
         })
         app.setPharmacophores(Pharmacophores);
+
+        const initialSelection = {
+            selectionMethod: "selection",
+            changeSet: {
+                added: this.app.store.getState().pharmacophores.filter(m => m.visible).map(m => m.id),
+                removed: this.app.store.getState().pharmacophores.filter(m => !m.visible).map(m => m.id)
+            }
+        };
+        knimeService.publishSelection(tableId, initialSelection, true)
     }
 
     MolviewerPharmacophores.getPNG = function () {
@@ -105,7 +117,15 @@ window.molviewerPharmacophores = function () {
     }
 
     MolviewerPharmacophores.getComponentValue = function () {
-        return {};
+        const state = this.app.store.getState();
+        const selection = {};
+        state.pharmacophores.forEach(m => {
+            selection[m.id] = m.visible;
+        });
+        this.value.outColumns = {
+            selection
+        };
+        return this.value;
     }
 
     MolviewerPharmacophores.validate = function () {
