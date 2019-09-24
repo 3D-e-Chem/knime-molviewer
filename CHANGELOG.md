@@ -5,6 +5,14 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+Workflows using v1 molviewer nodes will need to replace them with the v2 molviewer nodes.
+
+## [2.0.0] - 2019-09-24
+
+### Changed
+
+- Replaced Java based nodes via server with Dynamic js nodes ([#27](https://github.com/3D-e-Chem/knime-molviewer/issues/27))
+
 ## [1.1.3] - 2019-06-27
 
 ### Changed
