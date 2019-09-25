@@ -7,6 +7,12 @@ The file is formatted as described on http://keepachangelog.com/.
 
 Workflows using v1 molviewer nodes will need to replace them with the v2 molviewer nodes.
 
+## [2.0.1] - 2019-09-25
+
+### Fixed
+
+- Pharmacphore viewer gave syntax error
+
 ## [2.0.0] - 2019-09-24
 
 ### Changed

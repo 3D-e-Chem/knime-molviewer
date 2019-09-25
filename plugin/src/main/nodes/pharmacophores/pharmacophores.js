@@ -1,9 +1,6 @@
 window.molviewerPharmacophores = function () {
     const MolviewerPharmacophores = {};
     MolviewerPharmacophores.init = function (representation, value, modules) {
-        debugger
-        // const Molviewer = modules[0];
-
         const div = document.createElement('div');
         div.setAttribute('id', 'viewport');
         document.body.append(div);
@@ -105,8 +102,8 @@ window.molviewerPharmacophores = function () {
         const initialSelection = {
             selectionMethod: "selection",
             changeSet: {
-                added: this.app.store.getState().pharmacophores.filter(m => m.visible).map(m => m.id),
-                removed: this.app.store.getState().pharmacophores.filter(m => !m.visible).map(m => m.id)
+                added: this.app.store.getState().pharmacophores.items.filter(m => m.visible).map(m => m.id),
+                removed: this.app.store.getState().pharmacophores.items.filter(m => !m.visible).map(m => m.id)
             }
         };
         knimeService.publishSelection(tableId, initialSelection, true)
@@ -119,7 +116,7 @@ window.molviewerPharmacophores = function () {
     MolviewerPharmacophores.getComponentValue = function () {
         const state = this.app.store.getState();
         const selection = {};
-        state.pharmacophores.forEach(m => {
+        state.pharmacophores.items.forEach(m => {
             selection[m.id] = m.visible;
         });
         this.value.outColumns = {
