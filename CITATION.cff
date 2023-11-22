@@ -3,7 +3,7 @@
 cff-version: 1.0.3
 message: If you use this software, please cite it as below.
 title: KNIME molecule viewer nodes
-doi: 10.5281/zenodo.168569
+doi: 10.5281/zenodo.597231
 authors:
 - given-names: Stefan
   family-names: Verhoeven
@@ -21,7 +21,7 @@ authors:
 - given-names: Chris
   family-names: de Graaf
   affiliation: Vrije Universiteit Amsterdam
-version: 0.1.4
-date-released: 2016-11-25
+version: 2.0.2
+date-released: 2019-11-07
 repository-code: https://github.com/3D-e-Chem/knime-molviewer
 license: Apache-2.0

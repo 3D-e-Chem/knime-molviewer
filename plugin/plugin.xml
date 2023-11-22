@@ -5,18 +5,58 @@
   <extension point="org.knime.workbench.repository.categories">
       <category
           description="Category containing molecule viewer nodes"
-          icon="icons/molviewer.png"
+          icon="src/main/nodes/molviewer.png"
           level-id="molviewer"
           locked="false"
           name="Molviewer"
           path="/community/3d-e-chem"/>
   </extension>
 
-    <extension point="org.knime.workbench.repository.nodes">
-        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerFactory"/>
-        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores.PharmacophoresViewerFactory"/>
-        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligands.LigandsViewerFactory"/>
-        <node category-path="/community/3d-e-chem/molviewer" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.proteins.ProteinsViewerFactory"/>
+	<extension point="org.knime.workbench.repository.nodes">
+        <node category-path="/community/3d-e-chem/molviewer" deprecated="true" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligandsandproteins.LigandsAndProteinsViewerFactory"/>	  
+        <node category-path="/community/3d-e-chem/molviewer" deprecated="true" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.pharmacophores.PharmacophoresViewerFactory"/>	       
+        <node category-path="/community/3d-e-chem/molviewer" deprecated="true" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.ligands.LigandsViewerFactory"/>	        
+        <node category-path="/community/3d-e-chem/molviewer" deprecated="true" factory-class="nl.esciencecenter.e3dchem.knime.molviewer.proteins.ProteinsViewerFactory"/>
+	</extension>
+
+    <extension
+          point="org.knime.dynamic.node.generation.dynamicNodes">
+       <dynamicNodeFolder
+             function="js"
+             name="Molviewer dynamic js nodes"
+             path="src/main/nodes">
+       </dynamicNodeFolder>
+    </extension>
+    <extension
+          point="org.knime.js.core.webResources">
+       <webResourceBundle
+             debug="false"
+             exports="MolViewer"
+             name="MolViewer"
+             usesDefine="true"
+             version="1.0.0"
+             webResourceBundleID="molviewer-1.0.0">
+          <webResource
+                relativePathSource="src/main/js-lib/molviewer/css/static/media/"
+                relativePathTarget="js-lib/molviewer/css/static/media/">
+          </webResource>
+          <webResource
+                relativePathSource="src/main/js-lib/molviewer/css/main.css"
+                relativePathTarget="js-lib/molviewer/css/main.css">
+         </webResource>
+         <webResource
+                relativePathSource="src/main/js-lib/molviewer/js/main.js"
+                relativePathTarget="js-lib/molviewer/js/main.js">
+          </webResource>
+          <importResource
+                relativePath="js-lib/molviewer/js/main.js"
+                type="JAVASCRIPT">
+          </importResource>
+          <importResource
+               relativePath="js-lib/molviewer/css/main.css"
+               type="CSS">
+         </importResource>
+       </webResourceBundle>
     </extension>
 
 </plugin>

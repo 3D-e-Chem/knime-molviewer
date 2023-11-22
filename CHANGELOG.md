@@ -5,9 +5,31 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+Workflows using v1 molviewer nodes will need to replace them with the v2 molviewer nodes.
+
+## [2.0.2] - 2019-11-07
+
+### Fixed
+
+- Unable to show second pharmacophore ([#31](https://github.com/3D-e-Chem/knime-molviewer/issues/31))
+
+## [2.0.1] - 2019-09-25
+
+### Fixed
+
+- Pharmacphore viewer gave syntax error
+
+## [2.0.0] - 2019-09-24
+
+### Changed
+
+- Replaced Java based nodes via server with Dynamic js nodes ([#27](https://github.com/3D-e-Chem/knime-molviewer/issues/27))
+
 ## [1.1.3] - 2019-06-27
 
-- Compatible with KNIME 4 ((#25)[https://github.com/3D-e-Chem/knime-molviewer/issues/25])
+### Changed
+
+- Compatible with KNIME 4 ([#25](https://github.com/3D-e-Chem/knime-molviewer/issues/25))
 
 ## [1.1.2] - 2017-12-11
 

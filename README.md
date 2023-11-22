@@ -15,7 +15,7 @@ If you are using KNIME workflows with large molecules and you want to view them 
 
 This project uses a web user interface based on https://github.com/3D-e-Chem/molviewer-tsx .
 
-![From KNIME launch web browser with molviewer inside](https://raw.githubusercontent.com/3D-e-Chem/knime-molviewer/master/docs/molviewer-composite.png)
+![From KNIME launch web based molviewer](https://raw.githubusercontent.com/3D-e-Chem/knime-molviewer/master/docs/molviewer-composite.png)
 
 # Installation
 
@@ -67,34 +67,19 @@ Steps to get development environment setup based on https://github.com/knime/kni
 3. Configure Java 8 inside Eclipse Window > Preferences > Java > Installed JREs
 4. Import this repo as an Existing Maven project
 5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (4.0) - nl.esciencecenter.e3dchem.knime.molviewer.targetplatform/KNIME-AP-4.0.target` target definition.
+6. A KNIME Analytics Platform instance can be started by right clicking on the `targetplatform/KNIME\ Analytics\ Platform.launch` file and selecting `Run As → KNIME Analytics Platform`. The KNIME instance will contain the target platform together with all extensions defined in the workspace.
 
 During import the Tycho Eclipse providers must be installed.
 
-## Update plugin libs directory
-
-The `server/libs/` directory are filled with dependencies specified in the `server/pom.libs.xml` file.
-Update libs directory with
-```
-mvn -f server/pom.libs.xml dependency:copy-dependencies -DoutputDirectory=libs
-```
-The jars in the libs directory should be listed in the Bundle-ClassPath property of the `server/META-INF/MANIFEST.MF` file.
-
-TODO incorporate fill libs/ command in mvn package
-
-
 ## Web interface
 
-The web interface in the `server/src/main/resources/webapp` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
+The web interface in the `plugin/src/main/java/js-lib/molviewer` directory. Is a distribution from the https://github.com/3D-e-Chem/molviewer-tsx repository.
 
 ## Tests
 
 Tests for the node are in `tests/src` directory.
 Tests can be executed with `mvn verify`, they will be run in a separate KNIME environment.
 Test results will be written to `test/target/surefire-reports` directory.
-
-### Unit tests
-
-Unit tests written in Junit4 format can be put in `tests/src/java`.
 
 ### Workflow tests
 
@@ -111,27 +96,14 @@ See https://github.com/3D-e-Chem/knime-testflow#3-add-test-workflow
   2. Append release to the update site with `mvn install -Dtarget.update.site=<path to update site>`
 6. Add files, commit and push changes of update site repo.
 7. Create a Github release
-8. Update Zenodo entry, fix authors and license
+8. Update Zenodo entry, fix authors
 9. Make nodes available to 3D-e-Chem KNIME feature by following steps at https://github.com/3D-e-Chem/knime-node-collection#new-release
+10. Update DOI in CITATION.cff
 
 # Technical architecture
 
-In the background a web server is started when the view of the node is opened.
-The webserver has
-* on /api, a rest interface
+The nodes are implemented as Dynamic JavaScript nodes also known as a org.knime.dynamic.node.generation.dynamicNodes extension.
 
-  * to retrieve data from KNIME node input ports, /api/ligands
-  * to propogate selections in web page to KNIME node using the hilite mechanism of KNIME, /api/ligands/hilite
-  * server sent events, /api/broadcast
-
-* on /, ui based on https://github.com/3D-e-Chem/molviewer-tsx
-* on /swagger.json and /swagger.yaml, [swagger](http://swagger.io/) endpoints
-* on /swagger-ui, swagger ui
-
-Server sent events are used to inform the web page that:
-
-* view closed
-* input changed
-* hilite changed
+The viewer has two way binding for the molecule visibility.
 
 This project uses [Eclipse Tycho](https://www.eclipse.org/tycho/) to perform build steps.

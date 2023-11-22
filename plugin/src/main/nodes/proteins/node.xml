@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<js:knimeNode
+	xmlns:js="http://knime.org/dynamicjsnode/v3.0"
+	xmlns="http://knime.org/dynamicnode/v3.0"
+	xmlns:n="http://knime.org/node/v2.12"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://knime.org/dynamicjsnode/v3.0 http://www.knime.org/node/dynamicJSNode_v3.0.xsd"
+	jsNamespace="molviewerProteins" nodeID="molviewer_proteins"
+	categoryPath="/community/3d-e-chem/molviewer"
+	icon="../molviewer.png" type="Visualizer">
+	<name>Proteins Viewer</name>
+	<shortDescription>
+		Node to view proteins in 3D
+	</shortDescription>
+
+	<fullDescription>
+		<intro>
+			<n:p>Node to view proteins in 3D</n:p>
+
+			<n:p>
+				Source code available at
+				<n:a href="https://github.com/3D-e-Chem/knime-molviewer">Github</n:a>
+				.
+			</n:p>
+		</intro>
+
+		<options>
+			<columnSelectorOption
+				name="Column with protein molecules" id="pdbs" inPortIndex="0"
+				label="Column with protein molecules" saveInView="true"
+				filterClasses="org.knime.bio.types.PdbValue org.knime.chem.types.Mol2Value"></columnSelectorOption>
+			<columnSelectorOption name="Column with labels"
+				id="labels" inPortIndex="0" label="Column with labels"
+				saveInView="true" filterClasses="org.knime.core.data.StringValue"
+				allowRowID="true" optional="true"></columnSelectorOption>
+		</options>
+	</fullDescription>
+	<outputOptions>
+		<dataOutputOption outPortIndex="0" id="selection"
+			additionalColumnName="Molecule Selection"
+			additionalColumnType="BOOLEAN" inPortIndex="0" />
+	</outputOptions>
+	<interactiveView name="Proteins viewer">
+		The KNIME Proteins viewer with
+		NGL.
+	</interactiveView>
+	<ports>
+		<inPort portType="Data" name="Display data" index="0">
+			Table
+			containing Proteins in PDB or Mol2 format
+		</inPort>
+		<outPort portType="Data" name="Input Data + View Selection"
+			index="0">
+			Data table containing the input data with an appended boolean
+			column representing which rows were selected in the view.
+		</outPort>
+	</ports>
+	<js:resources>
+		<js:resource type="js" path="proteins.js" />
+		<js:resource type="css" path="proteins.css" />
+	</js:resources>
+	<js:dependencies>
+		<js:dependency name="MolViewer" path="molviewer-1.0.0"
+			type="local" exports="Molviewer" />
+	</js:dependencies>
+	<js:javaProcessor
+		className="nl.esciencecenter.e3dchem.knime.molviewer.ProteinsCheck"
+		hidesLimitRowOption="false" />
+</js:knimeNode>

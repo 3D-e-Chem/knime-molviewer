@@ -16,6 +16,11 @@
 <entry key="EnabledStatus" type="xboolean" value="true"/>
 </config>
 <entry key="Path_column_name" type="xstring" value="filename"/>
+<config key="Remove input column_Internals">
+<entry key="SettingsModelID" type="xstring" value="SMID_boolean"/>
+<entry key="EnabledStatus" type="xboolean" value="true"/>
+</config>
+<entry key="Remove input column" type="xboolean" value="false"/>
 </config>
 <config key="nodeAnnotation">
 <entry key="text" type="xstring" value="Load protein"/>
@@ -58,6 +63,6 @@
 </config>
 <config key="filestores">
 <entry key="file_store_location" type="xstring" isnull="true" value=""/>
-<entry key="file_store_id" type="xstring" value="383abe70-9878-4c92-ab73-f584456f4622"/>
+<entry key="file_store_id" type="xstring" isnull="true" value=""/>
 </config>
 </config>

@@ -14,7 +14,9 @@
 <unit id="org.knime.features.testingapplication.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.xml.feature.group" version="0.0.0"/>
 <unit id="org.knime.features.chem.types.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.js.views.feature.group" version="0.0.0"/>
 <unit id="org.knime.targetPlatform.feature.group" version="0.0.0"/>
+<unit id="org.knime.features.ext.chromium.feature.group" version="0.0.0"/>
 <unit id="org.apache.httpcomponents.fluent-hc" version="0.0.0"/>
 <repository location="https://update.knime.org/analytics-platform/4.0/"/>
 </location>
