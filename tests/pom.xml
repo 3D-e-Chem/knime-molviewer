@@ -83,14 +83,6 @@
 															<fileset dir="${source-location}/plugin/src/main/java" />
 														</sourcefiles>
 													</structure>
-													<structure name="molviewer">
-														<classfiles>
-															<fileset dir="${source-location}/server/target/classes" />
-														</classfiles>
-														<sourcefiles encoding="UTF-8">
-															<fileset dir="${source-location}/server/src/main/java" />
-														</sourcefiles>
-													</structure>
 													<html destdir="${project.basedir}/target/jacoco/report" />
 													<xml destfile="${project.basedir}/target/jacoco/report/jacoco.xml" />
 												</jacoco-report>
