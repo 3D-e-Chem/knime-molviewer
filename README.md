@@ -1,9 +1,8 @@
 KNIME node which launches a web browser with a molecule viewer powered by [NGL](https://github.com/arose/ngl).
 
-[![Build Status Linux](https://travis-ci.org/3D-e-Chem/knime-molviewer.svg?branch=master)](https://travis-ci.org/3D-e-Chem/knime-molviewer)
-[![Build status Windows](https://ci.appveyor.com/api/projects/status/595y9gh13d69y61q?svg=true)](https://ci.appveyor.com/project/3D-e-Chem/knime-molviewer)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer&metric=alert_status)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer&metric=coverage)](https://sonarcloud.io/dashboard?id=nl.esciencecenter.e3dchem.knime.molviewer%3Anl.esciencecenter.e3dchem.knime.molviewer)
+[![Java CI with Maven](https://github.com/3D-e-Chem/knime-molviewer/workflows/Java%20CI%20with%20Maven/badge.svg)](https://github.com/3D-e-Chem/knime-molviewer/actions?query=workflow%3A%22Java+CI+with+Maven%22)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-molviewer&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-molviewer)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=3D-e-Chem_knime-molviewer&metric=coverage)](https://sonarcloud.io/summary/new_code?id=3D-e-Chem_knime-molviewer)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.597231.svg)](https://doi.org/10.5281/zenodo.597231)
 
 If you are using KNIME workflows with large molecules and you want to view them in 3D then the molviewer nodes are able to handle this.
@@ -21,13 +20,13 @@ This project uses a web user interface based on https://github.com/3D-e-Chem/mol
 
 Requirements:
 
-* KNIME, https://www.knime.org, version 4.0 or higher
+* KNIME, https://www.knime.org, version 5.1 or higher
 
 Steps to get the MolViewer KNIME node inside KNIME:
 
 1. Goto Help > Install new software ... menu
 2. Press add button
-3. Fill text fields with `https://3d-e-chem.github.io/updates`
+3. Fill text fields with `https://3d-e-chem.github.io/updates/5.1`
 4. Select --all sites-- in `work with` pulldown
 5. Select the node called `MolViewer nodes for KNIME`
 6. Install software
@@ -62,11 +61,11 @@ The update site can be used to perform a local installation.
 
 Steps to get development environment setup based on https://github.com/knime/knime-sdk-setup#sdk-setup:
 
-1. Install Java 8
-2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/release/2018-12/r/eclipse-ide-rcp-and-rap-developers)
-3. Configure Java 8 inside Eclipse Window > Preferences > Java > Installed JREs
+1. Install Java 17
+2. Install Eclipse for [RCP and RAP developers](https://www.eclipse.org/downloads/packages/installer)
+3. Configure Java 17 inside Eclipse Window > Preferences > Java > Installed JREs
 4. Import this repo as an Existing Maven project
-5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (4.0) - nl.esciencecenter.e3dchem.knime.molviewer.targetplatform/KNIME-AP-4.0.target` target definition.
+5. Activate target platform by going to Window > Preferences > Plug-in Development > Target Platform and check the `KNIME Analytics Platform (5.1) - nl.esciencecenter.e3dchem.knime.molviewer.targetplatform/KNIME-AP-5.1.target` target definition.
 6. A KNIME Analytics Platform instance can be started by right clicking on the `targetplatform/KNIME\ Analytics\ Platform.launch` file and selecting `Run As → KNIME Analytics Platform`. The KNIME instance will contain the target platform together with all extensions defined in the workspace.
 
 During import the Tycho Eclipse providers must be installed.
