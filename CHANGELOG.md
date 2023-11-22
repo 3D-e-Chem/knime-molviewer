@@ -5,6 +5,12 @@ The file is formatted as described on http://keepachangelog.com/.
 
 ## [Unreleased]
 
+## [2.0.3] - 2023-11-22
+
+### Changed
+
+- Require KNIME 5.1
+
 Workflows using v1 molviewer nodes will need to replace them with the v2 molviewer nodes.
 
 ## [2.0.2] - 2019-11-07
