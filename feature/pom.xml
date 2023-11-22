@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>nl.esciencecenter.e3dchem.knime.molviewer</groupId>
 		<artifactId>nl.esciencecenter.e3dchem.knime.molviewer</artifactId>
-		<version>2.0.2-SNAPSHOT</version>
+		<version>2.0.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>nl.esciencecenter.e3dchem.knime.molviewer.feature</artifactId>
